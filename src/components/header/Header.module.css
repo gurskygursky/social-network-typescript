@@ -1,0 +1,4 @@
+.header {
+    grid-area: header;
+    border: white solid 2px;
+}

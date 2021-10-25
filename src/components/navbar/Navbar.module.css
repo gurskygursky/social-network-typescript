@@ -1,0 +1,20 @@
+
+.nav {
+    border: white solid 2px;
+    grid-area: nav;
+    padding: 20px;
+}
+
+.item a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.item a {
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: 400;
+}
+.link {
+
+}
