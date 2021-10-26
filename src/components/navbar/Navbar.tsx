@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import "./Navbar.module.css";
 import style from "./Navbar.module.css";
 
@@ -6,32 +7,32 @@ export const Navbar = () => {
     return (
         <div className={style.nav}>
             <div className={style.link}>
-                <a href={'/profile'}>
+                <NavLink to={'/profile'}>
                     Profile
-                </a>
+                </NavLink>
             </div>
             <div className={style.link}>
-                <a href={'/messages'}>
+                <NavLink to={'/messages'}>
                     Messages
-                </a>
+                </NavLink>
 
             </div>
             <div className={style.link}>
-                <a href={'/news'}>
+                <NavLink to={'/news'}>
                     News
-                </a>
+                </NavLink>
 
             </div>
             <div className={style.link}>
-                <a href={'/music'}>
+                <NavLink to={'/music'}>
                     Music
-                </a>
+                </NavLink>
 
             </div>
             <div className={style.link}>
-                <a href={'/settings'}>
+                <NavLink to={'/settings'}>
                     Settings
-                </a>
+                </NavLink>
             </div>
         </div>
     );

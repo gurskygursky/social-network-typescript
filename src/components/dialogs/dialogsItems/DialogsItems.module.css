@@ -1,0 +1,14 @@
+
+.dialog a {
+    text-decoration: none;
+    color: #fff;
+}
+.dialog a:active {
+    text-decoration: none;
+    color: #fff;
+}
+.dialog a:hover {
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
+}
