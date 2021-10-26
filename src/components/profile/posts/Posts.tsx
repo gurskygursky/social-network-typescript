@@ -1,9 +1,20 @@
 import React from "react";
 import style from "./Posts.module.css";
-import {Post} from "./post/Post";
+import {Post, PostType} from "./post/Post";
 
 
-export const Posts = () => {
+
+type PostsType = {
+    posts: Array<PostType>
+}
+
+export const Posts = (props: PostsType) => {
+
+    let post = props.posts.map(post => <Post id={post.id}
+                                       postText={post.postText}
+                                       likesCount={post.likesCount}
+        />
+    );
     return (
         <div>
             MyPost
@@ -17,17 +28,7 @@ export const Posts = () => {
             <br/>
             <br/>
             <div className={style.posts}>
-                <Post postText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
-                'Maecenas sollicitudin diam ac eros sollicitudin ultricies. ' +
-                'Nulla elit velit, feugiat semper commodo et, egestas sit amet enim. '} likesCount={10}/>
-                <br/>
-                <Post postText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
-                'Maecenas sollicitudin diam ac eros sollicitudin ultricies. ' +
-                'Nulla elit velit, feugiat semper commodo et, egestas sit amet enim. '}likesCount={99}/>
-                <br/>
-                <Post postText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
-                'Maecenas sollicitudin diam ac eros sollicitudin ultricies. ' +
-                'Nulla elit velit, feugiat semper commodo et, egestas sit amet enim. '} likesCount={0}/>
+                {post}
             </div>
         </div>
     );
