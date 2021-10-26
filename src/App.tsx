@@ -1,23 +1,24 @@
 import React from "react";
 import './App.css';
 import {Profile} from "./components/profile/Profile";
-import {Dialogs} from "./components/dialogs/Dialogs";
-import {News} from "./components/news/News";
-import {Music} from "./components/music/Music";
-import {Settings} from "./components/settings/Settings";
+import {Messages} from "./components/dialogs/Messages";
 import {Navbar} from "./components/navbar/Navbar";
 import {Header} from "./components/header/Header";
+import {BrowserRouter, Route} from "react-router-dom";
 
 export const App = () => {
     return (
-        <div className={"app-wrapper"}>
-            <Header/>
-            <Navbar/>
-            <div className={"app-wrapper-content"}>
-                <Profile/>
-                <Dialogs/>
+        <BrowserRouter>
+            <div className={"app-wrapper"}>
+                <Header/>
+                <Navbar/>
+                <div className={"app-wrapper-content"}>
+                    <Route component={Profile} path={'/profile'}/>
+                    <Route component={Messages} path={'/messages'} />
+                </div>
             </div>
-        </div>
+        </BrowserRouter>
+
     );
 }
 

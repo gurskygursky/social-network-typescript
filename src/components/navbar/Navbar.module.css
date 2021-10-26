@@ -5,16 +5,22 @@
     padding: 20px;
 }
 
-.item a:hover {
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.item a {
+.link a {
     text-decoration: none;
     font-size: 30px;
     font-weight: 400;
 }
-.link {
 
+.link a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.link a:active {
+    color: #fff;
+    text-decoration: none;
+}
+.link a:visited {
+    color: #fff;
+    text-decoration: none;
 }

@@ -19,19 +19,15 @@ export const Posts = () => {
             <div className={style.posts}>
                 <Post postText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
                 'Maecenas sollicitudin diam ac eros sollicitudin ultricies. ' +
-                'Nulla elit velit, feugiat semper commodo et, egestas sit amet enim. '} likeCount={10}/>
+                'Nulla elit velit, feugiat semper commodo et, egestas sit amet enim. '} likesCount={10}/>
                 <br/>
                 <Post postText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
                 'Maecenas sollicitudin diam ac eros sollicitudin ultricies. ' +
-                'Nulla elit velit, feugiat semper commodo et, egestas sit amet enim. '}likeCount={99}/>
+                'Nulla elit velit, feugiat semper commodo et, egestas sit amet enim. '}likesCount={99}/>
                 <br/>
                 <Post postText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
                 'Maecenas sollicitudin diam ac eros sollicitudin ultricies. ' +
-                'Nulla elit velit, feugiat semper commodo et, egestas sit amet enim. '}likeCount={88}/>
-                <br/>
-                <Post postText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
-                'Maecenas sollicitudin diam ac eros sollicitudin ultricies. ' +
-                'Nulla elit velit, feugiat semper commodo et, egestas sit amet enim. '} likeCount={0}/>
+                'Nulla elit velit, feugiat semper commodo et, egestas sit amet enim. '} likesCount={0}/>
             </div>
         </div>
     );

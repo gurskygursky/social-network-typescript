@@ -3,3 +3,9 @@
     font-weight: 600;
     padding: 20px;
 }
+.contentAbout img {
+    width: 64px;
+    height: 64px;
+    border-radius: 7px;
+    margin-right: 15px;
+}
