@@ -1,10 +1,9 @@
+import {renderThree} from "../index";
+
 export type PostType = {
     id: number,
     postText: string,
     likesCount: number,
-}
-export type PostsType = {
-    posts: Array<PostType>
 }
 
 export type DialogType = {
@@ -13,7 +12,7 @@ export type DialogType = {
 }
 export type MessageType = {
     id: number,
-    message: string,
+    messageText: string,
 }
 export type ProfileType = {
     posts: Array<PostType>,
@@ -28,7 +27,7 @@ export type RootStateType = {
     profilePage: ProfileType,
 }
 
-let state: RootStateType = {
+export let state: RootStateType = {
     profilePage: {
         posts: [
             {id: 1, postText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', likesCount: 10},
@@ -46,13 +45,31 @@ let state: RootStateType = {
             {id: 6, name: 'Viktor'},
         ],
         messages: [
-            {id: 1, message: 'Hi!'},
-            {id: 1, message: 'Hi, hi!'},
-            {id: 1, message: 'Yo!'},
-            {id: 1, message: 'Yo, yo!'},
-            {id: 1, message: 'Yo, yo, yo!'},
+            {id: 1, messageText: 'Hi!'},
+            {id: 1, messageText: 'Hi, hi!'},
+            {id: 1, messageText: 'Yo!'},
+            {id: 1, messageText: 'Yo, yo!'},
+            {id: 1, messageText: 'Yo, yo, yo!'},
         ],
     },
 }
 
-export default state;
+export const addPost = (postText: string) => {
+    const newPost: PostType = {
+        id: new Date().getTime(),
+        postText: postText,
+        likesCount: 0,
+    };
+    state.profilePage.posts.push(newPost);
+    renderThree(state);
+};
+
+export const sendMessage = (messageText: string) => {
+    const newMessage: MessageType = {
+        id: new Date().getTime(),
+        messageText: messageText,
+    };
+    state.dialogsPage.messages.push(newMessage);
+    renderThree(state);
+};
+

@@ -3,16 +3,30 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import {App} from './App';
 import reportWebVitals from './reportWebVitals';
-import state from "./redux/state";
+import { BrowserRouter } from 'react-router-dom';
+import {RootStateType, state} from './redux/state';
 
 
+export const renderThree = (state: RootStateType) => {
+    ReactDOM.render(
+        <React.StrictMode>
+            <BrowserRouter>
+                <App state={state}/>
+            </BrowserRouter>
+        </React.StrictMode>,
+        document.getElementById('root')
+    );
+}
+renderThree(state)
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App state={state}/>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// renderThree(store.getState())
+
+// store.subscribe(renderThree)
+///
+// store.subscribe(() => {
+//     let state = store.getState();
+//     renderThree(state)
+// })
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
