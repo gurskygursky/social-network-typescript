@@ -1,10 +1,7 @@
 import React from "react";
+import { MessageType } from "../../../redux/state";
 import style from "./Message.module.css";
 
-export type MessageType = {
-    id: number,
-    message: string,
-}
 
 export const Message = (props: MessageType) => {
 

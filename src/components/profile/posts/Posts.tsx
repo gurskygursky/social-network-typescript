@@ -1,12 +1,7 @@
 import React from "react";
 import style from "./Posts.module.css";
-import {Post, PostType} from "./post/Post";
-
-
-
-type PostsType = {
-    posts: Array<PostType>
-}
+import {Post} from "./post/Post";
+import { PostsType } from "../../../redux/state";
 
 export const Posts = (props: PostsType) => {
 

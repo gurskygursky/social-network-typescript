@@ -1,12 +1,7 @@
 import React from "react";
 import style from "./Post.module.css";
 import avatar_image from "../../../../assets/image/avatar/BiaKjqXbT.jpg"
-
-export type PostType = {
-    id: number,
-    postText: string,
-    likesCount: number,
-}
+import { PostType } from "../../../../redux/state";
 
 export const Post = (props: PostType) => {
 

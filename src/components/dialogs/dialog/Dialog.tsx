@@ -1,11 +1,7 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
+import { DialogType } from "../../../redux/state";
 import style from "./Dialog.module.css";
-
-export type DialogType = {
-    id: number,
-    name: string,
-}
 
 export const Dialog = (props: DialogType) => {
 

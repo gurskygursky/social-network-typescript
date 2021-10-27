@@ -3,11 +3,8 @@ import "./Profile.module.css"
 import style from "./Profile.module.css"
 import {Posts} from "./posts/Posts";
 import { About } from "./about/About";
-import {PostType} from "./posts/post/Post";
+import {ProfileType} from "../../redux/state";
 
-export type ProfileType = {
-    posts: Array<PostType>
-}
 
 export const Profile = (props: ProfileType) => {
     return (
