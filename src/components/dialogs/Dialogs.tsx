@@ -5,9 +5,10 @@ import {Dialog} from "./dialog/Dialog";
 import {DialogType, MessageType} from "../../redux/state";
 
 type DialogsPageType = {
-    sendMessage: (messageText: string) => void,
     dialogs: Array<DialogType>,
     messages: Array<MessageType>,
+    sendMessageCallback: (messageText: string) => void,
+    updateNewMessageTextCallback: (messageText: string) => void,
 }
 
 export const Dialogs = (props: DialogsPageType) => {
@@ -27,7 +28,7 @@ export const Dialogs = (props: DialogsPageType) => {
     let textAreaMessageText = React.createRef<HTMLTextAreaElement>();
     const sendMessage = () => {
         if (textAreaMessageText.current) {
-            props.sendMessage(textAreaMessageText.current.value)
+            props.sendMessageCallback(textAreaMessageText.current.value)
         }
     }
 
@@ -40,7 +41,7 @@ export const Dialogs = (props: DialogsPageType) => {
                 {message}
                 <br/>
                 <br/>
-                <textarea ref={textAreaMessageText}/>
+                <textarea ref={textAreaMessageText} />
                 <br/>
                 <button onClick={sendMessage}>Send</button>
             </div>

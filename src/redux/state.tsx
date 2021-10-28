@@ -14,28 +14,32 @@ export type MessageType = {
     id: number,
     messageText: string,
 }
-export type ProfileType = {
+type ProfilePageType = {
     posts: Array<PostType>,
+    newPostText: string,
 }
-export type DialogsType = {
+type DialogsPageType = {
     dialogs: Array<DialogType>,
     messages: Array<MessageType>,
+    newMessageText: string,
 }
 
 export type RootStateType = {
-    dialogsPage: DialogsType,
-    profilePage: ProfileType,
+    dialogsPage: DialogsPageType,
+    profilePage: ProfilePageType,
 }
 
 export let state: RootStateType = {
     profilePage: {
+        newPostText: '',
         posts: [
-            {id: 1, postText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', likesCount: 10},
-            {id: 2, postText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', likesCount: 7},
-            {id: 3, postText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', likesCount: 99},
+            {id: 1, postText: 'Lorem ipsum dolor sit amet.', likesCount: 10},
+            {id: 2, postText: 'Lorem ipsum dolor sit amet.', likesCount: 7},
+            {id: 3, postText: 'Lorem ipsum dolor sit amet.', likesCount: 99},
         ],
     },
     dialogsPage: {
+        newMessageText: '',
         dialogs: [
             {id: 1, name: 'Dimych'},
             {id: 2, name: 'Sveta'},
@@ -72,4 +76,14 @@ export const sendMessage = (messageText: string) => {
     state.dialogsPage.messages.push(newMessage);
     renderThree(state);
 };
+
+export const updateNewPostText = (newPostText: string) => {
+    state.profilePage.newPostText = newPostText;
+    renderThree(state);
+}
+export const updateNewMessageText = (newMessageText: string) => {
+    state.dialogsPage.newMessageText = newMessageText;
+    renderThree(state);
+}
+
 

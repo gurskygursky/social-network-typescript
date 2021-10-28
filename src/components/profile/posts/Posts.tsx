@@ -5,20 +5,24 @@ import {PostType} from "../../../redux/state";
 
 type PostsPageType = {
     posts: Array<PostType>,
-    addPost: (postText: string) => void,
+    addPostCallback: (postText: string) => void,
+    updateNewPostTextCallback: (newPostText: string) => void,
 }
-export const Posts = (props: PostsPageType ) => {
+export const Posts = (props: PostsPageType) => {
 
     let post = props.posts.map(post => <Post id={post.id}
-                                       postText={post.postText}
-                                       likesCount={post.likesCount}
+                                             postText={post.postText}
+                                             likesCount={post.likesCount}
         />
     );
 
     let textAreaPostText = React.createRef<HTMLTextAreaElement>();
+
     const addPost = () => {
-        if (textAreaPostText.current) {
-            props.addPost(textAreaPostText.current.value)
+        if(textAreaPostText.current) {
+            const text = textAreaPostText.current.value
+            props.addPostCallback(text)
+            textAreaPostText.current.value = ""
         }
     }
 

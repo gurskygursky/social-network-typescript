@@ -2,18 +2,27 @@ import React from "react";
 import "./Profile.module.css"
 import style from "./Profile.module.css"
 import {Posts} from "./posts/Posts";
-import { About } from "./about/About";
-import {addPost, ProfileType} from "../../redux/state";
+import {About} from "./about/About";
+import {PostType} from "../../redux/state";
 
 
-export const Profile = (props: ProfileType) => {
+type ProfilePageType = {
+    posts: Array<PostType>
+    addPostCallback: (postText: string) => void,
+    updateNewPostTextCallback: (newPostText: string) => void
+}
+
+export const Profile = (props: ProfilePageType) => {
     return (
         <div className={style.content}>
-                <About firstName={'Yegor'} lastName={'Gursky'}/>
+            <About firstName={'Yegor'} lastName={'Gursky'}/>
             <br/>
             <br/>
             <br/>
-            <Posts addPost={addPost} posts={props.posts}/>
+            <Posts addPostCallback={props.addPostCallback}
+                   posts={props.posts}
+                   updateNewPostTextCallback={props.updateNewPostTextCallback}
+            />
         </div>
     );
 }
