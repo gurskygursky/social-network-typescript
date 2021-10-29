@@ -9,11 +9,10 @@ import {RootStateType} from "./redux/state";
 
 type AppType = {
     state: RootStateType,
-    addPostCallback: (postText: string) => void,
-    sendMessageCallback: (messageText: string) => void,
-    updateNewPostTextCallback: (newPostText: string) => void,
-    updateNewMessageTextCallback: (newMessageText: string) => void,
-
+    addPost: (postText: string) => void,
+    sendMessage: (messageText: string) => void,
+    updateNewPostText: (inputMessageText: string) => void,
+    updateNewMessageText: (inputMessageText: string) => void,
 }
 
 
@@ -23,15 +22,14 @@ export const App = (props: AppType) => {
             <Header/>
             <Navbar/>
             <div className={"app-wrapper-content"}>
-                <Route path={'/profile'} component={() => <Profile posts={props.state.profilePage.posts}
-                                                                   addPostCallback={props.addPostCallback}
-                                                                   updateNewPostTextCallback={props.updateNewPostTextCallback}
+                <Route path={'/profile'} render={() => <Profile profilePage={props.state.profilePage}
+                                                                   addPost={props.addPost}
+                                                                   updateNewPostText={props.updateNewPostText}
                 />}
                 />
-                <Route path={'/messages'} component={() => <Dialogs dialogs={props.state.dialogsPage.dialogs}
-                                                                    messages={props.state.dialogsPage.messages}
-                                                                    sendMessageCallback={props.sendMessageCallback}
-                                                                    updateNewMessageTextCallback={props.updateNewMessageTextCallback}
+                <Route path={'/messages'} render={() => <Dialogs dialogPage={props.state.dialogsPage}
+                                                                    sendMessage={props.sendMessage}
+                                                                    updateNewMessageText={props.updateNewMessageText}
 
                 />}
                 />

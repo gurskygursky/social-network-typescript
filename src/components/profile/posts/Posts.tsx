@@ -1,12 +1,12 @@
-import React from "react";
+import React, {ChangeEvent, KeyboardEvent} from "react";
 import style from "./Posts.module.css";
 import {Post} from "./post/Post";
-import {PostType} from "../../../redux/state";
+import {PostType, store} from "../../../redux/state";
 
 type PostsPageType = {
     posts: Array<PostType>,
-    addPostCallback: (postText: string) => void,
-    updateNewPostTextCallback: (newPostText: string) => void,
+    addPost: (newPostText: string) => void,
+    updateNewPostText: (inputMessageText: string) => void,
 }
 export const Posts = (props: PostsPageType) => {
 
@@ -19,11 +19,23 @@ export const Posts = (props: PostsPageType) => {
     let textAreaPostText = React.createRef<HTMLTextAreaElement>();
 
     const addPost = () => {
-        if(textAreaPostText.current) {
-            const text = textAreaPostText.current.value
-            props.addPostCallback(text)
-            textAreaPostText.current.value = ""
+        if (textAreaPostText.current) {
+            // const text = textAreaPostText.current.value
+            props.addPost(textAreaPostText.current.value);
+            textAreaPostText.current.value = ''
+
         }
+    }
+
+
+    const onChangePost = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        console.log(event.currentTarget.value)
+        // const newPostText = event.currentTarget.value
+        props.updateNewPostText(event.currentTarget.value)
+    }
+    const onKeyPressEnter = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+        if (event.key === "Enter")
+            addPost()
     }
 
     return (
@@ -32,7 +44,12 @@ export const Posts = (props: PostsPageType) => {
             <div>
                 <br/>
                 <br/>
-                <textarea ref={textAreaPostText}/>
+                <textarea ref={textAreaPostText}
+                          onChange={onChangePost}
+                          value={store._state.profilePage.newPostText}
+                          // value={state.profilePage.newPostText}
+                          onKeyPress={onKeyPressEnter}
+                />
                 <br/>
                 <button onClick={addPost}>Add post</button>
             </div>

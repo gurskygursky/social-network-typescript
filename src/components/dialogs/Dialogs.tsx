@@ -1,24 +1,23 @@
-import React from "react";
+import React, {ChangeEvent, KeyboardEvent} from "react";
 import style from "./Dialogs.module.css";
 import {Message} from "./messages/Message";
 import {Dialog} from "./dialog/Dialog";
-import {DialogType, MessageType} from "../../redux/state";
+import {DialogsPageType, store} from "../../redux/state";
 
-type DialogsPageType = {
-    dialogs: Array<DialogType>,
-    messages: Array<MessageType>,
-    sendMessageCallback: (messageText: string) => void,
-    updateNewMessageTextCallback: (messageText: string) => void,
+type DialogsPropsType = {
+    dialogPage: DialogsPageType,
+    sendMessage: (messageText: string) => void,
+    updateNewMessageText: (inputMessageText: string) => void,
 }
 
-export const Dialogs = (props: DialogsPageType) => {
+export const Dialogs = (props: DialogsPropsType) => {
 
-    let dialog = props.dialogs.map(dialog =>
+    let dialog = props.dialogPage.dialogs.map(dialog =>
         <Dialog id={dialog.id}
                 name={dialog.name}
         />
     );
-    let message = props.messages.map(message =>
+    let message = props.dialogPage.messages.map(message =>
         <Message id={message.id}
                  messageText={message.messageText}
         />
@@ -26,12 +25,22 @@ export const Dialogs = (props: DialogsPageType) => {
 
 
     let textAreaMessageText = React.createRef<HTMLTextAreaElement>();
+
     const sendMessage = () => {
         if (textAreaMessageText.current) {
-            props.sendMessageCallback(textAreaMessageText.current.value)
+            props.sendMessage(textAreaMessageText.current.value)
+            textAreaMessageText.current.value = ''
         }
     }
-
+    const onChangeMessage = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        console.log(event.currentTarget.value)
+        // let newMessageText = event.currentTarget.value
+        props.updateNewMessageText(event.currentTarget.value)
+    }
+    const onKeyPressEnter = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+        if (event.key === "Enter")
+            sendMessage()
+    }
     return (
         <div className={style.container}>
             <div className={style.dialogs}>
@@ -41,7 +50,11 @@ export const Dialogs = (props: DialogsPageType) => {
                 {message}
                 <br/>
                 <br/>
-                <textarea ref={textAreaMessageText} />
+                <textarea ref={textAreaMessageText}
+                          onChange={onChangeMessage}
+                          value={store._state.dialogsPage.newMessageText}
+                          onKeyPress={onKeyPressEnter}
+                />
                 <br/>
                 <button onClick={sendMessage}>Send</button>
             </div>
