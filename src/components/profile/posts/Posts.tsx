@@ -1,7 +1,8 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
 import style from "./Posts.module.css";
 import {Post} from "./post/Post";
-import {ActionsTypes, AddPost, InputNewPostText, PostType, store} from "../../../redux/state";
+import {PostType, store} from "../../../redux/state";
+import {ActionsTypes, AddPost, InputNewPostText} from "../../../redux/actions";
 
 type PostsPageType = {
     posts: Array<PostType>,

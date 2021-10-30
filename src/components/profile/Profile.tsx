@@ -3,7 +3,8 @@ import "./Profile.module.css"
 import style from "./Profile.module.css"
 import {Posts} from "./posts/Posts";
 import {About} from "./about/About";
-import {ActionsTypes, ProfilePageType, store} from "../../redux/state";
+import {ProfilePageType, store} from "../../redux/state";
+import {ActionsTypes} from "../../redux/actions";
 
 type ProfilePropsType = {
     profilePage: ProfilePageType,

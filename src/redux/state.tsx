@@ -1,29 +1,6 @@
-export enum ACTIONS_TYPE {
-    ADD_POST = 'Posts/ADD_POST',
-    INPUT_NEW_POST_TEXT = 'Posts/INPUT_NEW_POST_TEXT',
-    SEND_MESSAGE = 'Dialgos/SEND_MESSAGE',
-    INPUT_NEW_MESSAGE_TEXT = 'Dialogs/INPUT_NEW_MESSAGE_TEXT',
-}
-type AddPostType = {
-    type: ACTIONS_TYPE.ADD_POST,
-}
-type InputNewPostTextType = {
-    type: ACTIONS_TYPE.INPUT_NEW_POST_TEXT,
-    inputPostText: string,
-}
-type SendMessageType = {
-    type: ACTIONS_TYPE.SEND_MESSAGE,
-}
-type InputNewMessageTextType = {
-    type: ACTIONS_TYPE.INPUT_NEW_MESSAGE_TEXT,
-    inputMessageText: string,
-}
-export type ActionsTypes =
-    AddPostType |
-    InputNewPostTextType |
-    SendMessageType |
-    InputNewMessageTextType;
-
+import {ActionsTypes} from "./actions";
+import ProfileReducer from "./profile-reducer";
+import DialogsReducer from "./dialogs-reducer";
 
 export type PostType = {
     id: number,
@@ -56,7 +33,7 @@ export type RootStateType = {
 
 export type StoreType = {
     _state: RootStateType,
-    _renderThree: (_state: RootStateType) => void,
+    _renderThree: (state: RootStateType) => void,
     getState: () => RootStateType,
     subscribe: (observer: () => void) => void,
     dispatch: (action: ActionsTypes) => void,
@@ -101,59 +78,9 @@ export let store: StoreType = {
         this._renderThree = observer;
     },
     dispatch(action: ActionsTypes) {
-        if (action.type === ACTIONS_TYPE.ADD_POST) {
-            const newPost: PostType = {
-                id: new Date().getTime(),
-                postText: this._state.profilePage.newPostText,
-                likesCount: 0,
-            };
-            if (this._state.profilePage.newPostText !== '') {
-                this._state.profilePage.posts.push(newPost);
-            }
-            this._state.profilePage.newPostText = '';
-            this._renderThree(this._state);
-        }
-        if (action.type === ACTIONS_TYPE.INPUT_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.inputPostText;
-            this._renderThree(this._state);
-        }
-        if (action.type === ACTIONS_TYPE.SEND_MESSAGE) {
-            const newMessage: MessageType = {
-                id: new Date().getTime(),
-                messageText: this._state.dialogsPage.newMessageText,
-            };
-            if (this._state.dialogsPage.newMessageText !== '') {
-                this._state.dialogsPage.messages.push(newMessage);
-            }
-            this._state.dialogsPage.newMessageText = '';
-            this._renderThree(this._state);
-        }
-        if (action.type === ACTIONS_TYPE.INPUT_NEW_MESSAGE_TEXT) {
-                this._state.dialogsPage.newMessageText = action.inputMessageText;
-                this._renderThree(this._state);
-        }
+        ProfileReducer(this._state.profilePage, action);
+        DialogsReducer(this._state.dialogsPage, action);
+        this._renderThree(this._state)
     }
 };
 
-export const AddPost = (): AddPostType => {
-    return {
-        type: ACTIONS_TYPE.ADD_POST,
-    }
-};
-export const InputNewPostText = (newPostText: string):InputNewPostTextType => {
-    return {
-        type: ACTIONS_TYPE.INPUT_NEW_POST_TEXT,
-        inputPostText: newPostText,
-    }
-};
-export const SendMessage = (): SendMessageType => {
-    return {
-        type: ACTIONS_TYPE.SEND_MESSAGE,
-    }
-};
-export const InputNewMessageText = (newMessageText: string): InputNewMessageTextType => {
-    return {
-        type: ACTIONS_TYPE.INPUT_NEW_MESSAGE_TEXT,
-        inputMessageText: newMessageText,
-    }
-}
