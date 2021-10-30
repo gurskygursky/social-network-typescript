@@ -11,10 +11,11 @@ export const renderThree = (state: RootStateType) => {
         <React.StrictMode>
             <BrowserRouter>
                 <App state={state}
-                     addPost={store.addPost.bind(store)}
-                     sendMessage={store.sendMessage.bind(store)}
-                     updateNewPostText={store.updateNewPostText.bind(store)}
-                     updateNewMessageText={store.updateNewMessageText.bind(store)}
+                     dispatch={store.dispatch.bind(store)}
+                     // addPost={store.addPost.bind(store)}
+                     // sendMessage={store.sendMessage.bind(store)}
+                     // updateNewPostText={store.updateNewPostText.bind(store)}
+                     // updateNewMessageText={store.updateNewMessageText.bind(store)}
                 />
             </BrowserRouter>,
         </React.StrictMode>,
