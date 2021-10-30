@@ -4,25 +4,25 @@ export enum ACTIONS_TYPE {
     SEND_MESSAGE = 'Dialgos/SEND_MESSAGE',
     INPUT_NEW_MESSAGE_TEXT = 'Dialogs/INPUT_NEW_MESSAGE_TEXT',
 }
-type addPostType = {
+type AddPostType = {
     type: ACTIONS_TYPE.ADD_POST,
 }
-type inputNewPostTextType = {
+type InputNewPostTextType = {
     type: ACTIONS_TYPE.INPUT_NEW_POST_TEXT,
     inputPostText: string,
 }
-type sendMessageType = {
+type SendMessageType = {
     type: ACTIONS_TYPE.SEND_MESSAGE,
 }
-type inputNewMessageTextType = {
+type InputNewMessageTextType = {
     type: ACTIONS_TYPE.INPUT_NEW_MESSAGE_TEXT,
     inputMessageText: string,
 }
 export type ActionsTypes =
-    addPostType |
-    inputNewPostTextType |
-    sendMessageType |
-    inputNewMessageTextType ;
+    AddPostType |
+    InputNewPostTextType |
+    SendMessageType |
+    InputNewMessageTextType;
 
 
 export type PostType = {
@@ -56,10 +56,6 @@ export type RootStateType = {
 
 export type StoreType = {
     _state: RootStateType,
-    // addPost: () => void,
-    // updateNewPostText: (inputPostText: string) => void,
-    // sendMessage: () => void,
-    // updateNewMessageText: (inputMessageText: string) => void,
     _renderThree: (_state: RootStateType) => void,
     getState: () => RootStateType,
     subscribe: (observer: () => void) => void,
@@ -95,38 +91,6 @@ export let store: StoreType = {
             ],
         },
     },
-
-    // addPost() {
-    //     const newPost: PostType = {
-    //         id: new Date().getTime(),
-    //         postText: this._state.profilePage.newPostText,
-    //         likesCount: 0,
-    //     };
-    //     if (this._state.profilePage.newPostText !== '') {
-    //         this._state.profilePage.posts.push(newPost);
-    //     }
-    //     this._state.profilePage.newPostText = '';
-    //     this._renderThree(this._state);
-    // },
-    // updateNewPostText(inputPostText: string) {
-    //     this._state.profilePage.newPostText = inputPostText;
-    //     this._renderThree(this._state);
-    // },
-    // sendMessage() {
-    //     const newMessage: MessageType = {
-    //         id: new Date().getTime(),
-    //         messageText: this._state.dialogsPage.newMessageText,
-    //     };
-    //     if (this._state.dialogsPage.newMessageText !== '') {
-    //         this._state.dialogsPage.messages.push(newMessage);
-    //     }
-    //     this._state.dialogsPage.newMessageText = '';
-    //     this._renderThree(this._state);
-    // },
-    // updateNewMessageText(inputMessageText: string) {
-    //     this._state.dialogsPage.newMessageText = inputMessageText;
-    //     this._renderThree(this._state);
-    // },
     _renderThree() {
         console.log('no subscribers (observers)')
     },
@@ -168,7 +132,28 @@ export let store: StoreType = {
                 this._state.dialogsPage.newMessageText = action.inputMessageText;
                 this._renderThree(this._state);
         }
-
-
     }
 };
+
+export const AddPost = (): AddPostType => {
+    return {
+        type: ACTIONS_TYPE.ADD_POST,
+    }
+};
+export const InputNewPostText = (newPostText: string):InputNewPostTextType => {
+    return {
+        type: ACTIONS_TYPE.INPUT_NEW_POST_TEXT,
+        inputPostText: newPostText,
+    }
+};
+export const SendMessage = (): SendMessageType => {
+    return {
+        type: ACTIONS_TYPE.SEND_MESSAGE,
+    }
+};
+export const InputNewMessageText = (newMessageText: string): InputNewMessageTextType => {
+    return {
+        type: ACTIONS_TYPE.INPUT_NEW_MESSAGE_TEXT,
+        inputMessageText: newMessageText,
+    }
+}

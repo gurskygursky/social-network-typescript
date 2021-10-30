@@ -1,14 +1,11 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
 import style from "./Posts.module.css";
 import {Post} from "./post/Post";
-import {ACTIONS_TYPE, ActionsTypes, PostType, store} from "../../../redux/state";
+import {ActionsTypes, AddPost, InputNewPostText, PostType, store} from "../../../redux/state";
 
 type PostsPageType = {
     posts: Array<PostType>,
     dispatch: (action: ActionsTypes) => void,
-
-    // addPost: (newPostText: string) => void,
-    // updateNewPostText: (inputMessageText: string) => void,
 }
 export const Posts = (props: PostsPageType) => {
 
@@ -18,24 +15,13 @@ export const Posts = (props: PostsPageType) => {
         />
     );
 
-    // let textAreaPostText = React.createRef<HTMLTextAreaElement>();
-
     const addPost = () => {
-
-        // if (textAreaPostText.current) {
-        // const text = textAreaPostText.current.value
-        props.dispatch({type: ACTIONS_TYPE.ADD_POST})
-        // props.addPost(textAreaPostText.current.value);
-        // textAreaPostText.current.value = ''}
+        props.dispatch(AddPost())
     }
     const onChangePost = (event: ChangeEvent<HTMLTextAreaElement>) => {
         console.log(event.currentTarget.value)
         const newPostText = event.currentTarget.value
-        // props.updateNewPostText(event.currentTarget.value)
-        props.dispatch({
-            type: ACTIONS_TYPE.INPUT_NEW_POST_TEXT,
-            inputPostText: newPostText,
-        })
+        props.dispatch(InputNewPostText(newPostText))
     }
     const onKeyPressEnter = (event: KeyboardEvent<HTMLTextAreaElement>) => {
         if (event.key === "Enter")
@@ -49,10 +35,8 @@ export const Posts = (props: PostsPageType) => {
                 <br/>
                 <br/>
                 <textarea
-                    // ref={textAreaPostText}
                     onChange={onChangePost}
                     value={store._state.profilePage.newPostText}
-                    // value={state.profilePage.newPostText}
                     onKeyPress={onKeyPressEnter}
                 />
                 <br/>

@@ -2,14 +2,11 @@ import React, {ChangeEvent, KeyboardEvent} from "react";
 import style from "./Dialogs.module.css";
 import {Message} from "./messages/Message";
 import {Dialog} from "./dialog/Dialog";
-import {ACTIONS_TYPE, ActionsTypes, DialogsPageType, store} from "../../redux/state";
+import {ActionsTypes, DialogsPageType, InputNewMessageText, SendMessage, store} from "../../redux/state";
 
 type DialogsPropsType = {
     dialogPage: DialogsPageType,
     dispatch: (action: ActionsTypes) => void,
-
-    // sendMessage: (messageText: string) => void,
-    // updateNewMessageText: (inputMessageText: string) => void,
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
@@ -29,18 +26,12 @@ export const Dialogs = (props: DialogsPropsType) => {
     let textAreaMessageText = React.createRef<HTMLTextAreaElement>();
 
     const sendMessage = () => {
-        // if (textAreaMessageText.current) {
-        props.dispatch({type: ACTIONS_TYPE.SEND_MESSAGE})
-        // textAreaMessageText.current.value = ''
-        // }
+        props.dispatch(SendMessage())
     }
     const onChangeMessage = (event: ChangeEvent<HTMLTextAreaElement>) => {
         console.log(event.currentTarget.value)
         const newMessageText = event.currentTarget.value
-        props.dispatch({
-            type: ACTIONS_TYPE.INPUT_NEW_MESSAGE_TEXT,
-            inputMessageText: newMessageText,
-        })
+        props.dispatch(InputNewMessageText(newMessageText))
     }
     const onKeyPressEnter = (event: KeyboardEvent<HTMLTextAreaElement>) => {
         if (event.key === "Enter")
