@@ -2,8 +2,8 @@ import React, {ChangeEvent, KeyboardEvent} from "react";
 import style from "./Dialogs.module.css";
 import {Message} from "./messages/Message";
 import {Dialog} from "./dialog/Dialog";
-import {DialogsPageType, store} from "../../redux/state";
 import {ActionsTypes, InputNewMessageText, SendMessage} from "../../redux/actions";
+import {DialogsPageType} from "../../redux/state";
 
 type DialogsPropsType = {
     dialogPage: DialogsPageType,
@@ -49,7 +49,7 @@ export const Dialogs = (props: DialogsPropsType) => {
                 <br/>
                 <textarea ref={textAreaMessageText}
                           onChange={onChangeMessage}
-                          value={store._state.dialogsPage.newMessageText}
+                          value={props.dialogPage.newMessageText}
                           onKeyPress={onKeyPressEnter}
                 />
                 <br/>

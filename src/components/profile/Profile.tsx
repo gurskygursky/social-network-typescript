@@ -3,8 +3,8 @@ import "./Profile.module.css"
 import style from "./Profile.module.css"
 import {Posts} from "./posts/Posts";
 import {About} from "./about/About";
-import {ProfilePageType, store} from "../../redux/state";
 import {ActionsTypes} from "../../redux/actions";
+import {ProfilePageType} from "../../redux/state";
 
 type ProfilePropsType = {
     profilePage: ProfilePageType,
@@ -18,7 +18,8 @@ export const Profile = (props: ProfilePropsType) => {
             <br/>
             <br/>
             <br/>
-            <Posts dispatch={props.dispatch.bind(store)}
+            <Posts dispatch={props.dispatch}
+                   profilePage={props.profilePage}
                    posts={props.profilePage.posts}
             />
         </div>

@@ -1,10 +1,11 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
 import style from "./Posts.module.css";
 import {Post} from "./post/Post";
-import {PostType, store} from "../../../redux/state";
 import {ActionsTypes, AddPost, InputNewPostText} from "../../../redux/actions";
+import {PostType, ProfilePageType} from "../../../redux/state";
 
 type PostsPageType = {
+    profilePage: ProfilePageType,
     posts: Array<PostType>,
     dispatch: (action: ActionsTypes) => void,
 }
@@ -37,7 +38,7 @@ export const Posts = (props: PostsPageType) => {
                 <br/>
                 <textarea
                     onChange={onChangePost}
-                    value={store._state.profilePage.newPostText}
+                    value={props.profilePage.newPostText}
                     onKeyPress={onKeyPressEnter}
                 />
                 <br/>

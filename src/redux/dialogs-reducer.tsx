@@ -1,7 +1,13 @@
 import {ACTIONS_TYPE, ActionsTypes} from "./actions";
-import {DialogsPageType, MessageType} from "./state";
+import {DialogType, MessageType} from "./state";
 
-const initialState: DialogsPageType = {
+type initialStateType = {
+    newMessageText: string,
+    dialogs: Array<DialogType>,
+    messages: Array<MessageType>,
+}
+
+const initialState: initialStateType = {
     newMessageText: '',
     dialogs: [
         {id: 1, name: 'Dimych'},
@@ -20,7 +26,7 @@ const initialState: DialogsPageType = {
     ],
 };
 
-const DialogsReducer = (state = initialState, action: ActionsTypes) => {
+export const DialogsReducer = (state = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case ACTIONS_TYPE.SEND_MESSAGE:
             const newMessage: MessageType = {
@@ -35,6 +41,7 @@ const DialogsReducer = (state = initialState, action: ActionsTypes) => {
         case ACTIONS_TYPE.INPUT_NEW_MESSAGE_TEXT:
             state.newMessageText = action.inputMessageText;
             return state;
+        default: return state;
     }
 }
 export default DialogsReducer;

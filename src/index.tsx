@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import React from "react";
 import {BrowserRouter} from "react-router-dom";
 import {App} from "./App";
-import {RootStateType, store} from "./redux/state";
+import store, {RootStateType} from "./redux/redux-store";
 
 export const renderThree = (state: RootStateType) => {
     ReactDOM.render(
@@ -23,7 +23,7 @@ renderThree(store.getState());
 store.subscribe(() => {
     let state = store.getState();
     renderThree(state)
-})
+});
 
 
 // If you want to start measuring performance in your app, pass a function
