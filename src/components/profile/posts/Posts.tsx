@@ -1,13 +1,18 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
 import style from "./Posts.module.css";
 import {Post} from "./post/Post";
-import {ActionsTypes, AddPost, InputNewPostText} from "../../../redux/actions";
-import {PostType, ProfilePageType} from "../../../redux/state";
+import {ActionsTypes, AddPost} from "../../../redux/actions";
+import {PostType, ProfilePageType, StoreType} from "../../../redux/state";
+import store from "../../../redux/redux-store";
 
 type PostsPageType = {
-    profilePage: ProfilePageType,
+    // profilePage: ProfilePageType,
     posts: Array<PostType>,
     dispatch: (action: ActionsTypes) => void,
+    newPostText: (newPostText: string) => void,
+    onKeyPress: (event: KeyboardEvent<HTMLTextAreaElement>)  => void,
+    addPost: () => void,
+    value: any,
 }
 export const Posts = (props: PostsPageType) => {
 
@@ -18,12 +23,15 @@ export const Posts = (props: PostsPageType) => {
     );
 
     const addPost = () => {
-        props.dispatch(AddPost())
+        props.addPost();
+        // props.dispatch(AddPost())
     }
     const onChangePost = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        console.log(event.currentTarget.value)
+        // console.log(event.currentTarget.value)
         const newPostText = event.currentTarget.value
-        props.dispatch(InputNewPostText(newPostText))
+        props.newPostText(newPostText)
+
+        // props.dispatch(InputNewPostText(newPostText))
     }
     const onKeyPressEnter = (event: KeyboardEvent<HTMLTextAreaElement>) => {
         if (event.key === "Enter")
@@ -38,11 +46,11 @@ export const Posts = (props: PostsPageType) => {
                 <br/>
                 <textarea
                     onChange={onChangePost}
-                    value={props.profilePage.newPostText}
+                    value={props.value}
                     onKeyPress={onKeyPressEnter}
                 />
                 <br/>
-                <button onClick={addPost}>Add post</button>
+                <button onClick={props.addPost}>Add post</button>
             </div>
             <br/>
             <br/>
