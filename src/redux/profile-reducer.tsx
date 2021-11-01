@@ -27,20 +27,18 @@ export const ProfileReducer = (state= initialState, action: ActionsTypes): Initi
                 likesCount: 0,
             };
             if (state.newPostText !== '') {
-                let stateCopy = {...state};
-                stateCopy.posts = [...state.posts];
-                stateCopy.posts.push(newPost);
-                stateCopy.newPostText = '';
-                return stateCopy;
-                // state.posts.push(newPost);
+                return {
+                    ...state,
+                    posts: [...state.posts, newPost],
+                    newPostText: '',
+                }
             }
-            // state.newPostText = '';
             return state;
         case ACTIONS_TYPE.INPUT_NEW_POST_TEXT:
-            let stateCopy = {...state};
-            stateCopy.newPostText = action.inputPostText;
-            // state.newPostText = action.inputPostText;
-            return stateCopy;
+            return {
+                ...state,
+                newPostText: action.inputPostText,
+            }
         default: return state;
     }
 };

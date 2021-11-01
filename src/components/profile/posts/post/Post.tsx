@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./Post.module.css";
 import avatar_image from "../../../../assets/image/avatar/BiaKjqXbT.jpg"
-import { PostType } from "../../../../redux/state";
+import { PostType } from "../../../../redux/profile-reducer";
 
 export const Post = (props: PostType) => {
 

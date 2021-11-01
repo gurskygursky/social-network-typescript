@@ -41,18 +41,18 @@ export const DialogsReducer = (state = initialState, action: ActionsTypes): Init
                 messageText: state.newMessageText,
             };
             if (state.newMessageText !== '') {
-                let stateCopy = {...state};
-                stateCopy.messages.push(newMessage);
-                // state.messages.push(newMessage);
-                stateCopy.newMessageText = '';
-                return stateCopy;
+                return {
+                    ...state,
+                    messages: [...state.messages, newMessage],
+                    newMessageText: '',
+                }
             }
             return state;
         case ACTIONS_TYPE.INPUT_NEW_MESSAGE_TEXT:
-            let copyState = {...state}
-            copyState.newMessageText = action.inputMessageText;
-            // state.newMessageText = action.inputMessageText;
-            return copyState;
+        return {
+            ...state,
+            newMessageText: action.inputMessageText,
+        }
         default: return state;
     }
 }

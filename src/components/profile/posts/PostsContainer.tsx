@@ -1,62 +1,20 @@
-import React, {ChangeEvent, KeyboardEvent} from "react";
-import style from "./Posts.module.css";
-import {Post} from "./post/Post";
-import {ActionsTypes, AddPost, InputNewPostText} from "../../../redux/actions";
-import {PostType, ProfilePageType, StoreType} from "../../../redux/state";
+import {AddPost, InputNewPostText} from "../../../redux/actions";
 import {Posts} from "./Posts";
-import {InitialStateType} from "../../../redux/profile-reducer";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 import {RootStateType} from "../../../redux/redux-store";
-
-// type PostsPageType = {
-//     profilePage: ProfilePageType,
-//     posts: Array<PostType>,
-//     // newPostText: (newPostText: string) => void,
-//     dispatch: (action: ActionsTypes) => void,
-// }
-// export const PostsContainer = (props: PostsPageType) => {
-
-    // let post = props.posts.map(post => <Post id={post.id}
-    //                                          postText={post.postText}
-    //                                          likesCount={post.likesCount}
-    //     />
-    // );
-
-//     const addPost = () => {
-//         props.dispatch(AddPost())
-//     }
-//     const onChangePost = (newPostText: string) => {
-//         // console.log(event.currentTarget.value)
-//         // const newPostText = event.currentTarget.value
-//         props.dispatch(InputNewPostText(newPostText))
-//     }
-//     const onKeyPressEnter = (event: KeyboardEvent<HTMLTextAreaElement>) => {
-//         if (event.key === "Enter")
-//             addPost()
-//     }
-//
-//     return (
-//         <Posts dispatch={props.dispatch}
-//                posts={props.posts}
-//                newPostText={onChangePost}
-//                onKeyPress={onKeyPressEnter}
-//                addPost={addPost}
-//                value={props.profilePage.newPostText}
-//         />
-//     );
-// }
+import { PostType } from "../../../redux/profile-reducer";
 
 type MapStateToPropsType = {
     posts: Array<PostType>,
     newPostText: string,
 }
-type MapDispatchToProps = {
+type MapDispatchToPropsType = {
     addPost: () => void,
     onChangePost: (newPostText: string) => void,
 }
 
-export type PostsPropsType = MapStateToPropsType & MapDispatchToProps;
+export type PostsPropsType = MapStateToPropsType & MapDispatchToPropsType;
 
 const MapStateToProps = (state: RootStateType): MapStateToPropsType => {
     return {
@@ -64,7 +22,7 @@ const MapStateToProps = (state: RootStateType): MapStateToPropsType => {
         newPostText: state.ProfileReducer.newPostText,
     }
 }
-const MapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
+const MapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
         addPost: () => {dispatch(AddPost())},
         onChangePost: (newPostText: string) => {
