@@ -4,6 +4,7 @@ import {Post} from "./post/Post";
 import {ActionsTypes, AddPost} from "../../../redux/actions";
 import {PostType, ProfilePageType, StoreType} from "../../../redux/state";
 import store from "../../../redux/redux-store";
+import {PostsPropsType} from "./PostsContainer";
 
 type PostsPageType = {
     // profilePage: ProfilePageType,
@@ -14,7 +15,7 @@ type PostsPageType = {
     addPost: () => void,
     value: any,
 }
-export const Posts = (props: PostsPageType) => {
+export const Posts = (props: PostsPropsType) => {
 
     let post = props.posts.map(post => <Post id={post.id}
                                              postText={post.postText}
@@ -29,7 +30,7 @@ export const Posts = (props: PostsPageType) => {
     const onChangePost = (event: ChangeEvent<HTMLTextAreaElement>) => {
         // console.log(event.currentTarget.value)
         const newPostText = event.currentTarget.value
-        props.newPostText(newPostText)
+        props.onChangePost(newPostText)
 
         // props.dispatch(InputNewPostText(newPostText))
     }
@@ -46,7 +47,7 @@ export const Posts = (props: PostsPageType) => {
                 <br/>
                 <textarea
                     onChange={onChangePost}
-                    value={props.value}
+                    value={props.newPostText}
                     onKeyPress={onKeyPressEnter}
                 />
                 <br/>

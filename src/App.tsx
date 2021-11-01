@@ -9,8 +9,8 @@ import {ActionsTypes} from "./redux/actions";
 import store, {RootStateType} from "./redux/redux-store";
 
 type AppType = {
-    state: RootStateType,
-    dispatch: (action: ActionsTypes) => void,
+    // state: RootStateType,
+    // dispatch: (action: ActionsTypes) => void,
 }
 
 
@@ -20,14 +20,15 @@ export const App = (props: AppType) => {
             <Header/>
             <Navbar/>
             <div className={"app-wrapper-content"}>
-                <Route path={'/profile'} render={() => <Profile profilePage={props.state.ProfileReducer}
-                                                                dispatch={store.dispatch}
+                <Route path={'/profile'} render={() => <Profile
+                    // profilePage={props.state.ProfileReducer}
+                    //                                             dispatch={store.dispatch}
                 />}
                 />
-                <Route path={'/messages'} render={() => <Dialogs dialogPage={props.state.DialogsReducer}
-                                                                 dispatch={store.dispatch}
-                />}
-                />
+                {/*<Route path={'/messages'} render={() => <Dialogs dialogPage={props.state.DialogsReducer}*/}
+                {/*                                                 dispatch={store.dispatch}*/}
+                {/*/>}*/}
+                {/*/>*/}
             </div>
         </div>
     );

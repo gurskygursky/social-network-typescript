@@ -12,5 +12,7 @@ const store = createStore(reducers);
 
 export type RootStateType = ReturnType<typeof store.getState>
 
+//@ts-ignore
+window.store = store;
 
 export default store;

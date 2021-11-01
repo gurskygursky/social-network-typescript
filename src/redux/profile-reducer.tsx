@@ -1,11 +1,15 @@
 import {ACTIONS_TYPE, ActionsTypes} from "./actions";
-import {PostType} from "./state";
 
-type initialStateType = {
+export type PostType = {
+    id: number,
+    postText: string,
+    likesCount: number,
+}
+export type InitialStateType = {
     newPostText: string,
     posts: Array<PostType>,
 }
-const initialState: initialStateType = {
+const initialState: InitialStateType = {
     newPostText: '',
     posts: [
         {id: 1, postText: 'Lorem ipsum dolor sit amet.', likesCount: 10},
@@ -14,7 +18,7 @@ const initialState: initialStateType = {
     ],
 };
 
-export const ProfileReducer = (state = initialState, action: ActionsTypes) => {
+export const ProfileReducer = (state= initialState, action: ActionsTypes) => {
     switch (action.type) {
         case ACTIONS_TYPE.ADD_POST:
             const newPost: PostType = {
@@ -23,13 +27,20 @@ export const ProfileReducer = (state = initialState, action: ActionsTypes) => {
                 likesCount: 0,
             };
             if (state.newPostText !== '') {
-                state.posts.push(newPost);
+                let stateCopy = {...state};
+                stateCopy.posts = [...state.posts];
+                stateCopy.posts.push(newPost);
+                stateCopy.newPostText = '';
+                return stateCopy;
+                // state.posts.push(newPost);
             }
             state.newPostText = '';
             return state;
         case ACTIONS_TYPE.INPUT_NEW_POST_TEXT:
-            state.newPostText = action.inputPostText;
-            return state;
+            let stateCopy = {...state};
+            stateCopy.newPostText = action.inputPostText;
+            // state.newPostText = action.inputPostText;
+            return stateCopy;
         default: return state;
     }
 };
