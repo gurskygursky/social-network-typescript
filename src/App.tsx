@@ -7,6 +7,7 @@ import {Header} from "./components/header/Header";
 import {Route} from "react-router-dom";
 import {ActionsTypes} from "./redux/actions";
 import store, {RootStateType} from "./redux/redux-store";
+import {DialogsContainer} from "./components/dialogs/DialogsContainer";
 
 type AppType = {
     // state: RootStateType,
@@ -25,10 +26,11 @@ export const App = (props: AppType) => {
                     //                                             dispatch={store.dispatch}
                 />}
                 />
-                {/*<Route path={'/messages'} render={() => <Dialogs dialogPage={props.state.DialogsReducer}*/}
-                {/*                                                 dispatch={store.dispatch}*/}
-                {/*/>}*/}
-                {/*/>*/}
+                <Route path={'/messages'} render={() => <DialogsContainer
+                    // dialogPage={props.state.DialogsReducer}
+                    //                                              dispatch={store.dispatch}
+                />}
+                />
             </div>
         </div>
     );

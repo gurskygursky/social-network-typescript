@@ -1,13 +1,20 @@
 import {ACTIONS_TYPE, ActionsTypes} from "./actions";
-import {DialogType, MessageType} from "./state";
 
-type initialStateType = {
+export type DialogType = {
+    id: number,
+    name: string,
+}
+export type MessageType = {
+    id: number,
+    messageText: string,
+}
+export type InitialStateType = {
     newMessageText: string,
     dialogs: Array<DialogType>,
     messages: Array<MessageType>,
 }
 
-const initialState: initialStateType = {
+const initialState: InitialStateType = {
     newMessageText: '',
     dialogs: [
         {id: 1, name: 'Dimych'},
@@ -26,7 +33,7 @@ const initialState: initialStateType = {
     ],
 };
 
-export const DialogsReducer = (state = initialState, action: ActionsTypes) => {
+export const DialogsReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case ACTIONS_TYPE.SEND_MESSAGE:
             const newMessage: MessageType = {
@@ -34,14 +41,18 @@ export const DialogsReducer = (state = initialState, action: ActionsTypes) => {
                 messageText: state.newMessageText,
             };
             if (state.newMessageText !== '') {
-                state.messages.push(newMessage);
+                let stateCopy = {...state};
+                stateCopy.messages.push(newMessage);
+                // state.messages.push(newMessage);
+                stateCopy.newMessageText = '';
+                return stateCopy;
             }
-            state.newMessageText = '';
             return state;
         case ACTIONS_TYPE.INPUT_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.inputMessageText;
-            return state;
+            let copyState = {...state}
+            copyState.newMessageText = action.inputMessageText;
+            // state.newMessageText = action.inputMessageText;
+            return copyState;
         default: return state;
     }
 }
-export default DialogsReducer;

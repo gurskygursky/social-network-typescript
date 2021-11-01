@@ -18,7 +18,7 @@ const initialState: InitialStateType = {
     ],
 };
 
-export const ProfileReducer = (state= initialState, action: ActionsTypes) => {
+export const ProfileReducer = (state= initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case ACTIONS_TYPE.ADD_POST:
             const newPost: PostType = {
@@ -34,7 +34,7 @@ export const ProfileReducer = (state= initialState, action: ActionsTypes) => {
                 return stateCopy;
                 // state.posts.push(newPost);
             }
-            state.newPostText = '';
+            // state.newPostText = '';
             return state;
         case ACTIONS_TYPE.INPUT_NEW_POST_TEXT:
             let stateCopy = {...state};
@@ -44,4 +44,3 @@ export const ProfileReducer = (state= initialState, action: ActionsTypes) => {
         default: return state;
     }
 };
-export default ProfileReducer;

@@ -1,13 +1,12 @@
 import {ActionsTypes} from "./actions";
-import ProfileReducer from "./profile-reducer";
-import DialogsReducer from "./dialogs-reducer";
+import {ProfileReducer} from "./profile-reducer";
+import {DialogsReducer} from "./dialogs-reducer";
 
 export type PostType = {
     id: number,
     postText: string,
     likesCount: number,
 }
-
 export type DialogType = {
     id: number,
     name: string,

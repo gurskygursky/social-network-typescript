@@ -4,20 +4,21 @@ import {Message} from "./messages/Message";
 import {Dialog} from "./dialog/Dialog";
 import {ActionsTypes, InputNewMessageText, SendMessage} from "../../redux/actions";
 import {DialogsPageType} from "../../redux/state";
+import { DialogsPropsType } from "./DialogsContainer";
 
-type DialogsPropsType = {
-    dialogPage: DialogsPageType,
-    dispatch: (action: ActionsTypes) => void,
-}
+// type DialogsPropsType = {
+//     dialogPage: DialogsPageType,
+//     dispatch: (action: ActionsTypes) => void,
+// }
 
 export const Dialogs = (props: DialogsPropsType) => {
 
-    let dialog = props.dialogPage.dialogs.map(dialog =>
+    let dialog = props.dialogs.map(dialog =>
         <Dialog id={dialog.id}
                 name={dialog.name}
         />
     );
-    let message = props.dialogPage.messages.map(message =>
+    let message = props.messages.map(message =>
         <Message id={message.id}
                  messageText={message.messageText}
         />
@@ -27,12 +28,12 @@ export const Dialogs = (props: DialogsPropsType) => {
     let textAreaMessageText = React.createRef<HTMLTextAreaElement>();
 
     const sendMessage = () => {
-        props.dispatch(SendMessage())
+        props.sendMessage();
     }
     const onChangeMessage = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        console.log(event.currentTarget.value)
+        // console.log(event.currentTarget.value)
         const newMessageText = event.currentTarget.value
-        props.dispatch(InputNewMessageText(newMessageText))
+        props.onChangeMessage(newMessageText);
     }
     const onKeyPressEnter = (event: KeyboardEvent<HTMLTextAreaElement>) => {
         if (event.key === "Enter")
@@ -49,7 +50,7 @@ export const Dialogs = (props: DialogsPropsType) => {
                 <br/>
                 <textarea ref={textAreaMessageText}
                           onChange={onChangeMessage}
-                          value={props.dialogPage.newMessageText}
+                          value={props.newMessageText}
                           onKeyPress={onKeyPressEnter}
                 />
                 <br/>

@@ -4,7 +4,7 @@ import {Post} from "./post/Post";
 import {ActionsTypes, AddPost, InputNewPostText} from "../../../redux/actions";
 import {PostType, ProfilePageType, StoreType} from "../../../redux/state";
 import {Posts} from "./Posts";
-import ProfileReducer, {InitialStateType} from "../../../redux/profile-reducer";
+import {InitialStateType} from "../../../redux/profile-reducer";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 import {RootStateType} from "../../../redux/redux-store";
