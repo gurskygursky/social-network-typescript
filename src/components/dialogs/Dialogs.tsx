@@ -1,16 +1,16 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
 import style from "./Dialogs.module.css";
 import {Message} from "./messages/Message";
-import {Dialog} from "./dialog/Dialog";
 import {DialogsPropsType} from "./DialogsContainer";
+import {UsersContainer} from "../users/UsersContainer";
 
 export const Dialogs = (props: DialogsPropsType) => {
 
-    let dialog = props.dialogs.map(dialog =>
-        <Dialog id={dialog.id}
-                name={dialog.name}
-        />
-    );
+    // let dialog = props.dialogs.map(dialog =>
+    //     <Dialog id={dialog.id}
+    //             name={dialog.name}
+    //     />
+    // );
     let message = props.messages.map(message =>
         <Message id={message.id}
                  messageText={message.messageText}
@@ -31,7 +31,8 @@ export const Dialogs = (props: DialogsPropsType) => {
     return (
         <div className={style.container}>
             <div className={style.dialogs}>
-                {dialog}
+                <UsersContainer/>
+                {/*{dialog}*/}
             </div>
             <div className={style.messages}>
                 {message}
