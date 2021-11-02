@@ -1,5 +1,4 @@
 import {ACTIONS_TYPE, ActionsTypes} from "./actions";
-import photoUser from "../assets/image/avatar/BiaKjqXbT.jpg"
 
 type UserLocationType = {
     city: string,
@@ -31,7 +30,7 @@ export const UsersReducer = (state = initialState, action: ActionsTypes): Initia
         case ACTIONS_TYPE.UNFOLLOW:
             return {
                 ...state,
-                users: state.users.map(user => user.id !== action.userID ? {...user, followed: false} : user)
+                users: state.users.map(user => user.id === action.userID ? {...user, followed: false} : user)
             }
         case ACTIONS_TYPE.SET_USERS:
             return {
