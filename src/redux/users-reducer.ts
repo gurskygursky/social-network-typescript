@@ -13,11 +13,17 @@ export type UserType = {
     location: UserLocationType,
 }
 export type InitialStateType = {
-    users: Array<UserType>
+    users: Array<UserType>,
+    pageSize: number,
+    totalUsersCount: number,
+    currentPage: number,
 }
 
 const initialState: InitialStateType = {
     users: [],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 2,
 };
 
 export const UsersReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
@@ -35,7 +41,16 @@ export const UsersReducer = (state = initialState, action: ActionsTypes): Initia
         case ACTIONS_TYPE.SET_USERS:
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: [...action.users]
+                // users: [...state.users, ...action.users]
+            }
+        case ACTIONS_TYPE.SELECT_PAGE:
+            return {
+                ...state, currentPage: action.currentPage
+            }
+        case ACTIONS_TYPE.SET_USERS_TOTAL_COUNT:
+            return {
+                ...state, totalUsersCount: action.totalCount
             }
         default: return state;
     }

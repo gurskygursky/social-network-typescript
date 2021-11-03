@@ -8,6 +8,8 @@ export enum ACTIONS_TYPE {
     FOLLOW = 'Users/FOLLOW_USER',
     UNFOLLOW = 'Users/UNFOLLOW_USER',
     SET_USERS = 'Users/SET_USERS',
+    SELECT_PAGE = 'Users/SELECT_PAGE',
+    SET_USERS_TOTAL_COUNT = 'User/SET_USERS_TOTAL_COUNT'
 }
 
 export type AddPostType = {
@@ -35,6 +37,14 @@ export type UnfollowUserType = {
 export type SetUsersType = {
     type: ACTIONS_TYPE.SET_USERS,
     users: Array<UserType>
+}
+export type SelectPageType = {
+    type: ACTIONS_TYPE.SELECT_PAGE,
+    currentPage: number,
+}
+export type SetUsersTotalCountType = {
+    type: ACTIONS_TYPE.SET_USERS_TOTAL_COUNT,
+    totalCount: number,
 }
 export const AddPost = (): AddPostType => {
     return {
@@ -76,7 +86,18 @@ export const SetUsers = (users: Array<UserType>): SetUsersType => {
         users,
     }
 }
-
+export const SelectPage = (currentPage: number):SelectPageType => {
+    return {
+        type: ACTIONS_TYPE.SELECT_PAGE,
+        currentPage,
+    }
+}
+export const SetUsersTotalCount = (totalCount: number): SetUsersTotalCountType => {
+    return {
+        type: ACTIONS_TYPE.SET_USERS_TOTAL_COUNT,
+        totalCount,
+    }
+}
 
 export type ActionsTypes =
     AddPostType |
@@ -85,4 +106,6 @@ export type ActionsTypes =
     InputNewMessageTextType |
     FollowUserType |
     UnfollowUserType |
-    SetUsersType;
+    SetUsersType |
+    SelectPageType |
+    SetUsersTotalCountType;
