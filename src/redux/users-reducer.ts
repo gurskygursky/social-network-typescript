@@ -23,7 +23,7 @@ const initialState: InitialStateType = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 2,
+    currentPage: 1,
 };
 
 export const UsersReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
@@ -39,10 +39,11 @@ export const UsersReducer = (state = initialState, action: ActionsTypes): Initia
                 users: state.users.map(user => user.id === action.userID ? {...user, followed: false} : user)
             }
         case ACTIONS_TYPE.SET_USERS:
+
             return {
                 ...state,
                 users: [...action.users]
-                // users: [...state.users, ...action.users]
+        // users: [...state.users, ...action.users]
             }
         case ACTIONS_TYPE.SELECT_PAGE:
             return {
