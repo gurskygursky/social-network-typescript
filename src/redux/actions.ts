@@ -1,4 +1,4 @@
-import { UserType } from "./users-reducer"
+import {UserType} from "./users-reducer"
 
 export enum ACTIONS_TYPE {
     ADD_POST = 'Posts/ADD_POST',
@@ -9,7 +9,8 @@ export enum ACTIONS_TYPE {
     UNFOLLOW = 'Users/UNFOLLOW_USER',
     SET_USERS = 'Users/SET_USERS',
     SELECT_PAGE = 'Users/SELECT_PAGE',
-    SET_USERS_TOTAL_COUNT = 'User/SET_USERS_TOTAL_COUNT'
+    USERS_TOTAL_COUNT = 'Users/USERS_TOTAL_COUNT',
+    TOGGLE_IS_FETCHING = 'Users/TOGGLE_IS_FETCHING'
 }
 
 export type AddPostType = {
@@ -43,8 +44,12 @@ export type SelectPageType = {
     currentPage: number,
 }
 export type SetUsersTotalCountType = {
-    type: ACTIONS_TYPE.SET_USERS_TOTAL_COUNT,
+    type: ACTIONS_TYPE.USERS_TOTAL_COUNT,
     totalCount: number,
+}
+export type SetPreloaderType = {
+    type: ACTIONS_TYPE.TOGGLE_IS_FETCHING,
+    isFetching: boolean,
 }
 export const AddPost = (): AddPostType => {
     return {
@@ -86,7 +91,7 @@ export const SetUsers = (users: Array<UserType>): SetUsersType => {
         users,
     }
 }
-export const SelectPage = (currentPage: number):SelectPageType => {
+export const SelectPage = (currentPage: number): SelectPageType => {
     return {
         type: ACTIONS_TYPE.SELECT_PAGE,
         currentPage,
@@ -94,8 +99,14 @@ export const SelectPage = (currentPage: number):SelectPageType => {
 }
 export const SetUsersTotalCount = (totalCount: number): SetUsersTotalCountType => {
     return {
-        type: ACTIONS_TYPE.SET_USERS_TOTAL_COUNT,
+        type: ACTIONS_TYPE.USERS_TOTAL_COUNT,
         totalCount,
+    }
+}
+export const ToggleIsFetching = (isFetching: boolean): SetPreloaderType => {
+    return {
+        type: ACTIONS_TYPE.TOGGLE_IS_FETCHING,
+        isFetching,
     }
 }
 
@@ -108,4 +119,5 @@ export type ActionsTypes =
     UnfollowUserType |
     SetUsersType |
     SelectPageType |
-    SetUsersTotalCountType;
+    SetUsersTotalCountType |
+    SetPreloaderType;
