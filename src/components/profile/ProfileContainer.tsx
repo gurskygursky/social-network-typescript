@@ -6,33 +6,32 @@ import {Dispatch} from "redux";
 import {SelectUserProfile} from "../../redux/actions";
 import {RootStateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
+import {UserProfileType} from "../../redux/profile-reducer";
 
 export class ProfileUsersContainer extends React.Component<ProfileContainerType> {
     componentDidMount() {
-        const userID = this.props.match.params.userId
+        const userID = this.props.match.params.userID
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userID)
             .then(responce => {
-                this.props.SelectUserProfile(<img src={responce.data.photos.small}/>)
-                // this.props.SelectUserProfile(responce.data.aboutMe);
-                // this.props.SelectUserProfile(responce.data.lookingForAJobDescription);
+                this.props.SelectUserProfile(responce.data)
             })
     }
     render() {
         return (
             <>
-                <Profile userProfile={this.props.userProfile} />
+                <Profile {...this.props} userProfile={this.props.userProfile} />
             </>
         )
     }
 }
 type mapStateToPropsType = {
-    userProfile: Object,
+    userProfile: UserProfileType,
 }
 type mapDispatchToPropsType = {
-    SelectUserProfile: (userProfile: Object) => void,
+    SelectUserProfile: (userProfile: UserProfileType) => void,
 }
 type PathParamType = {
-    userId: string,
+    userID: string,
 }
 
 export type OwnProsType = mapStateToPropsType & mapDispatchToPropsType;
@@ -45,7 +44,7 @@ const mapStateToProps = (state: RootStateType):mapStateToPropsType => {
 }
 const mapDispatchToProps = (dispatch: Dispatch):mapDispatchToPropsType => {
     return {
-        SelectUserProfile: (userProfile: Object) => {
+        SelectUserProfile: (userProfile: UserProfileType) => {
             dispatch(SelectUserProfile(userProfile))
         },
     }

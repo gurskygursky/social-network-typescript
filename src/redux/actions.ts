@@ -1,4 +1,5 @@
 import {UserType} from "./users-reducer"
+import {UserProfileType} from "./profile-reducer";
 
 export enum ACTIONS_TYPE {
     ADD_POST = 'Posts/ADD_POST',
@@ -55,7 +56,7 @@ export type SetPreloaderType = {
 }
 export type SelectUserProfileType = {
     type: ACTIONS_TYPE.SELECT_USER_PROFILE,
-    userProfile: Object,
+    userProfile: UserProfileType,
 }
 export type LoginUserType = {
     type: ACTIONS_TYPE.LOGIN_USER,
@@ -121,7 +122,7 @@ export const ToggleIsFetching = (isFetching: boolean): SetPreloaderType => {
         isFetching,
     }
 }
-export const SelectUserProfile = (userProfile: Object): SelectUserProfileType => {
+export const SelectUserProfile = (userProfile: UserProfileType): SelectUserProfileType => {
     return {
         type: ACTIONS_TYPE.SELECT_USER_PROFILE,
         userProfile,
