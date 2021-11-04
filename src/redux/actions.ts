@@ -10,7 +10,8 @@ export enum ACTIONS_TYPE {
     SET_USERS = 'Users/SET_USERS',
     SELECT_PAGE = 'Users/SELECT_PAGE',
     USERS_TOTAL_COUNT = 'Users/USERS_TOTAL_COUNT',
-    TOGGLE_IS_FETCHING = 'Users/TOGGLE_IS_FETCHING'
+    TOGGLE_IS_FETCHING = 'Users/TOGGLE_IS_FETCHING',
+    SELECT_USER_PROFILE = 'Profile/SELECT_USER_PROFILE',
 }
 
 export type AddPostType = {
@@ -50,6 +51,10 @@ export type SetUsersTotalCountType = {
 export type SetPreloaderType = {
     type: ACTIONS_TYPE.TOGGLE_IS_FETCHING,
     isFetching: boolean,
+}
+export type SelectUserProfileType = {
+    type: ACTIONS_TYPE.SELECT_USER_PROFILE,
+    userProfile: Object,
 }
 export const AddPost = (): AddPostType => {
     return {
@@ -109,6 +114,14 @@ export const ToggleIsFetching = (isFetching: boolean): SetPreloaderType => {
         isFetching,
     }
 }
+export const SelectUserProfile = (userProfile: Object): SelectUserProfileType => {
+    return {
+        type: ACTIONS_TYPE.SELECT_USER_PROFILE,
+        userProfile,
+    }
+}
+
+
 
 export type ActionsTypes =
     AddPostType |
@@ -120,4 +133,5 @@ export type ActionsTypes =
     SetUsersType |
     SelectPageType |
     SetUsersTotalCountType |
-    SetPreloaderType;
+    SetPreloaderType |
+    SelectUserProfileType;

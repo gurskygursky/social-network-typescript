@@ -4,12 +4,16 @@ type UserLocationType = {
     city: string,
     country: string,
 }
+type PhotosType = {
+    small: string,
+    large: string,
+}
 export type UserType = {
     id: number,
     name: string,
     followed: boolean,
     status: string,
-    photoURL: string,
+    photos: PhotosType,
     location: UserLocationType,
 }
 export type InitialStateType = {
@@ -26,7 +30,6 @@ const initialState: InitialStateType = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
-
 };
 
 export const UsersReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
