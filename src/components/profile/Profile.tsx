@@ -11,7 +11,7 @@ type ProfileType = {
 export const Profile = (props: ProfileType) => {
     return (
         <div className={style.content}>
-            {props.userProfile}
+            {props.userProfile !== null ? props.userProfile : <About firstName={'sss'} lastName={'sss'}/>}
             {/*<About firstName={'Yegor'} lastName={'Gursky'}/>*/}
             <br/>
             <br/>

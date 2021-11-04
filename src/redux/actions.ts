@@ -12,6 +12,7 @@ export enum ACTIONS_TYPE {
     USERS_TOTAL_COUNT = 'Users/USERS_TOTAL_COUNT',
     TOGGLE_IS_FETCHING = 'Users/TOGGLE_IS_FETCHING',
     SELECT_USER_PROFILE = 'Profile/SELECT_USER_PROFILE',
+    LOGIN_USER = 'Header/LOGIN_USER'
 }
 
 export type AddPostType = {
@@ -55,6 +56,12 @@ export type SetPreloaderType = {
 export type SelectUserProfileType = {
     type: ACTIONS_TYPE.SELECT_USER_PROFILE,
     userProfile: Object,
+}
+export type LoginUserType = {
+    type: ACTIONS_TYPE.LOGIN_USER,
+    userId: number,
+    email: string,
+    login: string,
 }
 export const AddPost = (): AddPostType => {
     return {
@@ -120,6 +127,15 @@ export const SelectUserProfile = (userProfile: Object): SelectUserProfileType =>
         userProfile,
     }
 }
+export const LoginUser = (userId: number, email: string, login: string): LoginUserType => {
+    return {
+        type: ACTIONS_TYPE.LOGIN_USER,
+        userId,
+        email,
+        login,
+    }
+}
+
 
 
 
@@ -134,4 +150,5 @@ export type ActionsTypes =
     SelectPageType |
     SetUsersTotalCountType |
     SetPreloaderType |
-    SelectUserProfileType;
+    SelectUserProfileType |
+    LoginUserType;

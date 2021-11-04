@@ -9,10 +9,9 @@ import {RouteComponentProps, withRouter} from "react-router-dom";
 
 export class ProfileUsersContainer extends React.Component<ProfileContainerType> {
     componentDidMount() {
-        const userID = this.props.match.params.userID
+        const userID = this.props.match.params.userId
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userID)
             .then(responce => {
-                // debugger
                 this.props.SelectUserProfile(<img src={responce.data.photos.small}/>)
                 // this.props.SelectUserProfile(responce.data.aboutMe);
                 // this.props.SelectUserProfile(responce.data.lookingForAJobDescription);
@@ -33,7 +32,7 @@ type mapDispatchToPropsType = {
     SelectUserProfile: (userProfile: Object) => void,
 }
 type PathParamType = {
-    userID: string,
+    userId: string,
 }
 
 export type OwnProsType = mapStateToPropsType & mapDispatchToPropsType;
@@ -46,7 +45,7 @@ const mapStateToProps = (state: RootStateType):mapStateToPropsType => {
 }
 const mapDispatchToProps = (dispatch: Dispatch):mapDispatchToPropsType => {
     return {
-        SelectUserProfile: (userProfile: {}) => {
+        SelectUserProfile: (userProfile: Object) => {
             dispatch(SelectUserProfile(userProfile))
         },
     }

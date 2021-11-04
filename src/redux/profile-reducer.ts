@@ -1,5 +1,27 @@
 import {ACTIONS_TYPE, ActionsTypes} from "./actions";
 
+// export type ContactsType = {
+//     facebook: string,
+//     website: null,
+//     vk: string,
+//     twitter: string,
+//     instagram: string,
+//     youtube: null,
+//     github: string,
+//     mainLink: null,
+// }
+// export type PhotosType = {
+//     small: string ,
+//     large: string ,
+// }
+// export type UserProfileType = {
+//     userId: string,
+//     lookingForAJob: boolean,
+//     lookingForAJobDescription: string,
+//     fullName: string,
+//     contacts: ContactsType,
+//     photos: PhotosType,
+// }
 export type PostType = {
     id: number,
     postText: string,
@@ -18,6 +40,26 @@ const initialState: InitialStateType = {
         {id: 3, postText: 'Lorem ipsum dolor sit amet.', likesCount: 99},
     ],
     userProfile: Object,
+    // userProfile: {
+    //     userId: '',
+    //     lookingForAJob: false,
+    //     lookingForAJobDescription: '',
+    //     fullName: '',
+    //     contacts: {
+    //         facebook: '',
+    //         website: null,
+    //         vk: '',
+    //         twitter: '',
+    //         instagram: '',
+    //         youtube: null,
+    //         github: '',
+    //         mainLink: null,
+    //     },
+    //     photos: {
+    //         small: '' ,
+    //         large: '' ,
+    //     }
+    // }
 };
 
 export const ProfileReducer = (state= initialState, action: ActionsTypes): InitialStateType => {
