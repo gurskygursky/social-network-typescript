@@ -2,7 +2,7 @@ import React, {ChangeEvent, KeyboardEvent} from "react";
 import style from "./Dialogs.module.css";
 import {Message} from "./messages/Message";
 import {DialogsPropsType} from "./DialogsContainer";
-import {UsersContainer} from "../users/UsersContainer";
+import {UserContainer} from "../users/UsersContainer";
 
 export const Dialogs = (props: DialogsPropsType) => {
 
@@ -31,7 +31,7 @@ export const Dialogs = (props: DialogsPropsType) => {
     return (
         <div className={style.container}>
             <div className={style.dialogs}>
-                <UsersContainer/>
+                <UserContainer />
                 {/*{dialog}*/}
             </div>
             <div className={style.messages}>

@@ -2,6 +2,7 @@ import React from "react";
 import style from "./Users.module.css";
 import {UserType} from "../../redux/users-reducer";
 
+
 type UsersPropsType = {
     totalUsersCount: number,
     pageSize: number,
