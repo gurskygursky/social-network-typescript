@@ -13,7 +13,8 @@ export class ProfileUsersContainer extends React.Component<ProfileContainerType>
         const userID = this.props.match.params.userID
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userID)
             .then(responce => {
-                this.props.SelectUserProfile(responce.data)
+                debugger
+                this.props.SelectUserProfile(responce.data.data.userData)
             })
     }
     render() {

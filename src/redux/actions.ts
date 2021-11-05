@@ -1,5 +1,6 @@
 import {UserType} from "./users-reducer"
 import {UserProfileType} from "./profile-reducer";
+import {UserDataType} from "./auth-reducer";
 
 export enum ACTIONS_TYPE {
     ADD_POST = 'Posts/ADD_POST',
@@ -58,11 +59,10 @@ export type SelectUserProfileType = {
     type: ACTIONS_TYPE.SELECT_USER_PROFILE,
     userProfile: UserProfileType,
 }
+
 export type LoginUserType = {
     type: ACTIONS_TYPE.LOGIN_USER,
-    userId: number,
-    email: string,
-    login: string,
+    userData: UserDataType,
 }
 export const AddPost = (): AddPostType => {
     return {
@@ -128,17 +128,12 @@ export const SelectUserProfile = (userProfile: UserProfileType): SelectUserProfi
         userProfile,
     }
 }
-export const LoginUser = (userId: number, email: string, login: string): LoginUserType => {
+export const LoginUser = (userData: UserDataType): LoginUserType => {
     return {
         type: ACTIONS_TYPE.LOGIN_USER,
-        userId,
-        email,
-        login,
+        userData,
     }
 }
-
-
-
 
 export type ActionsTypes =
     AddPostType |
