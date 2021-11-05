@@ -13,7 +13,10 @@ type ProfileType = {
 export const Profile = (props: ProfileType) => {
     return (
         <div className={style.content}>
-            <div>{props.userProfile.photos.small === null && <img src={avatarImage} alt={"avatar_image"}/>}</div>
+
+            <div>{props.userProfile.photos.small === null
+                ?  <img src={avatarImage} alt={"avatar_image"}/>
+                : <img src= {props.userProfile.photos.small} />}</div>
             <div>{props.userProfile.fullName}</div>
             <div>{props.userProfile.lookingForAJob}</div>
             <div>{props.userProfile.lookingForAJobDescription}</div>

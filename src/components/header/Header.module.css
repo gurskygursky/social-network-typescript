@@ -2,13 +2,17 @@
     grid-area: header;
     border: white solid 2px;
 }
-.header a {
+
+.login {
+    padding-top: 10px;
+    padding-right: 30px;
+    float: right;
+    color: white;
+}
+.login a {
     padding-top: 10px;
     padding-right: 30px;
     float: right;
     color: white;
     text-decoration: none;
-}
-.login {
-    color: white;
 }

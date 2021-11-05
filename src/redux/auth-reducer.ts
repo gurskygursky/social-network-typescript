@@ -2,9 +2,8 @@ import {ACTIONS_TYPE, ActionsTypes} from "./actions";
 
 export type UserDataType = {
     id: number | null,
-    email: string | null,
-    login: string | null,
-
+    email: string,
+    login: string,
 }
 export type InitialStateType = {
     userData: UserDataType,
@@ -14,8 +13,8 @@ export type InitialStateType = {
 const initialState: InitialStateType = {
     userData: {
         id: null,
-        email: null,
-        login: null,
+        email: '',
+        login: '',
     },
     isAuth: false,
 };
@@ -25,7 +24,7 @@ export const AuthReducer = (state = initialState, action: ActionsTypes): Initial
         case ACTIONS_TYPE.LOGIN_USER:
             return {
                 ...state,
-                ...action.userData,
+                userData: action.userData,
                 isAuth: true,
             }
         default:

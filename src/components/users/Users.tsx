@@ -3,6 +3,7 @@ import style from "./Users.module.css";
 import {UserType} from "../../redux/users-reducer";
 import userPhoto from "../../assets/image/avatar/BiaKjqXbT.jpg"
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 type UsersPropsType = {
     totalUsersCount: number,
@@ -27,7 +28,6 @@ export const Users = (props: UsersPropsType) => {
                             {pages.map(page => {
                                 return (
                                     <span onClick={() => {
-
                                         props.selectPage(page)}}
                                           className={props.currentPage === page ? style.selected : ''}>{page}</span>
                                 )
@@ -41,10 +41,31 @@ export const Users = (props: UsersPropsType) => {
                     <div className={style.status}>{user.status}</div>
                     {user.followed
                         ? <button onClick={() => {
-                            props.unfollow(user.id)
+                            debugger;
+                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+                                withCredentials: true,
+                                headers: {
+                                    "API_KEY": "d3a1aff0-f251-4d32-8327-aabf04c81e1d"
+                                },
+                            })
+                                .then(responce => {
+                                    if (responce.data.resultCode === 0) {
+                                        props.unfollow(user.id)
+                                    }
+                                })
                         }}>FOLLOW</button>
                         : <button onClick={() => {
-                            props.follow(user.id)
+                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
+                                withCredentials: true,
+                                headers: {
+                                    "API_KEY": "d3a1aff0-f251-4d32-8327-aabf04c81e1d"
+                                },
+                            })
+                                .then(responce => {
+                                    if (responce.data.resultCode === 0) {
+                                        props.follow(user.id)
+                                    }
+                                })
                         }}>UNFOLLOW</button>
                     }
                 </div>)

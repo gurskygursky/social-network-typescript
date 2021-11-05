@@ -11,11 +11,9 @@ type HeaderType = {
 export const Header = (props: HeaderType) => {
     return (
         <header className={classes.header}>
-            {
-                props.isAuth
-                    ? props.userData.login
-                    : <NavLink to={'/login'}>Login</NavLink>
-            }
+            <div className={classes.login}>
+                {props.isAuth ? props.userData.login : <NavLink to={'/login'}>Login</NavLink>}
+            </div>
         </header>
     );
 }

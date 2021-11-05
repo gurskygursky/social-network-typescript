@@ -1,6 +1,5 @@
 import React from "react";
 import "./Header.module.css";
-import classes from "./Header.module.css"
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 import {UserDataType} from "../../redux/auth-reducer";
@@ -15,7 +14,6 @@ export class LoginHeaderContainer extends React.Component<LoginHeaderContainerTy
             withCredentials: true
         })
             .then(responce => {
-                debugger;
                 if (responce.data.resultCode === 0) {
                     this.props.LoginUser(responce.data.data)
                 }
@@ -24,13 +22,13 @@ export class LoginHeaderContainer extends React.Component<LoginHeaderContainerTy
 
     render() {
         return (
-            <Header {...this.props}  />
+            <Header {...this.props} userData={this.props.userData} />
         );
     }
 }
 
 type mapStateToPropsType = {
-    userData: UserDataType,
+    userData: UserDataType
     isAuth: boolean,
 }
 type mapDispatchToPropsType = {

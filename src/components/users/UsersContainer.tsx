@@ -19,26 +19,30 @@ export class ClassUsersContainer extends React.Component<UsersPropsType> {
     componentDidMount() {
         this.props.ToggleIsFetching(true)
         // this.props.setToggle(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+            withCredentials: true,
+        })
             .then(responce => {
-                this.props.ToggleIsFetching(false)
-                // this.props.setToggle(false)
-                this.props.SetUsers(responce.data.items)
-                // this.props.setUsers(responce.data.items)
-                this.props.SetUsersTotalCount(responce.data.totalCount)
-                // this.props.setTotalUsersCount(responce.data.totalCount)
+                    this.props.ToggleIsFetching(false)
+                    // this.props.setToggle(false)
+                    this.props.SetUsers(responce.data.items)
+                    // this.props.setUsers(responce.data.items)
+                    this.props.SetUsersTotalCount(responce.data.totalCount)
+                    // this.props.setTotalUsersCount(responce.data.totalCount)
             });
     }
 
     selectPage = (numberPage: number) => {
         this.props.SelectPage(numberPage)
         // this.props.selectPage(numberPage);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${numberPage}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${numberPage}&count=${this.props.pageSize}`, {
+            withCredentials: true,
+        })
             .then(responce => {
-                this.props.ToggleIsFetching(false)
-                // this.props.setToggle(false)
-                this.props.SetUsers(responce.data.items)
-                // this.props.setUsers(responce.data.items)
+                    this.props.ToggleIsFetching(false)
+                    // this.props.setToggle(false)
+                    this.props.SetUsers(responce.data.items)
+                    // this.props.setUsers(responce.data.items)
             });
     }
 
@@ -87,7 +91,6 @@ const MapStateToProps = (state: RootStateType) => {
         pageSize: state.UsersReducer.pageSize,
         currentPage: state.UsersReducer.currentPage,
         isFetching: state.UsersReducer.isFetching,
-
     }
 }
 // const MapDispatchToProps = (dispach: Dispatch): MapDispatchToPropsType => {
