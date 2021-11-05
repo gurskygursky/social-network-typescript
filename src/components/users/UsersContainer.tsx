@@ -14,20 +14,22 @@ import React from "react";
 import axios from "axios";
 import {Users} from "./Users";
 import {Preloader} from "../../common/preloaders/Preloader";
+import {getUsers} from "../../api/API";
 
 export class ClassUsersContainer extends React.Component<UsersPropsType> {
     componentDidMount() {
         this.props.ToggleIsFetching(true)
         // this.props.setToggle(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-            withCredentials: true,
-        })
-            .then(responce => {
+        // axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+        //     withCredentials: true,
+        // })
+            getUsers(this.props.currentPage, this.props.pageSize)
+                .then(data => {
                     this.props.ToggleIsFetching(false)
                     // this.props.setToggle(false)
-                    this.props.SetUsers(responce.data.items)
+                    this.props.SetUsers(data.items)
                     // this.props.setUsers(responce.data.items)
-                    this.props.SetUsersTotalCount(responce.data.totalCount)
+                    this.props.SetUsersTotalCount(data.totalCount)
                     // this.props.setTotalUsersCount(responce.data.totalCount)
             });
     }
@@ -35,13 +37,14 @@ export class ClassUsersContainer extends React.Component<UsersPropsType> {
     selectPage = (numberPage: number) => {
         this.props.SelectPage(numberPage)
         // this.props.selectPage(numberPage);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${numberPage}&count=${this.props.pageSize}`, {
-            withCredentials: true,
-        })
-            .then(responce => {
+        // axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${numberPage}&count=${this.props.pageSize}`, {
+        //     withCredentials: true,
+        // })
+            getUsers(numberPage, this.props.pageSize)
+            .then(data => {
                     this.props.ToggleIsFetching(false)
                     // this.props.setToggle(false)
-                    this.props.SetUsers(responce.data.items)
+                    this.props.SetUsers(data.items)
                     // this.props.setUsers(responce.data.items)
             });
     }
