@@ -41,11 +41,10 @@ export const Users = (props: UsersPropsType) => {
                     <div className={style.status}>{user.status}</div>
                     {user.followed
                         ? <button onClick={() => {
-                            debugger;
                             axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
                                 withCredentials: true,
                                 headers: {
-                                    "API_KEY": "d3a1aff0-f251-4d32-8327-aabf04c81e1d"
+                                    "API-KEY": "8c4a0698-b08e-4693-b5a1-2d3805a6e1dc"
                                 },
                             })
                                 .then(responce => {
@@ -58,7 +57,7 @@ export const Users = (props: UsersPropsType) => {
                             axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
                                 withCredentials: true,
                                 headers: {
-                                    "API_KEY": "d3a1aff0-f251-4d32-8327-aabf04c81e1d"
+                                    "API-KEY": "8c4a0698-b08e-4693-b5a1-2d3805a6e1dc"
                                 },
                             })
                                 .then(responce => {
