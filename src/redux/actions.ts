@@ -1,4 +1,4 @@
-import {UserType} from "./users-reducer"
+import { UserType} from "./users-reducer"
 import {UserProfileType} from "./profile-reducer";
 import {UserDataType} from "./auth-reducer";
 
@@ -14,7 +14,8 @@ export enum ACTIONS_TYPE {
     USERS_TOTAL_COUNT = 'Users/USERS_TOTAL_COUNT',
     TOGGLE_IS_FETCHING = 'Users/TOGGLE_IS_FETCHING',
     SELECT_USER_PROFILE = 'Profile/SELECT_USER_PROFILE',
-    LOGIN_USER = 'Header/LOGIN_USER'
+    LOGIN_USER = 'Header/LOGIN_USER',
+    FOLLOWING_IN_PROGRESS = 'Users/FOLLOWING_IN_PROGRESS'
 }
 
 export type AddPostType = {
@@ -63,6 +64,11 @@ export type SelectUserProfileType = {
 export type LoginUserType = {
     type: ACTIONS_TYPE.LOGIN_USER,
     userData: UserDataType,
+}
+export type FollowingUserProgressType = {
+    type: ACTIONS_TYPE.FOLLOWING_IN_PROGRESS,
+    isFetching: boolean,
+    userID: number,
 }
 export const AddPost = (): AddPostType => {
     return {
@@ -134,6 +140,13 @@ export const LoginUser = (userData: UserDataType): LoginUserType => {
         userData,
     }
 }
+export const ToggleFollowingInProgress = (isFetching: boolean, userID: number): FollowingUserProgressType => {
+    return {
+        type: ACTIONS_TYPE.FOLLOWING_IN_PROGRESS,
+        isFetching,
+        userID,
+    }
+}
 
 export type ActionsTypes =
     AddPostType |
@@ -147,4 +160,5 @@ export type ActionsTypes =
     SetUsersTotalCountType |
     SetPreloaderType |
     SelectUserProfileType |
-    LoginUserType;
+    LoginUserType |
+    FollowingUserProgressType;

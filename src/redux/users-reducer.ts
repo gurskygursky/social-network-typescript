@@ -1,4 +1,5 @@
 import {ACTIONS_TYPE, ActionsTypes} from "./actions";
+import {Users} from "../components/users/Users";
 
 type UserLocationType = {
     city: string,
@@ -16,12 +17,14 @@ export type UserType = {
     photos: PhotosType,
     location: UserLocationType,
 }
+
 export type InitialStateType = {
     users: Array<UserType>,
     pageSize: number,
     totalUsersCount: number,
     currentPage: number,
     isFetching: boolean,
+    followingInProgress: Array<number>,
 }
 
 const initialState: InitialStateType = {
@@ -30,6 +33,7 @@ const initialState: InitialStateType = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
+    followingInProgress: [],
 };
 
 export const UsersReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
@@ -61,6 +65,13 @@ export const UsersReducer = (state = initialState, action: ActionsTypes): Initia
         case ACTIONS_TYPE.TOGGLE_IS_FETCHING:
             return {
                 ...state, isFetching: action.isFetching
+            }
+        case ACTIONS_TYPE.FOLLOWING_IN_PROGRESS:
+            return {
+                ...state,
+                followingInProgress: action.isFetching
+                    ? [...state.followingInProgress, action.userID]
+                    : [...state.followingInProgress.filter(id => id !== action.userID)],
             }
         default: return state;
     }

@@ -9,6 +9,7 @@ import {
     UnfollowUser,
     SetUsersTotalCount,
     ToggleIsFetching,
+    ToggleFollowingInProgress,
 } from "../../redux/actions";
 import React from "react";
 import axios from "axios";
@@ -62,6 +63,9 @@ export class ClassUsersContainer extends React.Component<UsersPropsType> {
                     // follow={this.props.follow}
                        unfollow={this.props.UnfollowUser}
                     // unfollow={this.props.unfollow}
+                       followingInProgress={this.props.followingInProgress}
+                       ToggleFollowingInProgress={this.props.ToggleFollowingInProgress}
+
                 />
             </>
         );
@@ -94,6 +98,7 @@ const MapStateToProps = (state: RootStateType) => {
         pageSize: state.UsersReducer.pageSize,
         currentPage: state.UsersReducer.currentPage,
         isFetching: state.UsersReducer.isFetching,
+        followingInProgress: state.UsersReducer.followingInProgress
     }
 }
 // const MapDispatchToProps = (dispach: Dispatch): MapDispatchToPropsType => {
@@ -126,6 +131,7 @@ const ConnectComp = connect(MapStateToProps, {
     SelectPage,
     SetUsersTotalCount,
     ToggleIsFetching,
+    ToggleFollowingInProgress,
 })
 export type UsersPropsType = ConnectedProps<typeof ConnectComp>
 export const UserContainer = ConnectComp(ClassUsersContainer)
