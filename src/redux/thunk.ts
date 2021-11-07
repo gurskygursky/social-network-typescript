@@ -60,7 +60,7 @@ export const loginUserThunk = () => (dispatch: Dispatch) => {
         });
 }
 
-export const selectUserProfileThink = (userID: string) => (dispatch: Dispatch) => {
+export const selectUserProfileThunk = (userID: string) => (dispatch: Dispatch) => {
     ProfileAPI.selectUserProfile(userID)
         .then(responce => {
             dispatch(SelectUserProfile(responce.data));

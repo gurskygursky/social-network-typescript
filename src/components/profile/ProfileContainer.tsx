@@ -2,17 +2,16 @@ import React from "react";
 import {Profile} from "./Profile";
 import {connect, ConnectedProps} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
-import {RouteComponentProps, withRouter} from "react-router-dom";
+import { RouteComponentProps, withRouter} from "react-router-dom";
 import {UserProfileType} from "../../redux/profile-reducer";
 import {
-    selectUserProfileThink,
+    selectUserProfileThunk,
 } from "../../redux/thunk";
 
 export class ProfileUsersContainer extends React.Component<ProfileContainerType> {
     componentDidMount() {
-        this.props.selectUserProfileThink(this.props.match.params.userID);
+        this.props.selectUserProfileThunk(this.props.match.params.userID);
     }
-
     render() {
         return (
             <>
@@ -40,7 +39,7 @@ const mapStateToProps = (state: RootStateType): mapStateToPropsType => {
 export const WithRouterProfileContainer = withRouter(ProfileUsersContainer)
 
 const ConnectComponent = connect(mapStateToProps, {
-    selectUserProfileThink,
+    selectUserProfileThunk,
 })
 export type ProfileUsersContainerType = ConnectedProps<typeof ConnectComponent>
 export const ProfileContainer = ConnectComponent(WithRouterProfileContainer)
