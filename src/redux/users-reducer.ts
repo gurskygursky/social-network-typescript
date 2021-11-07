@@ -1,5 +1,4 @@
 import {ACTIONS_TYPE, ActionsTypes} from "./actions";
-import {Users} from "../components/users/Users";
 
 type UserLocationType = {
     city: string,

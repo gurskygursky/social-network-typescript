@@ -31,7 +31,7 @@ export const Dialogs = (props: DialogsPropsType) => {
     return (
         <div className={style.container}>
             <div className={style.dialogs}>
-                <UserContainer />
+                <UserContainer/>
                 {/*{dialog}*/}
             </div>
             <div className={style.messages}>
