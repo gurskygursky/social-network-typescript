@@ -46,10 +46,10 @@ export class ClassUsersContainer extends React.Component<UsersPropsType> {
         //     UsersAPI.getUsers(numberPage, this.props.pageSize)
         //     .then(data => {
         //             this.props.ToggleIsFetching(false)
-                    // this.props.setToggle(false)
-                    // this.props.SetUsers(data.items)
-                    // this.props.setUsers(responce.data.items)
-            // });
+        // this.props.setToggle(false)
+        // this.props.SetUsers(data.items)
+        // this.props.setUsers(responce.data.items)
+        // });
     }
 
     render() {
@@ -58,16 +58,16 @@ export class ClassUsersContainer extends React.Component<UsersPropsType> {
                 {this.props.isFetching ? <Preloader/> : null}
                 <Users
                     users={this.props.usersPage.users}
-                       totalUsersCount={this.props.totalUsersCount}
-                       currentPage={this.props.currentPage}
-                       selectPage={this.selectPage}
-                       pageSize={this.props.pageSize}
-                       follow={this.props.followUserThunk}
+                    totalUsersCount={this.props.totalUsersCount}
+                    currentPage={this.props.currentPage}
+                    selectPage={this.selectPage}
+                    pageSize={this.props.pageSize}
+                    follow={this.props.followUserThunk}
                     // follow={this.props.follow}
-                       unfollow={this.props.unfollowUserThunk}
+                    unfollow={this.props.unfollowUserThunk}
                     // unfollow={this.props.unfollow}
-                       followingInProgress={this.props.followingInProgress}
-                       // ToggleFollowingInProgress={this.props.ToggleFollowingInProgress}
+                    followingInProgress={this.props.followingInProgress}
+                    // ToggleFollowingInProgress={this.props.ToggleFollowingInProgress}
 
                 />
             </>
@@ -127,7 +127,7 @@ const MapStateToProps = (state: RootStateType) => {
 //     }
 // }
 
-const ConnectComp = connect(MapStateToProps, {
+const ConnectComponent = connect(MapStateToProps, {
     // FollowUser,
     // UnfollowUser,
     // SetUsers,
@@ -140,8 +140,8 @@ const ConnectComp = connect(MapStateToProps, {
     followUserThunk,
     unfollowUserThunk,
 })
-export type UsersPropsType = ConnectedProps<typeof ConnectComp>
-export const UserContainer = ConnectComp(ClassUsersContainer)
+export type UsersPropsType = ConnectedProps<typeof ConnectComponent>
+export const UserContainer = ConnectComponent(ClassUsersContainer)
 
 // export const UsersContainer = connect(MapStateToProps,
 //     {

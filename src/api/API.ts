@@ -25,3 +25,19 @@ export const UsersAPI = {
         )
     },
 }
+
+export const HeaderAPI = {
+    authMe() {
+        return(
+            instance.get(`auth/me`)
+        )
+    }
+}
+
+export const ProfileAPI = {
+    selectUserProfile(userID: string) {
+        return (
+            instance.get(`profile/` + userID)
+        )
+    }
+}

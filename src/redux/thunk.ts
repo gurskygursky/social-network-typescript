@@ -1,12 +1,17 @@
 import {Dispatch} from "redux";
-import {UsersAPI} from "../api/API";
+import {HeaderAPI, ProfileAPI, UsersAPI} from "../api/API";
 import {
     FollowUser,
-    SelectPage, SetUsers,
+    LoginUser,
+    SelectPage,
+    SelectUserProfile,
+    SetUsers,
     SetUsersTotalCount,
     ToggleFollowingInProgress,
-    ToggleIsFetching, UnfollowUser
+    ToggleIsFetching,
+    UnfollowUser,
 } from "./actions";
+import {UserDataType} from "./auth-reducer";
 
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
     dispatch(ToggleIsFetching(true));
@@ -63,12 +68,29 @@ export const unfollowUserThunk = (userID: number) => (dispatch: Dispatch) => {
     //         "API-KEY": "8c4a0698-b08e-4693-b5a1-2d3805a6e1dc"
     //     },
     // })
-    UsersAPI.follow(userID)
+    UsersAPI.unfollow(userID)
         .then(responce => {
             if (responce.data.resultCode === 0) {
                 dispatch(UnfollowUser(userID));
             }
             dispatch(ToggleFollowingInProgress(false, userID));
+        });
+}
+
+export const loginUserThunk = () => (dispatch: Dispatch) => {
+    HeaderAPI.authMe()
+        .then(responce => {
+            if (responce.data.resultCode === 0) {
+                dispatch(LoginUser(responce.data.data));
+            }
+        });
+}
+
+export const selectUserProfileThink = (userID: string) => (dispatch: Dispatch) => {
+    ProfileAPI.selectUserProfile(userID)
+        // axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userID)
+        .then(responce => {
+            dispatch(SelectUserProfile(responce.data));
         })
 }
 
