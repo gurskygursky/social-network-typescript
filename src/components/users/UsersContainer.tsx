@@ -12,59 +12,62 @@ import {
     ToggleFollowingInProgress,
 } from "../../redux/actions";
 import React from "react";
-import axios from "axios";
 import {Users} from "./Users";
 import {Preloader} from "../../common/preloaders/Preloader";
-import {getUsers} from "../../api/API";
+import {UsersAPI} from "../../api/API";
+import {followUserThunk, getUsersThunkCreator, selectPageThunkCreator, unfollowUserThunk} from "../../redux/thunk";
 
 export class ClassUsersContainer extends React.Component<UsersPropsType> {
     componentDidMount() {
-        this.props.ToggleIsFetching(true)
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
+        // this.props.ToggleIsFetching(true)
         // this.props.setToggle(true)
         // axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
         //     withCredentials: true,
         // })
-            getUsers(this.props.currentPage, this.props.pageSize)
-                .then(data => {
-                    this.props.ToggleIsFetching(false)
-                    // this.props.setToggle(false)
-                    this.props.SetUsers(data.items)
-                    // this.props.setUsers(responce.data.items)
-                    this.props.SetUsersTotalCount(data.totalCount)
-                    // this.props.setTotalUsersCount(responce.data.totalCount)
-            });
+        //     UsersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+        //         .then(data => {
+        //             this.props.ToggleIsFetching(false)
+        //             this.props.setToggle(false)
+        // this.props.SetUsers(data.items)
+        // this.props.setUsers(responce.data.items)
+        // this.props.SetUsersTotalCount(data.totalCount)
+        // this.props.setTotalUsersCount(responce.data.totalCount)
+        // });
     }
 
     selectPage = (numberPage: number) => {
-        this.props.SelectPage(numberPage)
+        this.props.selectPageThunkCreator(numberPage, this.props.pageSize)
+        // this.props.SelectPage(numberPage)
         // this.props.selectPage(numberPage);
         // axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${numberPage}&count=${this.props.pageSize}`, {
         //     withCredentials: true,
         // })
-            getUsers(numberPage, this.props.pageSize)
-            .then(data => {
-                    this.props.ToggleIsFetching(false)
+        //     UsersAPI.getUsers(numberPage, this.props.pageSize)
+        //     .then(data => {
+        //             this.props.ToggleIsFetching(false)
                     // this.props.setToggle(false)
-                    this.props.SetUsers(data.items)
+                    // this.props.SetUsers(data.items)
                     // this.props.setUsers(responce.data.items)
-            });
+            // });
     }
 
     render() {
         return (
             <>
                 {this.props.isFetching ? <Preloader/> : null}
-                <Users users={this.props.usersPage.users}
+                <Users
+                    users={this.props.usersPage.users}
                        totalUsersCount={this.props.totalUsersCount}
                        currentPage={this.props.currentPage}
                        selectPage={this.selectPage}
                        pageSize={this.props.pageSize}
-                       follow={this.props.FollowUser}
+                       follow={this.props.followUserThunk}
                     // follow={this.props.follow}
-                       unfollow={this.props.UnfollowUser}
+                       unfollow={this.props.unfollowUserThunk}
                     // unfollow={this.props.unfollow}
                        followingInProgress={this.props.followingInProgress}
-                       ToggleFollowingInProgress={this.props.ToggleFollowingInProgress}
+                       // ToggleFollowingInProgress={this.props.ToggleFollowingInProgress}
 
                 />
             </>
@@ -125,13 +128,17 @@ const MapStateToProps = (state: RootStateType) => {
 // }
 
 const ConnectComp = connect(MapStateToProps, {
-    FollowUser,
-    UnfollowUser,
-    SetUsers,
-    SelectPage,
-    SetUsersTotalCount,
-    ToggleIsFetching,
-    ToggleFollowingInProgress,
+    // FollowUser,
+    // UnfollowUser,
+    // SetUsers,
+    // SelectPage,
+    // SetUsersTotalCount,
+    // ToggleIsFetching,
+    // ToggleFollowingInProgress,
+    getUsersThunkCreator,
+    selectPageThunkCreator,
+    followUserThunk,
+    unfollowUserThunk,
 })
 export type UsersPropsType = ConnectedProps<typeof ConnectComp>
 export const UserContainer = ConnectComp(ClassUsersContainer)
