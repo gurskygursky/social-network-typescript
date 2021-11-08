@@ -1,6 +1,7 @@
 import style from "../Profile.module.css";
 import avatar_image from "../../../assets/image/avatar/img.png";
 import React from "react";
+import {Status} from "../status/Status";
 
 type InitialPropsType = {
     firstName: string,
@@ -14,6 +15,8 @@ export const About = (props: InitialPropsType) => {
             <img alt={"avatar_image"} src={avatar_image}/>
             <p>First Name: {firstName}</p>
             <p>Last Name: {lastName}</p>
+            <Status />
+            <br/>
         </div>
     );
 }
