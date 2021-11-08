@@ -1,7 +1,9 @@
 import {Dispatch} from "redux";
 import {HeaderAPI, ProfileAPI, UsersAPI} from "../api/API";
 import {
+    ChangeUserStatus,
     FollowUser,
+    GetUserStatus,
     LoginUser,
     SelectPage,
     SelectUserProfile,
@@ -65,5 +67,21 @@ export const selectUserProfileThunk = (userID: string) => (dispatch: Dispatch) =
         .then(responce => {
             dispatch(SelectUserProfile(responce.data));
         })
+}
+
+export const getUserStatusThunk = (userID: string) => (dispatch: Dispatch) => {
+    ProfileAPI.getStatus(userID)
+        .then(response => {
+                dispatch(GetUserStatus(response.data))
+        })
+}
+export const changeUserStatusThunk = (status: string) => (dispatch: Dispatch) => {
+    ProfileAPI.changeStatus(status)
+        .then(response => {
+            debugger
+            if (response.data.resultCode === 0) {
+                dispatch(ChangeUserStatus(status))
+            }
+         })
 }
 

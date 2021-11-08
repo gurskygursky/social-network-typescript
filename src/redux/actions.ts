@@ -13,9 +13,11 @@ export enum ACTIONS_TYPE {
     SELECT_PAGE = 'Users/SELECT_PAGE',
     USERS_TOTAL_COUNT = 'Users/USERS_TOTAL_COUNT',
     TOGGLE_IS_FETCHING = 'Users/TOGGLE_IS_FETCHING',
+    FOLLOWING_IN_PROGRESS = 'Users/FOLLOWING_IN_PROGRESS',
     SELECT_USER_PROFILE = 'Profile/SELECT_USER_PROFILE',
+    SET_USER_STATUS = 'Profile/SET_USER_STATUS',
+    CHANGE_USER_STATUS = 'Profile/CHANGE_USER_STATUS',
     LOGIN_USER = 'Header/LOGIN_USER',
-    FOLLOWING_IN_PROGRESS = 'Users/FOLLOWING_IN_PROGRESS'
 }
 
 export type AddPostType = {
@@ -60,7 +62,6 @@ export type SelectUserProfileType = {
     type: ACTIONS_TYPE.SELECT_USER_PROFILE,
     userProfile: UserProfileType,
 }
-
 export type LoginUserType = {
     type: ACTIONS_TYPE.LOGIN_USER,
     userData: UserDataType,
@@ -69,6 +70,14 @@ export type FollowingUserProgressType = {
     type: ACTIONS_TYPE.FOLLOWING_IN_PROGRESS,
     isFetching: boolean,
     userID: number,
+}
+export type GetUserStatusType = {
+    type: ACTIONS_TYPE.SET_USER_STATUS,
+    status: string,
+}
+export type ChangeUserStatusType = {
+    type: ACTIONS_TYPE.CHANGE_USER_STATUS,
+    status: string,
 }
 export const AddPost = (): AddPostType => {
     return {
@@ -147,6 +156,18 @@ export const ToggleFollowingInProgress = (isFetching: boolean, userID: number): 
         userID,
     }
 }
+export const GetUserStatus = (status: string): GetUserStatusType => {
+    return {
+        type: ACTIONS_TYPE.SET_USER_STATUS,
+        status,
+    }
+}
+export const ChangeUserStatus = (status: string): ChangeUserStatusType => {
+    return {
+        type: ACTIONS_TYPE.CHANGE_USER_STATUS,
+        status,
+    }
+}
 
 export type ActionsTypes =
     AddPostType |
@@ -161,4 +182,6 @@ export type ActionsTypes =
     SetPreloaderType |
     SelectUserProfileType |
     LoginUserType |
-    FollowingUserProgressType;
+    FollowingUserProgressType |
+    GetUserStatusType |
+    ChangeUserStatusType;

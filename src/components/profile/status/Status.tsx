@@ -1,31 +1,50 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 
-export class Status extends React.Component {
+type StatusPropsType = {
+    status: string,
+    changeStatus: (status: string) => void,
+}
+
+export class Status extends React.Component<StatusPropsType> {
     state = {
         editMode: false,
+        status: this.props.status,
     }
-    activateEditTitle() {
+
+    activateEditTitle = () => {
         this.setState({
             editMode: true,
         })
     }
-    deactivateEditTitle() {
+
+    deactivateEditTitle = () => {
         this.setState({
             editMode: false,
         })
     }
+
+    onStatusChange = (event: ChangeEvent<HTMLInputElement>) => {
+       this.setState({
+           status: event.currentTarget.value
+       })
+        debugger
+        this.props.changeStatus(this.state.status)
+    }
+
     render() {
         return (
             <div>
                 {
                     !this.state.editMode
-                    && <span onClick={this.activateEditTitle.bind(this)}>xxxxSTATUSxxxx</span>
+                    && <span onClick={this.activateEditTitle}>{this.props.status}</span>
                 }
                 <div>
                     {this.state.editMode
                     && <input type={'text'}
+                              onChange={this.onStatusChange}
+                              value={this.state.status }
                               autoFocus
-                              onBlur={this.deactivateEditTitle.bind(this)}
+                              onBlur={this.deactivateEditTitle}
                     />
                     }
                 </div>

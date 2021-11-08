@@ -32,6 +32,7 @@ export type InitialStateType = {
     newPostText: string,
     posts: Array<PostType>,
     userProfile: UserProfileType,
+    status: string
 }
 const initialState: InitialStateType = {
     newPostText: '',
@@ -40,7 +41,6 @@ const initialState: InitialStateType = {
         {id: 2, postText: 'Lorem ipsum dolor sit amet.', likesCount: 7},
         {id: 3, postText: 'Lorem ipsum dolor sit amet.', likesCount: 99},
     ],
-    // userProfile: Object,
     userProfile: {
         aboutMe: '',
         userId: '',
@@ -61,7 +61,8 @@ const initialState: InitialStateType = {
             small: '' ,
             large: '' ,
         }
-    }
+    },
+    status: "",
 };
 
 export const ProfileReducer = (state= initialState, action: ActionsTypes): InitialStateType => {
@@ -89,6 +90,15 @@ export const ProfileReducer = (state= initialState, action: ActionsTypes): Initi
             return {
                 ...state,
                 userProfile: action.userProfile,
+            }
+        case ACTIONS_TYPE.SET_USER_STATUS:
+            return {
+                ...state,
+            }
+        case ACTIONS_TYPE.CHANGE_USER_STATUS:
+            return {
+                ...state,
+                status: action.status,
             }
         default: return state;
     }

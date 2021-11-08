@@ -6,6 +6,8 @@ import {Status} from "../status/Status";
 type InitialPropsType = {
     firstName: string,
     lastName: string,
+    status: string,
+    changeStatus: (statusText: string) => void,
 }
 
 export const About = (props: InitialPropsType) => {
@@ -15,7 +17,7 @@ export const About = (props: InitialPropsType) => {
             <img alt={"avatar_image"} src={avatar_image}/>
             <p>First Name: {firstName}</p>
             <p>Last Name: {lastName}</p>
-            <Status />
+            <Status {...props} status={props.status} changeStatus={props.changeStatus} />
             <br/>
         </div>
     );
