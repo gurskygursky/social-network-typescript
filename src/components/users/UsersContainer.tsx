@@ -9,6 +9,7 @@ import {
     selectPageThunkCreator,
     unfollowUserThunk,
 } from "../../redux/thunk";
+import {withAuthRedirect} from "../hoc/withAuthRedirect";
 
 export class ClassUsersContainer extends React.Component<UsersContainerPropsType> {
     componentDidMount() {
@@ -46,7 +47,7 @@ const MapStateToProps = (state: RootStateType) => {
         followingInProgress: state.UsersReducer.followingInProgress
     }
 }
-
+const WithAuthRedicrectComponent = withAuthRedirect(ClassUsersContainer)
 const ConnectComponent = connect(MapStateToProps, {
     getUsersThunkCreator,
     selectPageThunkCreator,
@@ -54,4 +55,4 @@ const ConnectComponent = connect(MapStateToProps, {
     unfollowUserThunk,
 })
 export type UsersContainerPropsType = ConnectedProps<typeof ConnectComponent>
-export const UserContainer = ConnectComponent(ClassUsersContainer)
+export const UserContainer = ConnectComponent(WithAuthRedicrectComponent)

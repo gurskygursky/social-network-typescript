@@ -30,11 +30,6 @@ export const Dialogs = (props: DialogsPropsType) => {
             sendMessage()
     }
 
-    if (!props.isAuth) {
-        return (
-            <Redirect to={'/login'}/>
-        )}
-
     return (
         <div className={style.container}>
             <div className={style.dialogs}>
