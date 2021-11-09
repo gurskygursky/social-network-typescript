@@ -34,6 +34,11 @@ export const Navbar = () => {
                     Settings
                 </NavLink>
             </div>
+            <div className={style.link}>
+                <NavLink to={'/login'}>
+                    Login
+                </NavLink>
+            </div>
         </div>
     );
 }
