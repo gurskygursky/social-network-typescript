@@ -35,12 +35,12 @@ export const HeaderAPI = {
 }
 
 export const ProfileAPI = {
-    selectUserProfile(userID: string) {
+    selectUserProfile(userID: number) {
         return (
             instance.get(`profile/` + userID)
         )
     },
-    getStatus(userID: string) {
+    getStatus(userID: number) {
         return (
             instance.get(`profile/status/` + userID)
         )

@@ -18,7 +18,7 @@ export const Profile = (props: ProfileType) => {
             <About firstName={'Yegor'} lastName={'Gursky'} status={props.status} changeStatus={props.changeStatus}/>
             <div>{props.userProfile.photos.small === null
                 ?  <img src={avatarImage} alt={"avatar_image"}/>
-                : <img src= {props.userProfile.photos.small} />}</div>
+                : <img src= {props.userProfile.photos.small} alt={'avatar_image'} />}</div>
             <div>{props.userProfile.fullName}</div>
             <div>{props.userProfile.lookingForAJob}</div>
             <div>{props.userProfile.lookingForAJobDescription}</div>

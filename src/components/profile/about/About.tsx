@@ -17,7 +17,7 @@ export const About = (props: InitialPropsType) => {
             <img alt={"avatar_image"} src={avatar_image}/>
             <p>First Name: {firstName}</p>
             <p>Last Name: {lastName}</p>
-            <Status {...props} status={props.status} changeStatus={props.changeStatus} />
+            <Status {...props} statusText={props.status} changeStatus={props.changeStatus} />
             <br/>
         </div>
     );

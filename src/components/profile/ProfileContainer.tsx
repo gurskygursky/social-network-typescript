@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ComponentType} from "react";
 import {Profile} from "./Profile";
 import {connect, ConnectedProps} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
@@ -9,6 +9,7 @@ import {
     getUserStatusThunk,
     selectUserProfileThunk,
 } from "../../redux/thunk";
+import { compose } from "redux";
 
 export class ProfileUsersContainer extends React.Component<ProfileContainerType> {
     componentDidMount() {
@@ -16,8 +17,8 @@ export class ProfileUsersContainer extends React.Component<ProfileContainerType>
         if (!userID) {
             userID = '18933'
         }
-        this.props.selectUserProfileThunk(userID);
-        this.props.getUserStatusThunk(userID);
+        this.props.selectUserProfileThunk(Number(userID));
+        this.props.getUserStatusThunk(Number(userID));
     }
     render() {
         return (
@@ -48,10 +49,17 @@ const mapStateToProps = (state: RootStateType): mapStateToPropsType => {
     }
 }
 
-export const WithRouterProfileContainer = withRouter(ProfileUsersContainer)
+// export const WithRouterProfileContainer = withRouter(ProfileUsersContainer)
 
 const ConnectComponent = connect(mapStateToProps, {
-    selectUserProfileThunk, getUserStatusThunk, changeUserStatusThunk,
+    selectUserProfileThunk,
+    getUserStatusThunk,
+    changeUserStatusThunk,
 })
 export type ProfileUsersContainerType = ConnectedProps<typeof ConnectComponent>
-export const ProfileContainer = ConnectComponent(WithRouterProfileContainer)
+// export const ProfileContainer = ConnectComponent(WithRouterProfileContainer)
+
+export const ProfileContainer = compose<ComponentType>(
+    ConnectComponent,
+    withRouter,
+)(ProfileUsersContainer)

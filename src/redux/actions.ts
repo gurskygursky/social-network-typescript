@@ -71,7 +71,7 @@ export type FollowingUserProgressType = {
     isFetching: boolean,
     userID: number,
 }
-export type GetUserStatusType = {
+export type SetUserStatusType = {
     type: ACTIONS_TYPE.SET_USER_STATUS,
     status: string,
 }
@@ -156,15 +156,9 @@ export const ToggleFollowingInProgress = (isFetching: boolean, userID: number): 
         userID,
     }
 }
-export const GetUserStatus = (status: string): GetUserStatusType => {
+export const SetUserStatus = (status: string): SetUserStatusType => {
     return {
         type: ACTIONS_TYPE.SET_USER_STATUS,
-        status,
-    }
-}
-export const ChangeUserStatus = (status: string): ChangeUserStatusType => {
-    return {
-        type: ACTIONS_TYPE.CHANGE_USER_STATUS,
         status,
     }
 }
@@ -183,5 +177,5 @@ export type ActionsTypes =
     SelectUserProfileType |
     LoginUserType |
     FollowingUserProgressType |
-    GetUserStatusType |
+    SetUserStatusType |
     ChangeUserStatusType;

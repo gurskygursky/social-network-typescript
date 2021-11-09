@@ -94,11 +94,7 @@ export const ProfileReducer = (state= initialState, action: ActionsTypes): Initi
         case ACTIONS_TYPE.SET_USER_STATUS:
             return {
                 ...state,
-            }
-        case ACTIONS_TYPE.CHANGE_USER_STATUS:
-            return {
-                ...state,
-                status: action.status,
+                status: action.status
             }
         default: return state;
     }
