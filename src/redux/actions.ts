@@ -29,11 +29,12 @@ export type InputNewPostTextType = {
 }
 export type SendMessageType = {
     type: ACTIONS_TYPE.SEND_MESSAGE,
+    message: string,
 }
-export type InputNewMessageTextType = {
-    type: ACTIONS_TYPE.INPUT_NEW_MESSAGE_TEXT,
-    inputMessageText: string,
-}
+// export type InputNewMessageTextType = {
+//     type: ACTIONS_TYPE.INPUT_NEW_MESSAGE_TEXT,
+//     inputMessageText: string,
+// }
 export type FollowUserType = {
     type: ACTIONS_TYPE.FOLLOW,
     userID: number,
@@ -90,17 +91,18 @@ export const InputNewPostText = (newPostText: string): InputNewPostTextType => {
         inputPostText: newPostText,
     }
 };
-export const SendMessage = (): SendMessageType => {
+export const SendMessage = (message: string): SendMessageType => {
     return {
         type: ACTIONS_TYPE.SEND_MESSAGE,
+        message,
     }
 };
-export const InputNewMessageText = (newMessageText: string): InputNewMessageTextType => {
-    return {
-        type: ACTIONS_TYPE.INPUT_NEW_MESSAGE_TEXT,
-        inputMessageText: newMessageText,
-    }
-}
+// export const InputNewMessageText = (newMessageText: string): InputNewMessageTextType => {
+//     return {
+//         type: ACTIONS_TYPE.INPUT_NEW_MESSAGE_TEXT,
+//         inputMessageText: newMessageText,
+//     }
+// }
 export const FollowUser = (userID: number): FollowUserType => {
     return {
         type: ACTIONS_TYPE.FOLLOW,
@@ -167,7 +169,7 @@ export type ActionsTypes =
     AddPostType |
     InputNewPostTextType |
     SendMessageType |
-    InputNewMessageTextType |
+    // InputNewMessageTextType |
     FollowUserType |
     UnfollowUserType |
     SetUsersType |

@@ -9,13 +9,13 @@ export type MessageType = {
     messageText: string,
 }
 export type InitialStateType = {
-    newMessageText: string,
+    // newMessageText: string,
     dialogs: Array<DialogType>,
     messages: Array<MessageType>,
 }
 
 const initialState: InitialStateType = {
-    newMessageText: '',
+    // newMessageText: '',
     dialogs: [
         {id: 1, name: 'Dimych'},
         {id: 2, name: 'Sveta'},
@@ -38,21 +38,25 @@ export const DialogsReducer = (state = initialState, action: ActionsTypes): Init
         case ACTIONS_TYPE.SEND_MESSAGE:
             const newMessage: MessageType = {
                 id: new Date().getTime(),
-                messageText: state.newMessageText,
+                messageText: action.message,
             };
-            if (state.newMessageText !== '') {
-                return {
-                    ...state,
-                    messages: [...state.messages, newMessage],
-                    newMessageText: '',
-                }
+            return {
+                ...state,
+                messages: [...state.messages, newMessage],
             }
-            return state;
-        case ACTIONS_TYPE.INPUT_NEW_MESSAGE_TEXT:
-        return {
-            ...state,
-            newMessageText: action.inputMessageText,
-        }
+            // if (state.newMessageText !== '') {
+            //     return {
+            //         ...state,
+            //         messages: [...state.messages, newMessage],
+            //         newMessageText: '',
+            //     }
+            // }
+            // return state;
+        // case ACTIONS_TYPE.INPUT_NEW_MESSAGE_TEXT:
+        // return {
+        //     ...state,
+        //     newMessageText: action.inputMessageText,
+        // }
         default: return state;
     }
 }
