@@ -8,7 +8,9 @@ export type UserDataType = {
 export type InitialStateType = {
     userData: UserDataType,
     isAuth: boolean,
-
+    // email: string,
+    // password: string,
+    // rememberMe: boolean,
 }
 const initialState: InitialStateType = {
     userData: {
@@ -17,6 +19,9 @@ const initialState: InitialStateType = {
         login: '',
     },
     isAuth: false,
+    // email: '',
+    // password: '',
+    // rememberMe: false,
 };
 
 export const AuthReducer = (state = initialState, action: ActionsTypes): InitialStateType => {

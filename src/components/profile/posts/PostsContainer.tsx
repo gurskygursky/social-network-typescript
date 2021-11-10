@@ -10,7 +10,8 @@ type MapStateToPropsType = {
     newPostText: string,
 }
 type MapDispatchToPropsType = {
-    addPost: () => void,
+    // addPost: () => void,
+    addPost: (post: string) => void,
     onChangePost: (newPostText: string) => void,
 }
 
@@ -24,7 +25,11 @@ const MapStateToProps = (state: RootStateType): MapStateToPropsType => {
 }
 const MapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
-        addPost: () => {dispatch(AddPost())},
+        // addPost: () => {dispatch(AddPost())},
+        addPost: (post) => {
+            debugger
+            dispatch(AddPost(post))
+        },
         onChangePost: (newPostText: string) => {
             dispatch(InputNewPostText(newPostText))
         }

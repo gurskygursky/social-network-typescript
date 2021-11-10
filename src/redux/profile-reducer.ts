@@ -68,19 +68,24 @@ const initialState: InitialStateType = {
 export const ProfileReducer = (state= initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case ACTIONS_TYPE.ADD_POST:
+            console.log(action.post)
             const newPost: PostType = {
                 id: new Date().getTime(),
-                postText: state.newPostText,
+                postText: action.post,
                 likesCount: 0,
             };
-            if (state.newPostText !== '') {
-                return {
-                    ...state,
-                    posts: [...state.posts, newPost],
-                    newPostText: '',
-                }
+            return {
+                ...state,
+                posts: [...state.posts, newPost]
             }
-            return state;
+            // if (state.newPostText !== '') {
+            //     return {
+            //         ...state,
+            //         posts: [...state.posts, newPost],
+            //         newPostText: '',
+            //     }
+            // }
+            // return state;
         case ACTIONS_TYPE.INPUT_NEW_POST_TEXT:
             return {
                 ...state,

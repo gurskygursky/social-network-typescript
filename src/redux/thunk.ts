@@ -12,6 +12,7 @@ import {
     ToggleIsFetching,
     UnfollowUser,
 } from "./actions";
+import {Login} from "../components/login/Login";
 
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
     dispatch(ToggleIsFetching(true));
@@ -83,4 +84,21 @@ export const changeUserStatusThunk = (statusText: string) => (dispatch: Dispatch
             }
          })
 }
+export const loginThunk = (email: string, password: string, remember: boolean) => (dispatch: Dispatch) => {
+    debugger
+    HeaderAPI.login(email, password, remember)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(LoginUser(response.data))
+            }
+        })
+}
+// export const logoutThunk = (dispatch: Dispatch) => {
+//     HeaderAPI.logout()
+//         .then(response => {
+//             if (response.data.resultCode === 0) {
+//                 dispatch(LoginUser())
+//             }
+//         })
+// }
 

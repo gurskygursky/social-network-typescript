@@ -22,6 +22,7 @@ export enum ACTIONS_TYPE {
 
 export type AddPostType = {
     type: ACTIONS_TYPE.ADD_POST,
+    post: string,
 }
 export type InputNewPostTextType = {
     type: ACTIONS_TYPE.INPUT_NEW_POST_TEXT,
@@ -80,9 +81,10 @@ export type ChangeUserStatusType = {
     type: ACTIONS_TYPE.CHANGE_USER_STATUS,
     status: string,
 }
-export const AddPost = (): AddPostType => {
+export const AddPost = (post: string): AddPostType => {
     return {
         type: ACTIONS_TYPE.ADD_POST,
+        post,
     }
 };
 export const InputNewPostText = (newPostText: string): InputNewPostTextType => {

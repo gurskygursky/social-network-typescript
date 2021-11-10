@@ -13,8 +13,6 @@ export const Login = () => {
                 </h3>
             </NavLink>
             <LoginReactFinalForm />
-
         </div>
-
     )
 }
