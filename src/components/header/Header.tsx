@@ -1,18 +1,23 @@
 import React from "react";
 import "./Header.module.css";
 import classes from "./Header.module.css"
-import {UserDataType} from "../../redux/auth-reducer";
 import { NavLink } from "react-router-dom";
+import {LoginHeaderContainerPropsType} from "./HeaderContainer";
 
 type HeaderPropsType = {
-    userData: UserDataType,
-    isAuth: boolean
+    // userData: UserDataType,
+    // isAuth: boolean,
+    // logoutThunk: () => void,
 }
-export const Header = (props: HeaderPropsType) => {
+export const Header = (props: LoginHeaderContainerPropsType) => {
+
+    const logoutHandler = () => {
+        props.logoutThunk()
+    }
     return (
         <header className={classes.header}>
             <div className={classes.login}>
-                {props.isAuth ? props.userData.login : <NavLink to={'/login'}>Login</NavLink>}
+                {props.isAuth ? <button onClick={logoutHandler}>Logout</button> : <NavLink to={'/login'}>Login</NavLink>}
             </div>
         </header>
     );

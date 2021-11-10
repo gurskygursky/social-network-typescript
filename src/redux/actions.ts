@@ -1,6 +1,5 @@
 import { UserType} from "./users-reducer"
 import {UserProfileType} from "./profile-reducer";
-import {UserDataType} from "./auth-reducer";
 
 export enum ACTIONS_TYPE {
     ADD_POST = 'Posts/ADD_POST',
@@ -18,6 +17,7 @@ export enum ACTIONS_TYPE {
     SET_USER_STATUS = 'Profile/SET_USER_STATUS',
     CHANGE_USER_STATUS = 'Profile/CHANGE_USER_STATUS',
     LOGIN_USER = 'Header/LOGIN_USER',
+    LOGIN_USER_FORM = 'Login/LOGIN_USER_FORM'
 }
 
 export type AddPostType = {
@@ -66,7 +66,10 @@ export type SelectUserProfileType = {
 }
 export type LoginUserType = {
     type: ACTIONS_TYPE.LOGIN_USER,
-    userData: UserDataType,
+    id: number | null,
+    email: string,
+    login: string,
+    isAuth: boolean,
 }
 export type FollowingUserProgressType = {
     type: ACTIONS_TYPE.FOLLOWING_IN_PROGRESS,
@@ -80,6 +83,12 @@ export type SetUserStatusType = {
 export type ChangeUserStatusType = {
     type: ACTIONS_TYPE.CHANGE_USER_STATUS,
     status: string,
+}
+export type LoginUserFormType = {
+    type: ACTIONS_TYPE.LOGIN_USER_FORM,
+    email: string,
+    password: string,
+    rememberMe: boolean,
 }
 export const AddPost = (post: string): AddPostType => {
     return {
@@ -147,10 +156,13 @@ export const SelectUserProfile = (userProfile: UserProfileType): SelectUserProfi
         userProfile,
     }
 }
-export const LoginUser = (userData: UserDataType): LoginUserType => {
+export const LoginUser = (id: number | null, email: string, login: string, isAuth: boolean): LoginUserType => {
     return {
         type: ACTIONS_TYPE.LOGIN_USER,
-        userData,
+        id,
+        email,
+        login,
+        isAuth,
     }
 }
 export const ToggleFollowingInProgress = (isFetching: boolean, userID: number): FollowingUserProgressType => {
@@ -164,6 +176,15 @@ export const SetUserStatus = (status: string): SetUserStatusType => {
     return {
         type: ACTIONS_TYPE.SET_USER_STATUS,
         status,
+    }
+}
+export const LoginUserForm = (email: string, password: string, rememberMe: boolean): LoginUserFormType => {
+    debugger
+    return {
+        type: ACTIONS_TYPE.LOGIN_USER_FORM,
+        email,
+        password,
+        rememberMe,
     }
 }
 
@@ -182,4 +203,5 @@ export type ActionsTypes =
     LoginUserType |
     FollowingUserProgressType |
     SetUserStatusType |
-    ChangeUserStatusType;
+    ChangeUserStatusType |
+    LoginUserFormType;

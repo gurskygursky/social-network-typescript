@@ -10,9 +10,10 @@ import {
     SetUsersTotalCount,
     ToggleFollowingInProgress,
     ToggleIsFetching,
-    UnfollowUser,
+    UnfollowUser, LoginUserForm, ActionsTypes,
 } from "./actions";
-import {Login} from "../components/login/Login";
+import {ThunkAction, ThunkActionDispatch, ThunkDispatch} from "redux-thunk";
+import {RootStateType} from "./redux-store";
 
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
     dispatch(ToggleIsFetching(true));
@@ -56,8 +57,12 @@ export const unfollowUserThunk = (userID: number) => (dispatch: Dispatch) => {
 export const loginUserThunk = () => (dispatch: Dispatch) => {
     HeaderAPI.authMe()
         .then(responce => {
+            console.log(responce)
             if (responce.data.resultCode === 0) {
-                dispatch(LoginUser(responce.data.data));
+                let {id, email, login} = responce.data.data
+                dispatch(LoginUser(id, email, login, true))
+                // console.log(responce.data.data)
+                // dispatch(LoginUser(responce.data.data,  ));
             }
         });
 }
@@ -73,7 +78,7 @@ export const getUserStatusThunk = (userID: number) => (dispatch: Dispatch) => {
     ProfileAPI.getStatus(userID)
         .then(response => {
             console.log(response)
-                dispatch(SetUserStatus(response.data))
+            dispatch(SetUserStatus(response.data))
         })
 }
 export const changeUserStatusThunk = (statusText: string) => (dispatch: Dispatch) => {
@@ -82,23 +87,25 @@ export const changeUserStatusThunk = (statusText: string) => (dispatch: Dispatch
             if (response.data.resultCode === 0) {
                 dispatch(SetUserStatus(statusText))
             }
-         })
+        })
 }
-export const loginThunk = (email: string, password: string, remember: boolean) => (dispatch: Dispatch) => {
-    debugger
-    HeaderAPI.login(email, password, remember)
+export const loginThunk = (email: string, password: string, rememberMe: boolean): ThunkAction<void, RootStateType, unknown , ActionsTypes> => (dispatch) => {
+    HeaderAPI.login(email, password, rememberMe)
         .then(response => {
+            console.log(response)
             if (response.data.resultCode === 0) {
-                dispatch(LoginUser(response.data))
+                dispatch(loginUserThunk())
+                // dispatch(LoginUser(response.data.data, true))
             }
         })
 }
-// export const logoutThunk = (dispatch: Dispatch) => {
-//     HeaderAPI.logout()
-//         .then(response => {
-//             if (response.data.resultCode === 0) {
-//                 dispatch(LoginUser())
-//             }
-//         })
-// }
+export const logoutThunk = () => (dispatch: Dispatch) => {
+    debugger
+    HeaderAPI.logout()
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(LoginUser(null, '', '', false))
+            }
+        })
+}
 

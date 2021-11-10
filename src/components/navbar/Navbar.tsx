@@ -39,6 +39,11 @@ export const Navbar = () => {
                     Login
                 </NavLink>
             </div>
+            <div className={style.link}>
+                <NavLink to={'/users'}>
+                    Users
+                </NavLink>
+            </div>
         </div>
     );
 }

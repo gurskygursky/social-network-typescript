@@ -1,11 +1,10 @@
 import React from "react";
 import "./Header.module.css";
 import {connect, ConnectedProps} from "react-redux";
-import {UserDataType} from "../../redux/auth-reducer";
 import {RootStateType} from "../../redux/redux-store";
 import {Header} from "./Header";
 import {
-    loginUserThunk,
+    loginUserThunk, logoutThunk,
 } from "../../redux/thunk";
 
 export class LoginHeaderContainer extends React.Component<LoginHeaderContainerPropsType> {
@@ -14,24 +13,27 @@ export class LoginHeaderContainer extends React.Component<LoginHeaderContainerPr
     }
     render() {
         return (
-            <Header {...this.props} />
+            <Header {...this.props}  />
         );
     }
 }
 
-type mapStateToPropsType = {
-    userData: UserDataType
-    isAuth: boolean,
-}
-const mapStateToProps = (state: RootStateType): mapStateToPropsType => {
+// type mapStateToPropsType = {
+//     userData: UserDataType
+//     isAuth: boolean,
+// }
+const mapStateToProps = (state: RootStateType) => {
     return {
-        userData: state.AuthReducer.userData,
+        // userData: state.AuthReducer.userData,
+        id: state.AuthReducer.id,
+        email: state.AuthReducer.email,
+        login: state.AuthReducer.login,
         isAuth: state.AuthReducer.isAuth,
     }
 }
 
 const ConnectComponent = connect(mapStateToProps, {
-    loginUserThunk,
+    loginUserThunk, logoutThunk
 })
 
 export type LoginHeaderContainerPropsType = ConnectedProps<typeof ConnectComponent>

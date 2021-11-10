@@ -1,5 +1,9 @@
 import React from "react";
 import { Field, Form } from "react-final-form";
+import {loginThunk} from "../../redux/thunk";
+import {connect, ConnectedProps} from "react-redux";
+import {Login} from "./Login";
+import {LoginFormPropsType} from "./LoginContainer";
 
 
 
@@ -11,8 +15,8 @@ import { Field, Form } from "react-final-form";
 //     console.log(JSON.stringify(values, undefined, 2));
 // };
 const log = (values: any) => {
-    // debugger
-    // alert(JSON.stringify(values, undefined, 2))
+
+    alert(JSON.stringify(values, undefined, 2))
     console.log(values)
 }
 
@@ -45,7 +49,7 @@ export const LoginReactFinalForm = () => (
                         </div>
                     )}
                 </Field>
-                <Field name={"rememberMe"} validate={required}>
+                <Field name={"rememberMe"} type={"checkbox"} validate={required}>
                     {({ input, meta}) => (
                     <div>
                         <label>Remember Me</label>

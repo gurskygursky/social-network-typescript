@@ -47,7 +47,7 @@ const MapStateToProps = (state: RootStateType) => {
         followingInProgress: state.UsersReducer.followingInProgress
     }
 }
-const WithAuthRedicrectComponent = withAuthRedirect(ClassUsersContainer)
+const WithAuthRedirectComponent = withAuthRedirect(ClassUsersContainer)
 const ConnectComponent = connect(MapStateToProps, {
     getUsersThunkCreator,
     selectPageThunkCreator,
@@ -55,4 +55,4 @@ const ConnectComponent = connect(MapStateToProps, {
     unfollowUserThunk,
 })
 export type UsersContainerPropsType = ConnectedProps<typeof ConnectComponent>
-export const UserContainer = ConnectComponent(WithAuthRedicrectComponent)
+export const UserContainer = ConnectComponent(WithAuthRedirectComponent)
