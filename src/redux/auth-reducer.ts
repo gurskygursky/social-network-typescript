@@ -1,27 +1,16 @@
 import {ACTIONS_TYPE, ActionsTypes} from "./actions";
 
-// export type UserDataType = {
-//     id: number | null,
-//     email: string,
-//     login: string,
-// }
 export type InitialStateType = {
     id: number | null,
     email: string,
     login: string,
     isAuth: boolean,
-    // email: string,
-    // password: string,
-    // rememberMe: boolean,
 }
 const initialState: InitialStateType = {
-        id: null,
-        email: '',
-        login: '',
+    id: null,
+    email: '',
+    login: '',
     isAuth: false,
-    // email: '',
-    // password: '',
-    // rememberMe: false,
 };
 
 export const AuthReducer = (state = initialState, action: ActionsTypes): InitialStateType => {

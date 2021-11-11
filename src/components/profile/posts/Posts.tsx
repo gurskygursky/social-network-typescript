@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEvent} from "react";
+import React from "react";
 import style from "./Posts.module.css";
 import {Post} from "./post/Post";
 import {PostsPropsType} from "./PostsContainer";
@@ -16,8 +16,7 @@ export const Posts = (props: PostsPropsType) => {
     //     debugger
     //     props.addPost();
     // }
-    const addPostForm = (values: any) => {
-        // debugger
+    const addPost = (values: any) => {
         props.addPost(values.post);
     }
 
@@ -36,7 +35,7 @@ export const Posts = (props: PostsPropsType) => {
             <div>
                 <br/>
                 <br/>
-                <Form onSubmit={addPostForm}  render={({handleSubmit, values}) =>
+                <Form onSubmit={addPost}  render={({handleSubmit, values}) =>
                     <form onSubmit={handleSubmit}>
                         <Field name="post" >
                             {({ input, meta }) => (

@@ -4,9 +4,7 @@ import {Navbar} from "./components/navbar/Navbar";
 import {Route} from "react-router-dom";
 import {DialogsContainer} from "./components/dialogs/DialogsContainer";
 import { ProfileContainer } from "./components/profile/ProfileContainer";
-import {HeaderContainer} from "./components/header/HeaderContainer";
-import {Login} from "./components/login/Login";
-import {LoginContainer} from "./components/login/LoginContainer";
+import {HeaderContainer} from "./components/header/HeaderContainer";import {LoginContainer} from "./components/login/LoginContainer";
 import {UserContainer} from "./components/users/UsersContainer";
 
 export const App = () => {

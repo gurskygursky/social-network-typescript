@@ -18,13 +18,8 @@ export class LoginHeaderContainer extends React.Component<LoginHeaderContainerPr
     }
 }
 
-// type mapStateToPropsType = {
-//     userData: UserDataType
-//     isAuth: boolean,
-// }
 const mapStateToProps = (state: RootStateType) => {
     return {
-        // userData: state.AuthReducer.userData,
         id: state.AuthReducer.id,
         email: state.AuthReducer.email,
         login: state.AuthReducer.login,

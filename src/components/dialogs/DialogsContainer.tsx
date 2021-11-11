@@ -14,7 +14,7 @@ type MapStateToPropsType = {
 type MapDispatchToPropsType = {
     // sendMessage: () => void,
     // onChangeMessage: (newMessageText: string) => void,
-    sendMessageForm: (message: string) => void
+    sendMessage: (message: string) => void
 }
 export type DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType;
 
@@ -34,7 +34,7 @@ const MapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
         // onChangeMessage: (newMessageText: string) => {
         //     dispatch(InputNewMessageText(newMessageText))
         // },
-        sendMessageForm: (message) => {
+        sendMessage: (message) => {
             dispatch(SendMessage(message))
         }
     }

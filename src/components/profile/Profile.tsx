@@ -4,7 +4,7 @@ import style from "./Profile.module.css";
 import {PostsContainer} from "./posts/PostsContainer";
 import {UserProfileType} from "../../redux/profile-reducer";
 import avatarImage from "../../assets/image/avatar/img.png"
-import {About} from "./about/About";
+import { Status } from "./status/Status";
 
 type ProfileType = {
     userProfile: UserProfileType,
@@ -15,8 +15,7 @@ type ProfileType = {
 export const Profile = (props: ProfileType) => {
     return (
         <div className={style.content}>
-            {/*<About firstName={'Yegor'} lastName={'Gursky'} status={props.status} changeStatus={props.changeStatus}/>*/}
-            <span>{props.status}</span>
+            <Status {...props} statusText={props.status} changeStatus={props.changeStatus} />
             <div>{props.userProfile.photos.small === null
                 ?  <img src={avatarImage} alt={"avatar_image"}/>
                 : <img src= {props.userProfile.photos.small} alt={'avatar_image'} />}</div>

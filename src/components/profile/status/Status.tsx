@@ -43,7 +43,7 @@ export class Status extends React.Component<StatusPropsType> {
             <div>
                 {
                     !this.state.editMode
-                        ? <span onClick={this.activateEditTitle}>{this.props.statusText ? this.props.statusText : "JOPAKONYA"}</span>
+                        ? <span onClick={this.activateEditTitle}>{this.props.statusText ? this.props.statusText : "status text"}</span>
                         : <input onChange={this.onStatusChange}
                                 value={this.state.status}
                                 autoFocus
