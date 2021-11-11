@@ -55,7 +55,7 @@ export const UsersReducer = (state = initialState, action: ActionsTypes): Initia
             }
         case ACTIONS_TYPE.SELECT_PAGE:
             return {
-                ...state, currentPage: action.currentPage
+                ...state, currentPage: action.page
             }
         case ACTIONS_TYPE.USERS_TOTAL_COUNT:
             return {

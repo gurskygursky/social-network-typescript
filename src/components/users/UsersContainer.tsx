@@ -10,6 +10,14 @@ import {
     unfollowUserThunk,
 } from "../../redux/thunk";
 import {withAuthRedirect} from "../hoc/withAuthRedirect";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers
+} from "../../redux/users-selectors";
 
 export class ClassUsersContainer extends React.Component<UsersContainerPropsType> {
     componentDidMount() {
@@ -23,7 +31,7 @@ export class ClassUsersContainer extends React.Component<UsersContainerPropsType
             <>
                 {this.props.isFetching ? <Preloader/> : null}
                 <Users
-                    users={this.props.usersPage.users}
+                    users={this.props.users}
                     totalUsersCount={this.props.totalUsersCount}
                     currentPage={this.props.currentPage}
                     selectPage={this.selectPage}
@@ -39,12 +47,19 @@ export class ClassUsersContainer extends React.Component<UsersContainerPropsType
 
 const MapStateToProps = (state: RootStateType) => {
     return {
-        usersPage: state.UsersReducer,
-        totalUsersCount: state.UsersReducer.totalUsersCount,
-        pageSize: state.UsersReducer.pageSize,
-        currentPage: state.UsersReducer.currentPage,
-        isFetching: state.UsersReducer.isFetching,
-        followingInProgress: state.UsersReducer.followingInProgress
+        // users: state.UsersReducer.users,
+        users: getUsers(state),
+        // usersPage: state.UsersReducer,
+        // totalUsersCount: state.UsersReducer.totalUsersCount,
+        totalUsersCount: getTotalUsersCount(state),
+        // pageSize: state.UsersReducer.pageSize,
+        pageSize: getPageSize(state),
+        // currentPage: state.UsersReducer.currentPage,
+        currentPage: getCurrentPage(state),
+        // isFetching: state.UsersReducer.isFetching,
+        isFetching: getIsFetching(state),
+        // followingInProgress: state.UsersReducer.followingInProgress,
+        followingInProgress: getFollowingInProgress(state),
     }
 }
 // const WithAuthRedirectComponent = withAuthRedirect(ClassUsersContainer)

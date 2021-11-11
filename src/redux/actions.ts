@@ -50,7 +50,7 @@ export type SetUsersType = {
 }
 export type SelectPageType = {
     type: ACTIONS_TYPE.SELECT_PAGE,
-    currentPage: number,
+    page: number,
 }
 export type SetUsersTotalCountType = {
     type: ACTIONS_TYPE.USERS_TOTAL_COUNT,
@@ -132,10 +132,10 @@ export const SetUsers = (users: Array<UserType>): SetUsersType => {
         users,
     }
 }
-export const SelectPage = (currentPage: number): SelectPageType => {
+export const SelectPage = (page: number): SelectPageType => {
     return {
         type: ACTIONS_TYPE.SELECT_PAGE,
-        currentPage,
+        page,
     }
 }
 export const SetUsersTotalCount = (totalCount: number): SetUsersTotalCountType => {
