@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEventHandler, useState} from "react";
+import React, {ChangeEvent, KeyboardEventHandler, useEffect, useState} from "react";
 
 type StatusPropsType = {
     statusText: string,
@@ -6,6 +6,9 @@ type StatusPropsType = {
 }
 
 export const StatusWithHooks = (props: StatusPropsType) => {
+    useEffect(() => {
+        setStatus(props.statusText)
+    }, [props.statusText])
 
     let [status, setStatus] = useState(props.statusText);
     let [editMode, setEditMode] = useState<boolean>(false);
