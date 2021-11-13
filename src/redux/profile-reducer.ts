@@ -86,6 +86,8 @@ export const ProfileReducer = (state= initialState, action: ActionsTypes): Initi
             //     }
             // }
             // return state;
+        case ACTIONS_TYPE.DELETE_POST:
+            return {...state, posts: state.posts.filter(post => post.id !== action.postID)}
         case ACTIONS_TYPE.INPUT_NEW_POST_TEXT:
             return {
                 ...state,

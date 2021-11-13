@@ -3,6 +3,7 @@ import {UserProfileType} from "./profile-reducer";
 
 export enum ACTIONS_TYPE {
     ADD_POST = 'Posts/ADD_POST',
+    DELETE_POST = 'Posts/DELETE_POST',
     INPUT_NEW_POST_TEXT = 'Posts/INPUT_NEW_POST_TEXT',
     SEND_MESSAGE = 'Dialogs/SEND_MESSAGE',
     // INPUT_NEW_MESSAGE_TEXT = 'Dialogs/INPUT_NEW_MESSAGE_TEXT',
@@ -23,6 +24,10 @@ export enum ACTIONS_TYPE {
 export type AddPostType = {
     type: ACTIONS_TYPE.ADD_POST,
     post: string,
+}
+export type DeletePostType = {
+    type: ACTIONS_TYPE.DELETE_POST,
+    postID: number,
 }
 export type InputNewPostTextType = {
     type: ACTIONS_TYPE.INPUT_NEW_POST_TEXT,
@@ -96,6 +101,12 @@ export const AddPost = (post: string): AddPostType => {
         post,
     }
 };
+export const DeletePost = (postID: number): DeletePostType => {
+    return {
+        type: ACTIONS_TYPE.DELETE_POST,
+        postID,
+    }
+}
 export const InputNewPostText = (newPostText: string): InputNewPostTextType => {
     return {
         type: ACTIONS_TYPE.INPUT_NEW_POST_TEXT,
@@ -190,6 +201,7 @@ export const LoginUserForm = (email: string, password: string, rememberMe: boole
 
 export type ActionsTypes =
     AddPostType |
+    DeletePostType |
     InputNewPostTextType |
     SendMessageType |
     // InputNewMessageTextType |
