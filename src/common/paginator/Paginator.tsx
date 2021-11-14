@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import style from "../../components/users/Users.module.css";
 
 type PaginatorPropsType = {
@@ -15,9 +15,21 @@ export const Paginator = (props: PaginatorPropsType) => {
         pages.push(i)
     }
 
+    let [currentPagesOutput, setCurrentPagesOutput] = useState(1);
+    const countPagesOutputInLine = 7;
+    const countPagesOutput = Math.ceil(props.totalUsersCount / countPagesOutputInLine);
+    const prevCountPageOutput = (currentPagesOutput - 1) * countPagesOutputInLine + 1;
+    const nextCountPageOutput = currentPagesOutput * countPagesOutputInLine;
+
+
+
     return (
         <div>
-            {pages.map(page => {
+            {currentPagesOutput > 1
+            &&<button onClick={ () => {setCurrentPagesOutput(currentPagesOutput-1)}}>PREV</button>}
+            {pages
+                .filter(page => page >= prevCountPageOutput && page <= nextCountPageOutput)
+                .map(page => {
                 return (
                     <span onClick={() => {
                         props.selectPage(page)
@@ -25,6 +37,9 @@ export const Paginator = (props: PaginatorPropsType) => {
                           className={props.currentPage === page ? style.selected : ''}>{page}</span>
                 )
             })}
+            {
+                countPagesOutput > currentPagesOutput
+                && <button onClick={() => {setCurrentPagesOutput(currentPagesOutput + 1)}}>NEXT</button>}
         </div>
     )
 }
