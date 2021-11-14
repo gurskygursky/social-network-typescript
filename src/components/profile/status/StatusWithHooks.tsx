@@ -25,7 +25,6 @@ export const StatusWithHooks = (props: StatusPropsType) => {
         props.changeStatus(status);
     }
 
-
     return (
         <div>
             {
