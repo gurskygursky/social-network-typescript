@@ -8,9 +8,9 @@ import {
 } from "../../redux/thunk";
 
 export class LoginHeaderContainer extends React.Component<LoginHeaderContainerPropsType> {
-    componentDidMount() {
-        this.props.loginUserThunk();
-    }
+    // componentDidMount() {
+    //     this.props.loginUserThunk();
+    // }
     render() {
         return (
             <Header {...this.props}  />

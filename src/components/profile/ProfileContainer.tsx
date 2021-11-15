@@ -14,9 +14,10 @@ import { compose } from "redux";
 
 export class ProfileUsersContainer extends React.Component<ProfileContainerType> {
     componentDidMount() {
-        let userID =this.props.match.params.userID;
+        let userID = this.props.match.params.userID;
         if (!userID) {
-            userID = '18933'
+            // userID = '18933'
+            userID = String(this.props.authorizedUserID);
         }
         this.props.selectUserProfileThunk(Number(userID));
         this.props.getUserStatusThunk(Number(userID));
@@ -25,7 +26,7 @@ export class ProfileUsersContainer extends React.Component<ProfileContainerType>
         return (
             <>
                 <Profile {...this.props}
-                    isOwner={!!this.props.match.params.userID}
+                    isOwner={!this.props.match.params.userID}
                         changeStatus={this.props.changeUserStatusThunk}
                          userProfile={this.props.userProfile}
                          status={this.props.status}
@@ -39,6 +40,8 @@ export class ProfileUsersContainer extends React.Component<ProfileContainerType>
 type mapStateToPropsType = {
     userProfile: UserProfileType,
     status: string,
+    authorizedUserID: any,
+    isAuth: boolean,
 }
 type PathParamType = {
     userID: string,
@@ -50,6 +53,8 @@ const mapStateToProps = (state: RootStateType): mapStateToPropsType => {
     return {
         userProfile: state.ProfileReducer.userProfile,
         status: state.ProfileReducer.status,
+        authorizedUserID: state.AuthReducer.id,
+        isAuth: state.AuthReducer.isAuth,
     }
 }
 

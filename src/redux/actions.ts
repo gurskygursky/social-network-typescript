@@ -21,6 +21,7 @@ export enum ACTIONS_TYPE {
     UPLOAD_USER_PHOTO = 'Profile/UPLOAD_USER_PHOTO',
     LOGIN_USER = 'Header/LOGIN_USER',
     LOGIN_USER_FORM = 'Login/LOGIN_USER_FORM',
+    APP_INITIALIZING = 'App/APP_INITIALIZING',
 }
 
 export type AddPostType = {
@@ -100,6 +101,10 @@ export type LoginUserFormType = {
 export type UploadPhotoUserType = {
     type: ACTIONS_TYPE.UPLOAD_USER_PHOTO,
     photos: PhotosType,
+}
+export type AppInitializingType = {
+    type: ACTIONS_TYPE.APP_INITIALIZING,
+    initialized: boolean,
 }
 export const AddPost = (post: string): AddPostType => {
     return {
@@ -210,6 +215,13 @@ export const UploadUserPhoto = (photos: PhotosType): UploadPhotoUserType => {
         photos,
     }
 }
+export const AppInitializing = (initialized: boolean): AppInitializingType => {
+    // debugger
+    return {
+        type: ACTIONS_TYPE.APP_INITIALIZING,
+        initialized,
+    }
+}
 
 export type ActionsTypes =
     AddPostType |
@@ -229,4 +241,5 @@ export type ActionsTypes =
     SetUserStatusType |
     ChangeUserStatusType |
     LoginUserFormType |
-    UploadPhotoUserType;
+    UploadPhotoUserType |
+    AppInitializingType;

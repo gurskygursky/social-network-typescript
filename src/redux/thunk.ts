@@ -11,7 +11,7 @@ import {
     ToggleFollowingInProgress,
     ToggleIsFetching,
     UnfollowUser,
-    ActionsTypes, UploadUserPhoto,
+    ActionsTypes, UploadUserPhoto, AppInitializing, AppInitializingType,
 } from "./actions";
 import {ThunkAction} from "redux-thunk";
 import {RootStateType} from "./redux-store";
@@ -92,5 +92,13 @@ export const uploadUserPhotoThunk = (image: File) => async (dispatch: Dispatch) 
     if (response.data.resultCode === 0) {
         dispatch(UploadUserPhoto(response.data.data.photos))
     }
+}
+export const appInitializingThunk = (initialized: boolean): ThunkAction<void, RootStateType, unknown, ActionsTypes> => (dispatch) => {
+   const promise = dispatch(loginUserThunk());
+   debugger
+   promise.then(() => {
+       debugger
+       dispatch(AppInitializing(initialized));
+   })
 }
 
