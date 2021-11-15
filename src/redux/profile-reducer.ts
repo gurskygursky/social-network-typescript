@@ -103,6 +103,10 @@ export const ProfileReducer = (state= initialState, action: ActionsTypes): Initi
                 ...state,
                 status: action.status
             }
+        case ACTIONS_TYPE.UPLOAD_USER_PHOTO:
+            return {
+                ...state, userProfile: {...state.userProfile, photos: action.photos}
+            }
         default: return state;
     }
 };

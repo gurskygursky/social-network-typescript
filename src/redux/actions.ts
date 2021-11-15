@@ -1,5 +1,6 @@
 import { UserType} from "./users-reducer"
-import {UserProfileType} from "./profile-reducer";
+import {PhotosType, UserProfileType} from "./profile-reducer";
+import {type} from "os";
 
 export enum ACTIONS_TYPE {
     ADD_POST = 'Posts/ADD_POST',
@@ -17,8 +18,9 @@ export enum ACTIONS_TYPE {
     SELECT_USER_PROFILE = 'Profile/SELECT_USER_PROFILE',
     SET_USER_STATUS = 'Profile/SET_USER_STATUS',
     CHANGE_USER_STATUS = 'Profile/CHANGE_USER_STATUS',
+    UPLOAD_USER_PHOTO = 'Profile/UPLOAD_USER_PHOTO',
     LOGIN_USER = 'Header/LOGIN_USER',
-    LOGIN_USER_FORM = 'Login/LOGIN_USER_FORM'
+    LOGIN_USER_FORM = 'Login/LOGIN_USER_FORM',
 }
 
 export type AddPostType = {
@@ -94,6 +96,10 @@ export type LoginUserFormType = {
     email: string,
     password: string,
     rememberMe: boolean,
+}
+export type UploadPhotoUserType = {
+    type: ACTIONS_TYPE.UPLOAD_USER_PHOTO,
+    photos: PhotosType,
 }
 export const AddPost = (post: string): AddPostType => {
     return {
@@ -198,6 +204,12 @@ export const LoginUserForm = (email: string, password: string, rememberMe: boole
         rememberMe,
     }
 }
+export const UploadUserPhoto = (photos: PhotosType): UploadPhotoUserType => {
+    return {
+        type: ACTIONS_TYPE.UPLOAD_USER_PHOTO,
+        photos,
+    }
+}
 
 export type ActionsTypes =
     AddPostType |
@@ -216,4 +228,5 @@ export type ActionsTypes =
     FollowingUserProgressType |
     SetUserStatusType |
     ChangeUserStatusType |
-    LoginUserFormType;
+    LoginUserFormType |
+    UploadPhotoUserType;

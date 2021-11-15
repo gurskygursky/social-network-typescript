@@ -11,10 +11,11 @@ import {
     ToggleFollowingInProgress,
     ToggleIsFetching,
     UnfollowUser,
-    ActionsTypes,
+    ActionsTypes, UploadUserPhoto,
 } from "./actions";
 import {ThunkAction} from "redux-thunk";
 import {RootStateType} from "./redux-store";
+import {PhotosType} from "./profile-reducer";
 
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
     dispatch(ToggleIsFetching(true));
@@ -84,6 +85,12 @@ export const logoutThunk = () => async (dispatch: Dispatch) => {
     const response = await HeaderAPI.logout()
     if (response.data.resultCode === 0) {
         dispatch(LoginUser(null, '', '', false))
+    }
+}
+export const uploadUserPhotoThunk = (image: File) => async (dispatch: Dispatch) => {
+    const response = await ProfileAPI.uploadUserPhoto(image)
+    if (response.data.resultCode === 0) {
+        dispatch(UploadUserPhoto(response.data.data.photos))
     }
 }
 

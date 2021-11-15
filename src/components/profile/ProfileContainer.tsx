@@ -8,6 +8,7 @@ import {
     changeUserStatusThunk,
     getUserStatusThunk,
     selectUserProfileThunk,
+    uploadUserPhotoThunk,
 } from "../../redux/thunk";
 import { compose } from "redux";
 
@@ -24,9 +25,12 @@ export class ProfileUsersContainer extends React.Component<ProfileContainerType>
         return (
             <>
                 <Profile {...this.props}
+                    isOwner={!!this.props.match.params.userID}
                         changeStatus={this.props.changeUserStatusThunk}
                          userProfile={this.props.userProfile}
-                         status={this.props.status} />
+                         status={this.props.status}
+                         uploadUserPhoto={this.props.uploadUserPhotoThunk}
+                />
             </>
         )
     }
@@ -55,6 +59,7 @@ const ConnectComponent = connect(mapStateToProps, {
     selectUserProfileThunk,
     getUserStatusThunk,
     changeUserStatusThunk,
+    uploadUserPhotoThunk,
 })
 export type ProfileUsersContainerType = ConnectedProps<typeof ConnectComponent>
 // export const ProfileContainer = ConnectComponent(WithRouterProfileContainer)
