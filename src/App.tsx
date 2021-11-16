@@ -17,15 +17,14 @@ import {Preloader} from "./common/preloaders/Preloader";
 
 export class App extends React.Component<AppContainerType> {
     componentDidMount() {
-        // debugger
-        this.props.appInitializingThunk(this.props.initialized);
+            this.props.appInitializingThunk(this.props.initialized);
     }
 
     render() {
         // debugger
-        // if (!this.props.initialized) {
-        //     return <Preloader/>
-        // }
+        //  if (!this.props.isAuth) {
+        //      return <Preloader/>
+        //  }
         return (
             <div className={"app-wrapper"}>
                 <HeaderContainer/>

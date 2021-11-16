@@ -4,10 +4,11 @@ import {Login} from "./Login";
 import {LoginUser, LoginUserForm} from "../../redux/actions";
 import React from "react";
 import {loginThunk} from "../../redux/thunk";
+import {RootStateType} from "../../redux/redux-store";
 
 
 type MapStateToPropsType = {
-
+isAuth: boolean
 }
 type MapDispatchToPropsType = {
     // sendMessage: () => void,
@@ -16,8 +17,9 @@ type MapDispatchToPropsType = {
 }
 export type LoginFormPropsType = MapStateToPropsType & MapDispatchToPropsType;
 
-const MapStateToProps = (): MapStateToPropsType => {
+const MapStateToProps = (state: RootStateType): MapStateToPropsType => {
     return {
+        isAuth: state.AuthReducer.isAuth
     }
 }
 // const MapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {

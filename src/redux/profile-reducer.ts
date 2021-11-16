@@ -16,7 +16,7 @@ export type PhotosType = {
 }
 export type UserProfileType = {
     aboutMe: string,
-    userId: string,
+    userId: number | null,
     lookingForAJob: boolean,
     lookingForAJobDescription: string,
     fullName: string,
@@ -43,7 +43,7 @@ const initialState: InitialStateType = {
     ],
     userProfile: {
         aboutMe: '',
-        userId: '',
+        userId: null,
         lookingForAJob: false,
         lookingForAJobDescription: '',
         fullName: '',

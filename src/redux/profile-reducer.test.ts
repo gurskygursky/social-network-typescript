@@ -10,7 +10,7 @@ const state: InitialStateType = {
     ],
     userProfile: {
         aboutMe: '',
-        userId: '',
+        userId: null,
         lookingForAJob: false,
         lookingForAJobDescription: '',
         fullName: '',

@@ -11,11 +11,12 @@ import {
     ToggleFollowingInProgress,
     ToggleIsFetching,
     UnfollowUser,
-    ActionsTypes, UploadUserPhoto, AppInitializing, AppInitializingType,
+    ActionsTypes,
+    UploadUserPhoto,
+    AppInitializing,
 } from "./actions";
 import {ThunkAction} from "redux-thunk";
 import {RootStateType} from "./redux-store";
-import {PhotosType} from "./profile-reducer";
 
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
     dispatch(ToggleIsFetching(true));
@@ -52,14 +53,15 @@ export const unfollowUserThunk = (userID: number) => async (dispatch: Dispatch) 
     dispatch(ToggleFollowingInProgress(false, userID));
 }
 
-export const loginUserThunk = () => async (dispatch: Dispatch) => {
-    const response = await HeaderAPI.authMe()
-    if (response.data.resultCode === 0) {
-        let {id, email, login} = response.data.data
-        dispatch(LoginUser(id, email, login, true))
-    }
+export const loginUserThunk = (): ThunkAction<Promise<void>, RootStateType, unknown, ActionsTypes> => (dispatch) => {
+    return HeaderAPI.authMe()
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                let {id, email, login} = response.data.data
+                dispatch(LoginUser(id, email, login, true))
+            }
+        })
 }
-
 export const selectUserProfileThunk = (userID: number) => async (dispatch: Dispatch) => {
     const response = await ProfileAPI.selectUserProfile(userID);
     dispatch(SelectUserProfile(response.data));
@@ -94,11 +96,10 @@ export const uploadUserPhotoThunk = (image: File) => async (dispatch: Dispatch) 
     }
 }
 export const appInitializingThunk = (initialized: boolean): ThunkAction<void, RootStateType, unknown, ActionsTypes> => (dispatch) => {
-   const promise = dispatch(loginUserThunk());
-   debugger
-   promise.then(() => {
-       debugger
-       dispatch(AppInitializing(initialized));
-   })
+    const promise = dispatch(loginUserThunk());
+    promise.then(() => {
+        dispatch(AppInitializing(initialized))
+        console.log(dispatch(AppInitializing(initialized)))
+    })
 }
 

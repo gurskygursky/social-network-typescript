@@ -26,6 +26,7 @@ export const ProfileInfo = (props: ProfileInfoType) => {
     }
     return (
         <div className={style.content}>
+
             <div>{props.userProfile.fullName}</div>
             <div>{props.userProfile.photos.small === null
                 // ? <input type={"file"}/>
@@ -35,7 +36,7 @@ export const ProfileInfo = (props: ProfileInfoType) => {
             {/*    <img src={props.userProfile.photos.small} alt={"avatar_image"}/>*/}
             {/*    || <img src={avatarImage} alt={"avatar_image"}/>*/}
             {/*}*/}
-            {props.isOwner || <input type={"file"}
+            {!props.isOwner || <input type={"file"}
                                      onChange={onPhotoSelected}/>}
             <StatusWithHooks {...props}
                              statusText={props.status}

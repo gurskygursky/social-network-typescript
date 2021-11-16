@@ -1,6 +1,5 @@
 import { UserType} from "./users-reducer"
 import {PhotosType, UserProfileType} from "./profile-reducer";
-import {type} from "os";
 
 export enum ACTIONS_TYPE {
     ADD_POST = 'Posts/ADD_POST',
@@ -216,7 +215,6 @@ export const UploadUserPhoto = (photos: PhotosType): UploadPhotoUserType => {
     }
 }
 export const AppInitializing = (initialized: boolean): AppInitializingType => {
-    // debugger
     return {
         type: ACTIONS_TYPE.APP_INITIALIZING,
         initialized,

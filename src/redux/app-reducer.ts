@@ -8,12 +8,12 @@ const initialState: InitialStateType = {
 };
 
 export const AppReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
-    // debugger
     switch (action.type) {
         case ACTIONS_TYPE.APP_INITIALIZING:
             return {
                 ...state,
-                initialized: action.initialized,
+                // initialized: true,
+                initialized: true,
             }
         default:
             return state;

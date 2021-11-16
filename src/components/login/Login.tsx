@@ -1,5 +1,5 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
 import classes from "./Login.module.css";
 import {LoginFormPropsType} from "./LoginContainer";
 import {Field, Form} from "react-final-form";
@@ -18,6 +18,10 @@ export const Login = (props: LoginFormPropsType) => {
 
         // alert(JSON.stringify(values, undefined, 2))
         // console.log(values)
+    }
+
+    if(props.isAuth) {
+        return <Redirect to={'/profile'}/>
     }
 
     return (

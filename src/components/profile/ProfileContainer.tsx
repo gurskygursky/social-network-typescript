@@ -17,7 +17,8 @@ export class ProfileUsersContainer extends React.Component<ProfileContainerType>
         let userID = this.props.match.params.userID;
         if (!userID) {
             // userID = '18933'
-            userID = String(this.props.authorizedUserID);
+            console.log(this.props.authUserID)
+            userID = String(this.props.authUserID);
         }
         this.props.selectUserProfileThunk(Number(userID));
         this.props.getUserStatusThunk(Number(userID));
@@ -40,8 +41,7 @@ export class ProfileUsersContainer extends React.Component<ProfileContainerType>
 type mapStateToPropsType = {
     userProfile: UserProfileType,
     status: string,
-    authorizedUserID: any,
-    isAuth: boolean,
+    authUserID: number | null,
 }
 type PathParamType = {
     userID: string,
@@ -53,11 +53,11 @@ const mapStateToProps = (state: RootStateType): mapStateToPropsType => {
     return {
         userProfile: state.ProfileReducer.userProfile,
         status: state.ProfileReducer.status,
-        authorizedUserID: state.AuthReducer.id,
-        isAuth: state.AuthReducer.isAuth,
+        authUserID: state.AuthReducer.id,
     }
 }
 
+// const WithAuthRedirectComponent = withAuthRedirect(ProfileUsersContainer)
 // export const WithRouterProfileContainer = withRouter(ProfileUsersContainer)
 
 const ConnectComponent = connect(mapStateToProps, {
@@ -71,5 +71,6 @@ export type ProfileUsersContainerType = ConnectedProps<typeof ConnectComponent>
 
 export const ProfileContainer = compose<ComponentType>(
     ConnectComponent,
+    // withAuthRedirect,
     withRouter,
 )(ProfileUsersContainer)
