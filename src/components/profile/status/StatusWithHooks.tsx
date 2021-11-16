@@ -1,4 +1,5 @@
 import React, {ChangeEvent, KeyboardEventHandler, useEffect, useState} from "react";
+import style from "./StatusWithHooks.module.css";
 
 type StatusPropsType = {
     statusText: string,
@@ -26,7 +27,7 @@ export const StatusWithHooks = (props: StatusPropsType) => {
     }
 
     return (
-        <div>
+        <div className={style.status}>
             {
                 !editMode
                     ? <span onClick={activateEditTitle}>{props.statusText ? props.statusText : "status text"}</span>
