@@ -14,6 +14,7 @@ type ProfileInfoType = {
     changeStatus: (status: string) => void,
     isOwner: boolean,
     uploadUserPhoto: (image: File) => void,
+    onSubmitHandler: (aboutMe: string, lookingForAJob: boolean, lookingForAJobDescription: string, fullName: string) => void,
 }
 
 export const ProfileInfo = (props: ProfileInfoType) => {
@@ -43,7 +44,9 @@ export const ProfileInfo = (props: ProfileInfoType) => {
                                       onChange={onPhotoSelected}/>}
 
             {editMode
-                ? <ProfileDataEditForm userProfile={props.userProfile}/>
+                ? <ProfileDataEditForm userProfile={props.userProfile}
+                                       updateProfileDataThunk={props.onSubmitHandler}
+                />
                 : <ProfileData userProfile={props.userProfile}
                                status={props.status}
                                changeStatus={props.changeStatus}

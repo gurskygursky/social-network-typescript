@@ -70,6 +70,11 @@ export const ProfileAPI = {
                 },
             } )
         )
+    },
+    updateProfileData(aboutMe: string, lookingForAJob: boolean, lookingForAJobDescription: string, fullName: string) {
+        return (
+            instance.put(`profile`, {aboutMe, lookingForAJob, lookingForAJobDescription, fullName})
+        )
     }
 }
 

@@ -14,6 +14,7 @@ type ProfileType = {
     changeStatus: (status: string) => void,
     isOwner: boolean,
     uploadUserPhoto: any,
+    onSubmitHandler: (aboutMe: string, lookingForAJob: boolean, lookingForAJobDescription: string, fullName: string) => void
 }
 
 export const Profile = (props: ProfileType) => {
@@ -24,6 +25,7 @@ export const Profile = (props: ProfileType) => {
                          changeStatus={props.changeStatus}
                          isOwner={props.isOwner}
                          uploadUserPhoto={props.uploadUserPhoto}
+                         onSubmitHandler={props.onSubmitHandler}
             />
             {/*<StatusWithHooks {...props}*/}
             {/*                 statusText={props.status}*/}
