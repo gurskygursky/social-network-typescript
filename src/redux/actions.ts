@@ -1,5 +1,5 @@
 import { UserType} from "./users-reducer"
-import {PhotosType, UserProfileType} from "./profile-reducer";
+import {ContactsType, PhotosType, UserProfileType} from "./profile-reducer";
 
 export enum ACTIONS_TYPE {
     ADD_POST = 'Posts/ADD_POST',

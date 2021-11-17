@@ -1,4 +1,5 @@
 import axios from "axios";
+import {ContactsType} from "../redux/profile-reducer";
 
 
 const instance = axios.create({
@@ -71,9 +72,9 @@ export const ProfileAPI = {
             } )
         )
     },
-    updateProfileData(aboutMe: string, lookingForAJob: boolean, lookingForAJobDescription: string, fullName: string) {
+    updateProfileData(contacts: ContactsType, aboutMe: string, lookingForAJob: boolean, lookingForAJobDescription: string, fullName: string) {
         return (
-            instance.put(`profile`, {aboutMe, lookingForAJob, lookingForAJobDescription, fullName})
+            instance.put(`profile`, {contacts, aboutMe, lookingForAJob, lookingForAJobDescription, fullName})
         )
     }
 }

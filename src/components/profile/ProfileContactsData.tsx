@@ -18,8 +18,8 @@ export const ProfileContactsData = (props: ProfileInfoType) => {
     return (
         <div className={style.content}>
             <div>
-                <b>Contacts:</b>{Object.keys(props.userProfile.contacts).map((key) => {
-                    return <Contact key={key} contactTitle={key} />
+                <b>Contacts:</b>{Object.entries(props.userProfile.contacts).map((keyValues) => {
+                    return <Contact key={keyValues[0]} contactTitle={keyValues[0]} contactValue={keyValues[1]} />
             })}
             </div>
         </div>
@@ -27,10 +27,12 @@ export const ProfileContactsData = (props: ProfileInfoType) => {
 }
 type ContactType = {
     contactTitle: string,
-    // contactValue: string,
+    contactValue: string | null,
 }
-const Contact = (props: ContactType) => {
+export const Contact = (props: ContactType) => {
     return (
-        <div><b>{props.contactTitle}:</b></div>
+        <div>
+            <b>{props.contactTitle}: </b>{props.contactValue}
+        </div>
     )
 }

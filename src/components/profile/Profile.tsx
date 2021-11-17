@@ -2,7 +2,7 @@ import React from "react";
 import "./Profile.module.css"
 import style from "./Profile.module.css";
 import {PostsContainer} from "./posts/PostsContainer";
-import {UserProfileType} from "../../redux/profile-reducer";
+import {ContactsType, UserProfileType} from "../../redux/profile-reducer";
 import avatarImage from "../../assets/image/avatar/img.png"
 import { Status } from "./status/Status";
 import {StatusWithHooks} from "./status/StatusWithHooks";
@@ -14,7 +14,7 @@ type ProfileType = {
     changeStatus: (status: string) => void,
     isOwner: boolean,
     uploadUserPhoto: any,
-    onSubmitHandler: (aboutMe: string, lookingForAJob: boolean, lookingForAJobDescription: string, fullName: string) => void
+    onSubmitHandler: (contacts: ContactsType, aboutMe: string, lookingForAJob: boolean, lookingForAJobDescription: string, fullName: string) => void
 }
 
 export const Profile = (props: ProfileType) => {

@@ -16,13 +16,13 @@ const state: InitialStateType = {
         fullName: '',
         contacts: {
             facebook: '',
-            website: null,
+            website: '',
             vk: '',
             twitter: '',
             instagram: '',
-            youtube: null,
+            youtube: '',
             github: '',
-            mainLink: null,
+            mainLink: '',
         },
         photos: {
             small: '' ,
