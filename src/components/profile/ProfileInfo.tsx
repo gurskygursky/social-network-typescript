@@ -33,6 +33,9 @@ export const ProfileInfo = (props: ProfileInfoType) => {
     const editModeHandler = () => {
         setEditMode(true)
     }
+    const hideEditForm = () => {
+        setEditMode(false)
+    }
     return (
         <div className={style.content}>
             <div>{props.userProfile.photos.small === null
@@ -45,7 +48,7 @@ export const ProfileInfo = (props: ProfileInfoType) => {
 
             {editMode
                 ? <ProfileDataEditForm userProfile={props.userProfile}
-                                       updateProfileDataThunk={props.onSubmitHandler}
+                                       updateProfileDataThunk={props.onSubmitHandler} hideEditForm={hideEditForm}
                 />
                 : <ProfileData userProfile={props.userProfile}
                                status={props.status}

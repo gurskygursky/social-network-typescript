@@ -34,7 +34,7 @@ export const ProfileData = (props: ProfileInfoType) => {
                 <b>AboutMe: </b>{props.userProfile.aboutMe}
             </div>
             <div>
-                <b>LookingForAJob: </b>{props.userProfile.lookingForAJob}
+                <b>LookingForAJob: </b>{JSON.stringify(props.userProfile.lookingForAJob)}
             </div>
             <div>
                 <b>My professional skills: </b>{props.userProfile.lookingForAJobDescription}

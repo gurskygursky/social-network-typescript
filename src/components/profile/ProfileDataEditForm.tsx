@@ -10,6 +10,7 @@ import {Field, Form} from "react-final-form";
 type ProfileInfoType = {
     userProfile: UserProfileType,
     updateProfileDataThunk: (aboutMe: string, lookingForAJob: boolean, lookingForAJobDescription: string, fullName: string) => void,
+    hideEditForm: () => void,
     // status: string,
     // changeStatus: (status: string) => void,
     // isOwner: boolean,
@@ -24,12 +25,14 @@ const required = (value: string) => (value ? undefined : "Required");
 
 export const ProfileDataEditForm = (props: ProfileInfoType) => {
     const updateProfileDataHandler = (values: any) => {
-        props.updateProfileDataThunk(values.aboutMe, values.lookingForAJob, values.lookingForAJobDescription, values.fullName)
+        props.updateProfileDataThunk(values.aboutMe, values.lookingForAJob, values.lookingForAJobDescription, values.fullName);
+        props.hideEditForm();
     }
     return (
         <div className={style.content}>
                 <Form
                     onSubmit={updateProfileDataHandler}
+                    initialValues={props.userProfile}
                     render={({ handleSubmit, submitting, values }) => (
                         <form onSubmit={handleSubmit}>
                             <Field name="fullName" validate={required}>
@@ -39,7 +42,7 @@ export const ProfileDataEditForm = (props: ProfileInfoType) => {
                                             <b>FullName: </b>
                                         </label>
                                         <input {...input} type="text" placeholder="input text" />
-                                        {/*{meta.error && meta.touched && <span>{meta.error}</span>}*/}
+                                        {meta.error && meta.touched && <span>{meta.error}</span>}
                                     </div>
                                 )}
                             </Field>
@@ -48,7 +51,7 @@ export const ProfileDataEditForm = (props: ProfileInfoType) => {
                                     <div>
                                         <label>About Me:</label>
                                         <input {...input} type="text" placeholder="input text" />
-                                        {/*{meta.error && meta.touched && <span>{meta.error}</span>}*/}
+                                        {meta.error && meta.touched && <span>{meta.error}</span>}
                                     </div>
                                 )}
                             </Field>
@@ -57,7 +60,7 @@ export const ProfileDataEditForm = (props: ProfileInfoType) => {
                                     <div>
                                         <label>LookingForAJobDescription:</label>
                                         <input {...input} type="text" placeholder="input text" />
-                                        {/*{meta.error && meta.touched && <span>{meta.error}</span>}*/}
+                                        {meta.error && meta.touched && <span>{meta.error}</span>}
                                     </div>
                                 )}
                             </Field>

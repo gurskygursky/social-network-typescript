@@ -102,9 +102,10 @@ export const appInitializingThunk = (initialized: boolean): ThunkAction<void, Ro
         console.log(dispatch(AppInitializing(initialized)))
     })
 }
-export const updateProfileDataThunk = (aboutMe: string, lookingForAJob: boolean, lookingForAJobDescription: string, fullName: string): ThunkAction<void, RootStateType, unknown, ActionsTypes> => async (dispatch) => {
+export const updateProfileDataThunk = (aboutMe: string, lookingForAJob: boolean, lookingForAJobDescription: string, fullName: string): ThunkAction<void, RootStateType, unknown, ActionsTypes> => async (dispatch, getState) => {
+    const id = Number(getState().ProfileReducer.userProfile.userId)
     const response = await ProfileAPI.updateProfileData(aboutMe, lookingForAJob, lookingForAJobDescription, fullName)
     if (response.data.resultCode === 0) {
-        // dispatch(loginUserThunk());
+        dispatch(selectUserProfileThunk(id));
     }
 }
