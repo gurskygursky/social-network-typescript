@@ -1,6 +1,5 @@
 import React, {ChangeEvent, useState} from "react";
 import style from "./Profile.module.css";
-import {StatusWithHooks} from "./status/StatusWithHooks";
 import {ContactsType, UserProfileType} from "../../redux/profile-reducer";
 import {Preloader} from "../../common/preloaders/Preloader";
 import avatarImage from "../../assets/image/avatar/img.png";
@@ -39,7 +38,6 @@ export const ProfileInfo = (props: ProfileInfoType) => {
     return (
         <div className={style.content}>
             <div>{props.userProfile.photos.small === null
-                // ? <input type={"file"}/>
                 ? <img src={avatarImage} alt={"avatar_image"}/>
                 : <img src={props.userProfile.photos.small} alt={'avatar_image'}/>}
             </div>
@@ -57,27 +55,6 @@ export const ProfileInfo = (props: ProfileInfoType) => {
                                uploadUserPhoto={props.uploadUserPhoto}
                                onEditMode={editModeHandler}
                 />}
-            {/*<div>{props.userProfile.fullName}</div>*/}
-            {/*<div>{props.userProfile.photos.small === null*/}
-            {/*    // ? <input type={"file"}/>*/}
-            {/*    ?  <img src={avatarImage} alt={"avatar_image"}/>*/}
-            {/*    : <img src= {props.userProfile.photos.small} alt={'avatar_image'} />}*/}
-            {/*</div>*/}
-            {/*{*/}
-            {/*    <img src={props.userProfile.photos.small} alt={"avatar_image"}/>*/}
-            {/*    || <img src={avatarImage} alt={"avatar_image"}/>*/}
-            {/*}*/}
-            {/*{!props.isOwner || <input type={"file"}*/}
-            {/*                         onChange={onPhotoSelected}/>}*/}
-            {/*<StatusWithHooks {...props}*/}
-            {/*                 statusText={props.status}*/}
-            {/*                 changeStatus={props.changeStatus}*/}
-            {/*/>*/}
-            {/*<div>{props.userProfile.lookingForAJob}</div>*/}
-            {/*<div>{props.userProfile.lookingForAJobDescription}</div>*/}
-            <br/>
-            <br/>
-            <br/>
         </div>
     );
 }
