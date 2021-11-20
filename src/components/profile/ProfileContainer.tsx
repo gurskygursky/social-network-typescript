@@ -14,16 +14,38 @@ import {
 import { compose } from "redux";
 
 export class ProfileUsersContainer extends React.Component<ProfileContainerType> {
+    // componentDidMount() {
+    //     let userID = this.props.match.params.userID;
+    //     if (!userID) {
+    //         // debugger
+    //         // userID = '18933'
+    //         console.log(this.props.authUserID)
+    //         userID = String(this.props.authUserID);
+    //     }
+    //     this.props.selectUserProfileThunk(Number(userID));
+    //     this.props.getUserStatusThunk(Number(userID));
+    // }
+    refreshProfile() {
+            let userID = this.props.match.params.userID;
+            if (!userID) {
+                // debugger
+                // userID = '18933'
+                console.log(this.props.authUserID)
+                userID = String(this.props.authUserID);
+            }
+            this.props.selectUserProfileThunk(Number(userID));
+            this.props.getUserStatusThunk(Number(userID));
+    }
+
     componentDidMount() {
-        let userID = this.props.match.params.userID;
-        if (!userID) {
-            // debugger
-            // userID = '18933'
-            console.log(this.props.authUserID)
-            userID = String(this.props.authUserID);
+        this.refreshProfile()
+    }
+
+    componentDidUpdate(prevProps: any) {
+        if (this.props.match.params.userID != prevProps.match.params.userID) {
+            this.refreshProfile()
         }
-        this.props.selectUserProfileThunk(Number(userID));
-        this.props.getUserStatusThunk(Number(userID));
+
     }
     render() {
         return (
