@@ -7,13 +7,14 @@ type ProfileInfoType = {
     userProfile: UserProfileType,
     updateProfileDataThunk: (contacts: ContactsType, aboutMe: string, lookingForAJob: boolean, lookingForAJobDescription: string, fullName: string) => void,
     hideEditForm: () => void,
+    setErrorMessage: string,
 }
 
 const required = (value: string) => (value ? undefined : "Required");
 
 export const ProfileDataEditForm = (props: ProfileInfoType) => {
     const updateProfileDataHandler = (values: any) => {
-        debugger
+console.log(1)
         props.updateProfileDataThunk({
                 facebook: values.facebook,
                 twitter: values.twitter,
@@ -30,6 +31,7 @@ export const ProfileDataEditForm = (props: ProfileInfoType) => {
             values.fullName);
         props.hideEditForm();
     }
+    console.log(props.setErrorMessage)
     return (
         <div className={style.content}>
             <Form
@@ -91,8 +93,7 @@ export const ProfileDataEditForm = (props: ProfileInfoType) => {
                                     )}
                                 </Field>
                             </div>
-                        })
-                        }
+                        })}
                         </div>
                         <div className="buttons">
                             <button type="submit" disabled={submitting}>
@@ -102,6 +103,9 @@ export const ProfileDataEditForm = (props: ProfileInfoType) => {
                     </form>
                 )}
             />
+            <div>
+                {props.setErrorMessage}
+            </div>
         </div>
     );
 }

@@ -1,4 +1,4 @@
-import { UserType} from "./users-reducer"
+import {UserType} from "./users-reducer"
 import {ContactsType, PhotosType, UserProfileType} from "./profile-reducer";
 
 export enum ACTIONS_TYPE {
@@ -21,6 +21,8 @@ export enum ACTIONS_TYPE {
     LOGIN_USER = 'Header/LOGIN_USER',
     LOGIN_USER_FORM = 'Login/LOGIN_USER_FORM',
     APP_INITIALIZING = 'App/APP_INITIALIZING',
+    SET_ERROR_MESSAGE = 'Login/SET_ERROR_MESSAGE',
+    SET_ERROR_MESSAGE_PROFILE = 'Profile/SET_ERROR_MESSAGE_PROFILE',
 }
 
 export type AddPostType = {
@@ -104,6 +106,14 @@ export type UploadPhotoUserType = {
 export type AppInitializingType = {
     type: ACTIONS_TYPE.APP_INITIALIZING,
     initialized: boolean,
+}
+export type SetErrorMessageType = {
+    type: ACTIONS_TYPE.SET_ERROR_MESSAGE,
+    setErrorMessage: string,
+}
+export type SetErrorMessageProfileType = {
+    type: ACTIONS_TYPE.SET_ERROR_MESSAGE_PROFILE,
+    setErrorMessage: string,
 }
 export const AddPost = (post: string): AddPostType => {
     return {
@@ -220,6 +230,18 @@ export const AppInitializing = (initialized: boolean): AppInitializingType => {
         initialized,
     }
 }
+export const SetErrorMessage = (setErrorMessage: string): SetErrorMessageType => {
+    return {
+        type: ACTIONS_TYPE.SET_ERROR_MESSAGE,
+        setErrorMessage,
+    }
+}
+export const SetErrorMessageProfile = (setErrorMessage: string): SetErrorMessageProfileType => {
+    return {
+        type: ACTIONS_TYPE.SET_ERROR_MESSAGE_PROFILE,
+        setErrorMessage,
+    }
+}
 
 export type ActionsTypes =
     AddPostType |
@@ -240,4 +262,6 @@ export type ActionsTypes =
     ChangeUserStatusType |
     LoginUserFormType |
     UploadPhotoUserType |
-    AppInitializingType;
+    AppInitializingType |
+    SetErrorMessageType |
+    SetErrorMessageProfileType;

@@ -37,6 +37,7 @@ export const Login = (props: LoginFormPropsType) => {
                 onSubmit={log}
                 render={({ handleSubmit, submitting, values }) => (
                     <form onSubmit={handleSubmit}>
+                        <div>{props.setErrorMessage}</div>
                         <Field name="email" validate={required}>
                             {({ input, meta }) => (
                                 <div>

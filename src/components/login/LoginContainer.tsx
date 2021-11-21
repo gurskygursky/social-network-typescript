@@ -8,18 +8,20 @@ import {RootStateType} from "../../redux/redux-store";
 
 
 type MapStateToPropsType = {
-isAuth: boolean
+    isAuth: boolean,
+    setErrorMessage: string,
 }
 type MapDispatchToPropsType = {
     // sendMessage: () => void,
     // onChangeMessage: (newMessageText: string) => void,
-    loginThunk: (email: string, password: string, rememberMe: boolean) => void
+    loginThunk: (email: string, password: string, rememberMe: boolean) => void,
 }
 export type LoginFormPropsType = MapStateToPropsType & MapDispatchToPropsType;
 
 const MapStateToProps = (state: RootStateType): MapStateToPropsType => {
     return {
-        isAuth: state.AuthReducer.isAuth
+        isAuth: state.AuthReducer.isAuth,
+        setErrorMessage: state.AuthReducer.setErrorMessage,
     }
 }
 // const MapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {

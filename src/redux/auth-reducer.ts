@@ -5,12 +5,14 @@ export type InitialStateType = {
     email: string,
     login: string,
     isAuth: boolean,
+    setErrorMessage: string,
 }
 const initialState: InitialStateType = {
     id: null,
     email: '',
     login: '',
     isAuth: false,
+    setErrorMessage: '',
 };
 
 export const AuthReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
@@ -22,6 +24,10 @@ export const AuthReducer = (state = initialState, action: ActionsTypes): Initial
                 email: action.email,
                 login: action.login,
                 isAuth: action.isAuth,
+            }
+        case ACTIONS_TYPE.SET_ERROR_MESSAGE:
+            return {
+                ...state, setErrorMessage: action.setErrorMessage,
             }
         default:
             return state;

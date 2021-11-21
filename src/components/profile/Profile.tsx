@@ -12,6 +12,7 @@ type ProfileType = {
     isOwner: boolean,
     uploadUserPhoto: any,
     onSubmitHandler: (contacts: ContactsType, aboutMe: string, lookingForAJob: boolean, lookingForAJobDescription: string, fullName: string) => void
+    setErrorMessage: string,
 }
 
 export const Profile = (props: ProfileType) => {
@@ -23,6 +24,7 @@ export const Profile = (props: ProfileType) => {
                          isOwner={props.isOwner}
                          uploadUserPhoto={props.uploadUserPhoto}
                          onSubmitHandler={props.onSubmitHandler}
+                         setErrorMessage={props.setErrorMessage}
             />
             <PostsContainer/>
         </div>

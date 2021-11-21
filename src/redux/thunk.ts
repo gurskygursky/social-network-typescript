@@ -14,8 +14,9 @@ import {
     ActionsTypes,
     UploadUserPhoto,
     AppInitializing,
+    SetErrorMessage, SetErrorMessageProfile,
 } from "./actions";
-import {ThunkAction} from "redux-thunk";
+import {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {RootStateType} from "./redux-store";
 import {ContactsType} from "./profile-reducer";
 
@@ -82,6 +83,10 @@ export const loginThunk = (email: string, password: string, rememberMe: boolean)
     const response = await HeaderAPI.login(email, password, rememberMe)
     if (response.data.resultCode === 0) {
         dispatch(loginUserThunk());
+    } else {
+        console.log(response.data.messages)
+        const message = response.data.messages.length > 0 ? response.data.messages[0] : "Some Error"
+        dispatch(SetErrorMessage(message))
     }
 }
 export const logoutThunk = () => async (dispatch: Dispatch) => {
@@ -104,10 +109,26 @@ export const appInitializingThunk = (initialized: boolean): ThunkAction<void, Ro
     })
 }
 export const updateProfileDataThunk = (contacts: ContactsType, aboutMe: string, lookingForAJob: boolean, lookingForAJobDescription: string, fullName: string): ThunkAction<void, RootStateType, unknown, ActionsTypes> => async (dispatch, getState) => {
+    console.log(2)
     const id = Number(getState().ProfileReducer.userProfile.userId)
-    debugger
     const response = await ProfileAPI.updateProfileData(contacts, aboutMe, lookingForAJob, lookingForAJobDescription, fullName)
     if (response.data.resultCode === 0) {
         dispatch(selectUserProfileThunk(id));
+        dispatch(SetErrorMessageProfile(""))
+    } else {
+        console.log(response.data.messages)
+        const message = response.data.messages.length > 0 ? response.data.messages[0] : "Some Error"
+        dispatch(SetErrorMessageProfile(message))
     }
 }
+// export const getLogin = (email: string, password: string, rememberMe: boolean) =>
+//     async (dispatch: ThunkDispatch<RootStateType, undefined, ActionsTypes>) => {
+//          const response = await HeaderAPI.login(email, password, rememberMe)
+//         if (response.data.resultCode === 0) {
+//             dispatch(loginUserThunk())
+//             dispatch(SetErrorMessage(""))
+//         } else {
+//             const message = response.data.messages.length > 0 ? response.data.messages[0] : "Some Error"
+//             dispatch(SetErrorMessage(message))
+//         }
+//     }

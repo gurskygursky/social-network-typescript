@@ -32,7 +32,8 @@ export type InitialStateType = {
     newPostText: string,
     posts: Array<PostType>,
     userProfile: UserProfileType,
-    status: string
+    status: string,
+    setErrorMessage: string,
 }
 const initialState: InitialStateType = {
     newPostText: '',
@@ -63,6 +64,7 @@ const initialState: InitialStateType = {
         }
     },
     status: "",
+    setErrorMessage: '',
 };
 
 export const ProfileReducer = (state= initialState, action: ActionsTypes): InitialStateType => {
@@ -106,6 +108,10 @@ export const ProfileReducer = (state= initialState, action: ActionsTypes): Initi
         case ACTIONS_TYPE.UPLOAD_USER_PHOTO:
             return {
                 ...state, userProfile: {...state.userProfile, photos: action.photos}
+            }
+        case ACTIONS_TYPE.SET_ERROR_MESSAGE_PROFILE:
+            return {
+                ...state, setErrorMessage: action.setErrorMessage,
             }
         default: return state;
     }

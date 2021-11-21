@@ -12,6 +12,7 @@ import {
     uploadUserPhotoThunk,
 } from "../../redux/thunk";
 import { compose } from "redux";
+import {ACTIONS_TYPE} from "../../redux/actions";
 
 export class ProfileUsersContainer extends React.Component<ProfileContainerType> {
     // componentDidMount() {
@@ -42,12 +43,13 @@ export class ProfileUsersContainer extends React.Component<ProfileContainerType>
     }
 
     componentDidUpdate(prevProps: any) {
-        if (this.props.match.params.userID != prevProps.match.params.userID) {
+        if (this.props.match.params.userID !== prevProps.match.params.userID) {
             this.refreshProfile()
         }
 
     }
     render() {
+        // console.log(this.props.setErrorMessage)
         return (
             <>
                 <Profile {...this.props}
@@ -57,6 +59,7 @@ export class ProfileUsersContainer extends React.Component<ProfileContainerType>
                          status={this.props.status}
                          uploadUserPhoto={this.props.uploadUserPhotoThunk}
                          onSubmitHandler={this.props.updateProfileDataThunk}
+                         setErrorMessage={this.props.setErrorMessage}
                 />
             </>
         )
@@ -67,6 +70,7 @@ type mapStateToPropsType = {
     userProfile: UserProfileType,
     status: string,
     authUserID: number | null,
+    setErrorMessage: string,
 }
 type PathParamType = {
     userID: string,
@@ -79,6 +83,7 @@ const mapStateToProps = (state: RootStateType): mapStateToPropsType => {
         userProfile: state.ProfileReducer.userProfile,
         status: state.ProfileReducer.status,
         authUserID: state.AuthReducer.id,
+        setErrorMessage: state.ProfileReducer.setErrorMessage,
     }
 }
 
