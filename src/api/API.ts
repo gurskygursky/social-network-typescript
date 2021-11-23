@@ -12,14 +12,16 @@ const instance = axios.create({
 
 export const UsersAPI = {
     getUsers(currentPage: number, pageSize: number) {
-    return (
-        instance.get( `users?page=${currentPage}&count=${pageSize}`)
-            .then(response => response.data)
-    )},
+        return (
+            instance.get(`users?page=${currentPage}&count=${pageSize}`)
+                .then(response => response.data)
+        )
+    },
     follow(userID: number) {
         return (
             instance.post(`follow/${userID}`)
-        )},
+        )
+    },
     unfollow(userID: number) {
         return (
             instance.delete(`follow/${userID}`)
@@ -29,7 +31,7 @@ export const UsersAPI = {
 
 export const HeaderAPI = {
     authMe() {
-        return(
+        return (
             instance.get(`auth/me`)
         )
     },
@@ -39,7 +41,7 @@ export const HeaderAPI = {
         )
     },
     logout() {
-        return(
+        return (
             instance.delete(`auth/login`)
         )
     },
@@ -62,14 +64,14 @@ export const ProfileAPI = {
         )
     },
     uploadUserPhoto(image: File) {
-        var formData = new FormData();
-        formData.append("image", image );
+        const formData = new FormData();
+        formData.append("image", image);
         return (
             instance.put(`profile/photo`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 },
-            } )
+            })
         )
     },
     updateProfileData(contacts: ContactsType, aboutMe: string, lookingForAJob: boolean, lookingForAJobDescription: string, fullName: string) {

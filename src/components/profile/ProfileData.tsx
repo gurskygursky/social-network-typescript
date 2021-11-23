@@ -1,9 +1,7 @@
-import React, {ChangeEvent} from "react";
+import React from "react";
 import style from "./Profile.module.css";
 import {StatusWithHooks} from "./status/StatusWithHooks";
 import {UserProfileType} from "../../redux/profile-reducer";
-import {Preloader} from "../../common/preloaders/Preloader";
-import avatarImage from "../../assets/image/avatar/img.png";
 import {ProfileContactsData} from "./ProfileContactsData";
 
 
@@ -42,14 +40,6 @@ export const ProfileData = (props: ProfileInfoType) => {
             <div>
                 <ProfileContactsData userProfile={props.userProfile}/>
             </div>
-
-            {/*{*/}
-            {/*    <img src={props.userProfile.photos.small} alt={"avatar_image"}/>*/}
-            {/*    || <img src={avatarImage} alt={"avatar_image"}/>*/}
-            {/*}*/}
-            <br/>
-            <br/>
-            <br/>
         </div>
     );
 }

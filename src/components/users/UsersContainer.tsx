@@ -9,7 +9,6 @@ import {
     selectPageThunkCreator,
     unfollowUserThunk,
 } from "../../redux/thunk";
-import {withAuthRedirect} from "../hoc/withAuthRedirect";
 import {
     getCurrentPage,
     getFollowingInProgress,
@@ -23,9 +22,11 @@ export class ClassUsersContainer extends React.Component<UsersContainerPropsType
     componentDidMount() {
         this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
     }
+
     selectPage = (numberPage: number) => {
         this.props.selectPageThunkCreator(numberPage, this.props.pageSize)
     }
+
     render() {
         return (
             <>

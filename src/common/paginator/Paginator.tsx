@@ -22,24 +22,27 @@ export const Paginator = (props: PaginatorPropsType) => {
     const nextCountPageOutput = currentPagesOutput * countPagesOutputInLine;
 
 
-
     return (
         <div>
             {currentPagesOutput > 1
-            &&<button onClick={ () => {setCurrentPagesOutput(currentPagesOutput-1)}}>PREV</button>}
+            && <button onClick={() => {
+                setCurrentPagesOutput(currentPagesOutput - 1)
+            }}>PREV</button>}
             {pages
                 .filter(page => page >= prevCountPageOutput && page <= nextCountPageOutput)
                 .map(page => {
-                return (
-                    <span onClick={() => {
-                        props.selectPage(page)
-                    }}
-                          className={props.currentPage === page ? style.selected : ''}>{page}</span>
-                )
-            })}
+                    return (
+                        <span onClick={() => {
+                            props.selectPage(page)
+                        }}
+                              className={props.currentPage === page ? style.selected : ''}>{page}</span>
+                    )
+                })}
             {
                 countPagesOutput > currentPagesOutput
-                && <button onClick={() => {setCurrentPagesOutput(currentPagesOutput + 1)}}>NEXT</button>}
+                && <button onClick={() => {
+                    setCurrentPagesOutput(currentPagesOutput + 1)
+                }}>NEXT</button>}
         </div>
     )
 }

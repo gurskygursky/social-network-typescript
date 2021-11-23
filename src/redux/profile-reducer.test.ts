@@ -30,6 +30,7 @@ const state: InitialStateType = {
         }
     },
     status: "",
+    setErrorMessage: '',
 };
 
 it ('length of posts should be incremented', () => {

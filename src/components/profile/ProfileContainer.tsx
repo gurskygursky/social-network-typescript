@@ -2,7 +2,7 @@ import React, {ComponentType} from "react";
 import {Profile} from "./Profile";
 import {connect, ConnectedProps} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
-import { RouteComponentProps, withRouter} from "react-router-dom";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 import {UserProfileType} from "../../redux/profile-reducer";
 import {
     changeUserStatusThunk,
@@ -11,31 +11,17 @@ import {
     updateProfileDataThunk,
     uploadUserPhotoThunk,
 } from "../../redux/thunk";
-import { compose } from "redux";
-import {ACTIONS_TYPE} from "../../redux/actions";
+import {compose} from "redux";
 
 export class ProfileUsersContainer extends React.Component<ProfileContainerType> {
-    // componentDidMount() {
-    //     let userID = this.props.match.params.userID;
-    //     if (!userID) {
-    //         // debugger
-    //         // userID = '18933'
-    //         console.log(this.props.authUserID)
-    //         userID = String(this.props.authUserID);
-    //     }
-    //     this.props.selectUserProfileThunk(Number(userID));
-    //     this.props.getUserStatusThunk(Number(userID));
-    // }
     refreshProfile() {
-            let userID = this.props.match.params.userID;
-            if (!userID) {
-                // debugger
-                // userID = '18933'
-                console.log(this.props.authUserID)
-                userID = String(this.props.authUserID);
-            }
-            this.props.selectUserProfileThunk(Number(userID));
-            this.props.getUserStatusThunk(Number(userID));
+        let userID = this.props.match.params.userID;
+        if (!userID) {
+            console.log(this.props.authUserID)
+            userID = String(this.props.authUserID);
+        }
+        this.props.selectUserProfileThunk(Number(userID));
+        this.props.getUserStatusThunk(Number(userID));
     }
 
     componentDidMount() {
@@ -48,13 +34,13 @@ export class ProfileUsersContainer extends React.Component<ProfileContainerType>
         }
 
     }
+
     render() {
-        // console.log(this.props.setErrorMessage)
         return (
             <>
                 <Profile {...this.props}
-                    isOwner={!this.props.match.params.userID}
-                        changeStatus={this.props.changeUserStatusThunk}
+                         isOwner={!this.props.match.params.userID}
+                         changeStatus={this.props.changeUserStatusThunk}
                          userProfile={this.props.userProfile}
                          status={this.props.status}
                          uploadUserPhoto={this.props.uploadUserPhotoThunk}

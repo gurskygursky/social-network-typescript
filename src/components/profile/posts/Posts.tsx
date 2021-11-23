@@ -12,22 +12,9 @@ export const Posts = (props: PostsPropsType) => {
         />
     );
 
-    // const addPost = () => {
-    //     debugger
-    //     props.addPost();
-    // }
     const addPost = (values: any) => {
         props.addPost(values.post);
     }
-
-    // const onChangePost = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    //     const newPostText = event.currentTarget.value
-    //     props.onChangePost(newPostText)
-    // }
-    // const onKeyPressEnter = (event: KeyboardEvent<HTMLTextAreaElement>) => {
-    //     if (event.key === "Enter")
-    //         addPost()
-    // }
 
     return (
         <div>
@@ -35,13 +22,13 @@ export const Posts = (props: PostsPropsType) => {
             <div>
                 <br/>
                 <br/>
-                <Form onSubmit={addPost}  render={({handleSubmit, values}) =>
+                <Form onSubmit={addPost} render={({handleSubmit, values}) =>
                     <form onSubmit={handleSubmit}>
-                        <Field name="post" >
-                            {({ input, meta }) => (
+                        <Field name="post">
+                            {({input, meta}) => (
                                 <div>
                                     <label>Text Area Message</label>
-                                    <input {...input} type={"text"} placeholder="message ..." />
+                                    <input {...input} type={"text"} placeholder="message ..."/>
                                     {meta.error && meta.touched && <span>{meta.error}</span>}
                                 </div>
                             )}
@@ -50,13 +37,7 @@ export const Posts = (props: PostsPropsType) => {
                     </form>
                 }
                 />
-                {/*<textarea*/}
-                {/*    onChange={onChangePost}*/}
-                {/*    value={props.newPostText}*/}
-                {/*    onKeyPress={onKeyPressEnter}*/}
-                {/*/>*/}
                 <br/>
-                {/*<button onClick={props.addPost}>Add post</button>*/}
             </div>
             <br/>
             <br/>

@@ -16,7 +16,7 @@ import {
     AppInitializing,
     SetErrorMessage, SetErrorMessageProfile,
 } from "./actions";
-import {ThunkAction, ThunkDispatch} from "redux-thunk";
+import {ThunkAction} from "redux-thunk";
 import {RootStateType} from "./redux-store";
 import {ContactsType} from "./profile-reducer";
 
@@ -82,7 +82,7 @@ export const changeUserStatusThunk = (statusText: string) => async (dispatch: Di
 export const loginThunk = (email: string, password: string, rememberMe: boolean): ThunkAction<void, RootStateType, unknown, ActionsTypes> => async (dispatch) => {
     const response = await HeaderAPI.login(email, password, rememberMe)
     if (response.data.resultCode === 0) {
-        dispatch(loginUserThunk());
+        await dispatch(loginUserThunk());
     } else {
         console.log(response.data.messages)
         const message = response.data.messages.length > 0 ? response.data.messages[0] : "Some Error"
@@ -113,7 +113,7 @@ export const updateProfileDataThunk = (contacts: ContactsType, aboutMe: string, 
     const id = Number(getState().ProfileReducer.userProfile.userId)
     const response = await ProfileAPI.updateProfileData(contacts, aboutMe, lookingForAJob, lookingForAJobDescription, fullName)
     if (response.data.resultCode === 0) {
-        dispatch(selectUserProfileThunk(id));
+        await dispatch(selectUserProfileThunk(id));
         dispatch(SetErrorMessageProfile(""))
     } else {
         console.log(response.data.messages)

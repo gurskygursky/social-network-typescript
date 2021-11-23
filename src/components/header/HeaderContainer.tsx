@@ -4,13 +4,11 @@ import {connect, ConnectedProps} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
 import {Header} from "./Header";
 import {
-    loginUserThunk, logoutThunk,
+    loginUserThunk,
+    logoutThunk,
 } from "../../redux/thunk";
 
 export class LoginHeaderContainer extends React.Component<LoginHeaderContainerPropsType> {
-    // componentDidMount() {
-    //     this.props.loginUserThunk();
-    // }
     render() {
         return (
             <Header {...this.props}  />

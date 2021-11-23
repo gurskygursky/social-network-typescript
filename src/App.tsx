@@ -13,18 +13,13 @@ import {
 } from "./redux/thunk";
 import {compose} from "redux";
 import {RootStateType} from "./redux/redux-store";
-import {Preloader} from "./common/preloaders/Preloader";
 
 export class App extends React.Component<AppContainerType> {
     componentDidMount() {
-            this.props.appInitializingThunk(this.props.initialized);
+        this.props.appInitializingThunk(this.props.initialized);
     }
 
     render() {
-        // debugger
-        //  if (!this.props.isAuth) {
-        //      return <Preloader/>
-        //  }
         return (
             <div className={"app-wrapper"}>
                 <HeaderContainer/>
@@ -51,14 +46,12 @@ const mapStateToProps = (state: RootStateType): mapStateToPropsType => {
     }
 }
 
-// export const AppContainer = connect(null, loginUserThunk)(App);
 
 const ConnectComponent = connect(mapStateToProps, {
     appInitializingThunk,
 })
 
 export type AppConnectContainerType = ConnectedProps<typeof ConnectComponent>
-// export const AppContainer =  ConnectComponent(App)
 
 export const AppContainer = compose<ComponentType>(
     ConnectComponent,

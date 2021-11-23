@@ -30,13 +30,13 @@ export const Dialogs = (props: DialogsPropsType) => {
                 {message}
                 <br/>
                 <br/>
-                <Form onSubmit={sendMessage}  render={({handleSubmit, values}) =>
+                <Form onSubmit={sendMessage} render={({handleSubmit, values}) =>
                     <form onSubmit={handleSubmit}>
-                        <Field name="message" >
-                            {({ input, meta }) => (
+                        <Field name="message">
+                            {({input, meta}) => (
                                 <div>
                                     <label>Text Area Message</label>
-                                    <input {...input} type="text" placeholder="message ..." />
+                                    <input {...input} type="text" placeholder="message ..."/>
                                     {meta.error && meta.touched && <span>{meta.error}</span>}
                                 </div>
                             )}
@@ -44,12 +44,7 @@ export const Dialogs = (props: DialogsPropsType) => {
                     </form>
                 }
                 />
-                {/*<textarea onChange={onChangeMessage}*/}
-                {/*          value={props.newMessageText}*/}
-                {/*          onKeyPress={onKeyPressEnter}*/}
-                {/*/>*/}
                 <br/>
-                {/*<button onClick={sendMessage}>Send</button>*/}
             </div>
         </div>
     );

@@ -11,8 +11,8 @@ export type ContactsType = {
     mainLink?: string,
 }
 export type PhotosType = {
-    small: string ,
-    large: string ,
+    small: string,
+    large: string,
 }
 export type UserProfileType = {
     aboutMe: string,
@@ -59,15 +59,15 @@ const initialState: InitialStateType = {
             mainLink: '',
         },
         photos: {
-            small: '' ,
-            large: '' ,
+            small: '',
+            large: '',
         }
     },
     status: "",
     setErrorMessage: '',
 };
 
-export const ProfileReducer = (state= initialState, action: ActionsTypes): InitialStateType => {
+export const ProfileReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case ACTIONS_TYPE.ADD_POST:
             console.log(action.post)
@@ -80,14 +80,14 @@ export const ProfileReducer = (state= initialState, action: ActionsTypes): Initi
                 ...state,
                 posts: [...state.posts, newPost]
             }
-            // if (state.newPostText !== '') {
-            //     return {
-            //         ...state,
-            //         posts: [...state.posts, newPost],
-            //         newPostText: '',
-            //     }
-            // }
-            // return state;
+        // if (state.newPostText !== '') {
+        //     return {
+        //         ...state,
+        //         posts: [...state.posts, newPost],
+        //         newPostText: '',
+        //     }
+        // }
+        // return state;
         case ACTIONS_TYPE.DELETE_POST:
             return {...state, posts: state.posts.filter(post => post.id !== action.postID)}
         case ACTIONS_TYPE.INPUT_NEW_POST_TEXT:
@@ -113,6 +113,7 @@ export const ProfileReducer = (state= initialState, action: ActionsTypes): Initi
             return {
                 ...state, setErrorMessage: action.setErrorMessage,
             }
-        default: return state;
+        default:
+            return state;
     }
 };

@@ -14,7 +14,7 @@ const required = (value: string) => (value ? undefined : "Required");
 
 export const ProfileDataEditForm = (props: ProfileInfoType) => {
     const updateProfileDataHandler = (values: any) => {
-console.log(1)
+        console.log(1)
         props.updateProfileDataThunk({
                 facebook: values.facebook,
                 twitter: values.twitter,

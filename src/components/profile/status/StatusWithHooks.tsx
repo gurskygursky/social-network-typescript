@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEventHandler, useEffect, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import style from "./StatusWithHooks.module.css";
 
 type StatusPropsType = {

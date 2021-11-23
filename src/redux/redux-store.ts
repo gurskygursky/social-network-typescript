@@ -4,7 +4,7 @@ import {DialogsReducer} from "./dialogs-reducer";
 import {UsersReducer} from "./users-reducer";
 import {AuthReducer} from "./auth-reducer";
 import thunk from "redux-thunk";
-import { AppReducer } from "./app-reducer";
+import {AppReducer} from "./app-reducer";
 
 const rootReducer = combineReducers({
     ProfileReducer,
